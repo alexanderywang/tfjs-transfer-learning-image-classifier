@@ -10,10 +10,6 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 - TFJS uses WebGL to process and train the models and GPU acceleration for computation. The syntax for the APIs is tf.methodName() , a syntax familiar to JS users. Some utilize callback functions, some are asynchronous, some are synchronous. WebGL has no garbage collection. I've seen tf.tidy() used a lot for clean up and will try to utilize it or tf.dispose()
 
-### Tensor:
-
-Tensors are the data type widely used in Tensorflow and a tensor is a essentially a matrix of numbers used to represent multi-dimensional array. They are used to train prediction models through TFJS APIs and "flow" through the model.
-
 ### Goal:
 
 The goal of this solution is to build a ["teachable machine"](https://teachablemachine.withgoogle.com/). In this case, a custom image classifier to be trained in the browser
@@ -44,17 +40,23 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 ## Local Setup
 
 1. Clone the repo locally. In a terminal, run
+
 ```
 git clone https://github.com/alexanderywang/tfjs-linear-regression-predictions
 ```
+
 and navigate to the project folder
+
 ```
 cd tfjs-linear-regression-predictions
 ```
+
 2. Install app dependencies. Run
+
 ```
 `npm install`
 ```
+
 3. Run `npm run start` to start the app on http://localhost:3000/
 
 ### Some key learning points
@@ -62,6 +64,7 @@ cd tfjs-linear-regression-predictions
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.
+
 **Javascript in Machine Learning is relatively new and it's important that users can use your models and ideas interactively in the browser without having to install anything**
 
 **CLIENT SIDE BENEFITS THAT ARE HARDER TO ACHIEVE SERVER SIDE:**
@@ -75,4 +78,3 @@ cd tfjs-linear-regression-predictions
 - a good introduction to deep learning is through linear regression
 
 * how to decide the number of layer and nodes of memory intensive layers like LSTM? trial and error, run experiments, keras tuning can search through layers for optimizing
-

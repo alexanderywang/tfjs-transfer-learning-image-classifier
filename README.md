@@ -1,6 +1,6 @@
 ## TensorFlow JS Transfer Learning Image Classifier
 
-The Tensorflow.js tutorial uses script tag as the entry point for loading files. I'll install via npm and use Create React App and attempt to modularize where possible.
+The Tensorflow.js tutorial uses script tag as the entry point for loading files. I'll install via npm and use Create React App and attempt to modularize where possible. I'll add Material UI with an eye towards developing a progressive web application.
 I'll refer and refactor the code from the two-dimensional linear regression tutorial on Tensorflow JS found here:
 
 https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-codelab/index.html#0
@@ -36,6 +36,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 - [Tensorflow.js](https://www.tensorflow.org/js/): A JavaScript library for training and deploying Machine Learning models in the browser
 - [@tensorflow/tfjs-vis](https://www.npmjs.com/package/@tensorflow/tfjs-vis)
 - [Axios](https://www.npmjs.com/package/axios)
+- [Material-UI](https://material-ui.com/)
 
 ## Local Setup
 

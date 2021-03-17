@@ -54,7 +54,7 @@ cd tfjs-linear-regression-predictions
 2. Install app dependencies. Run
 
 ```
-`npm install`
+npm install
 ```
 
 3. Run `npm run start` to start the app on http://localhost:3000/

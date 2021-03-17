@@ -31,26 +31,37 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 
 #### Extra:
 
--
+- Create a progressive web application for mobile use
 
 ## Tech Stack:
 
 - [Node.js](https://nodejs.org/en/)
-- [React](https://facebook.github.io/react/)
-- [Tensorflow.js](https://www.tensorflow.org/js/)
+- [React](https://facebook.github.io/react/): A JavaScript library for building user interfaces
+- [Tensorflow.js](https://www.tensorflow.org/js/): A JavaScript library for training and deploying Machine Learning models in the browser
 - [@tensorflow/tfjs-vis](https://www.npmjs.com/package/@tensorflow/tfjs-vis)
 - [Axios](https://www.npmjs.com/package/axios)
 
 ## Local Setup
 
-1. Run `git clone https://github.com/alexanderywang/tfjs-linear-regression-predictions` and navigate to the project folder
-2. Run `npm install`
+1. Clone the repo locally. In a terminal, run
+```
+git clone https://github.com/alexanderywang/tfjs-linear-regression-predictions
+```
+and navigate to the project folder
+```
+cd tfjs-linear-regression-predictions
+```
+2. Install app dependencies. Run
+```
+`npm install`
+```
 3. Run `npm run start` to start the app on http://localhost:3000/
 
 ### Some key learning points
 
 #### Takeaways
 
+- Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.
 **Javascript in Machine Learning is relatively new and it's important that users can use your models and ideas interactively in the browser without having to install anything**
 
 **CLIENT SIDE BENEFITS THAT ARE HARDER TO ACHIEVE SERVER SIDE:**

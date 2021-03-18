@@ -2,20 +2,14 @@ import "./App.css";
 import { Container } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 import loadModel from "./model/MobileNetInference";
+import Webcam from "./components/Webcam";
 
 function App() {
   return (
     <div className="App">
       <Container>
         <Navbar />
-        {/* <div>
-          <img
-            src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-            alt="dog"
-            width="200"
-            height="200"
-          />
-        </div> */}
+        <Webcam />
         <Button />
       </Container>
     </div>
@@ -30,7 +24,7 @@ const Button = () => {
   image.src =
     "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   image.crossOrigin = "anonymous";
-  console.log("image", image);
+
 
   return <button onClick={() => loadModel(image)}>Classify</button>;
 };

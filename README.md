@@ -62,6 +62,8 @@ npm install
 
 ### Some key learning points
 
+- npm install @tensorflow-models/mobilenet needed :)
+
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.

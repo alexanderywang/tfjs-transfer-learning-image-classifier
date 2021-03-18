@@ -64,6 +64,10 @@ npm install
 
 - npm install @tensorflow-models/mobilenet needed :)
 
+- some debugging issues with react and tensorflow.js:
+crossorigin='anonymous' needs to be added to the image tag
+
+
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.

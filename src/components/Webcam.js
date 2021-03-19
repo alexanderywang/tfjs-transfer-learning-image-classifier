@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import * as mobilenet from "@tensorflow-models/mobilenet";
 import ClassifyButton from "./ClassifyButton";
 
 const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
@@ -40,9 +41,10 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     //get image dataURL
     const imageDataURL = canvasRef.current.toDataURL("image/png");
     // set dataURL as source, stop webcam
+
     stopCam();
     setImageURL(imageDataURL);
-    createImage(imageURL);
+    createImage(imageDataURL);
   };
 
   const stopCam = () => {
@@ -59,22 +61,30 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setImage(newImage);
   };
 
+  const makePrediction = async () => {
+    setIsLoading(true);
+    const predictions = await model.classify(image);
+    console.log("mobileNet model predictions:", predictions);
+    setIsLoading(false);
+
+    setPredictions(predictions);
+  };
+
   return (
     <div>
-      <video ref={videoRef} hidden={isPhotoTaken} />
+      <div>
+        <video ref={videoRef} hidden={isPhotoTaken} />
+      </div>
       <canvas ref={canvasRef} style={{ display: "none" }} />
       {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
       <ClassifyButton
-        setPredictions={setPredictions}
         isLoading={isLoading}
-        setIsLoading={setIsLoading}
         setIsPhotoTaken={setIsPhotoTaken}
         isPhotoTaken={isPhotoTaken}
         takePhoto={takePhoto}
         setImageURL={setImageURL}
         imageURL={imageURL}
-        image={image}
-        model={model}
+        makePrediction={makePrediction}
       />
     </div>
   );

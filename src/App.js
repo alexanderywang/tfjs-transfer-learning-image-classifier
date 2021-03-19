@@ -1,16 +1,31 @@
+import React, { useState } from "react";
 import "./App.css";
-import { Container } from "@material-ui/core";
+import {
+  makeStyles,
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from "@material-ui/core";
 import Navbar from "./components/Navbar";
-import loadModel from "./model/MobileNetInference";
+// import loadModel from "./model/MobileNetInference";
+import ClassifyButton from "./components/ClassifyButton";
 import Webcam from "./components/Webcam";
 
 function App() {
+  const [predictions, setPredictions] = useState([]);
+
   return (
     <div className="App">
       <Container>
         <Navbar />
         <Webcam />
-        <Button />
+        <ClassifyButton setPredictions={setPredictions} />
+        {predictions && <PredictionsTable predictions={predictions} />}
       </Container>
     </div>
   );
@@ -18,13 +33,42 @@ function App() {
 
 export default App;
 
-const Button = () => {
-  // const image = document.getElementById("img");
-  const image = new Image();
-  image.src =
-    "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
-  image.crossOrigin = "anonymous";
+const PredictionsTable = ({ predictions }) => {
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 650
+    }
+  });
 
+  const classes = useStyles();
 
-  return <button onClick={() => loadModel(image)}>Classify</button>;
+  return (
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Predictions</TableCell>
+            <TableCell align="right">Probability</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {predictions.map(prediction => (
+            <TableRow key={prediction.className}>
+              <TableCell
+                component="th"
+                scope="row"
+                style={{ fontWeight: "bold", width: '20%' }}
+
+              >
+                {prediction.className}
+              </TableCell>
+              <TableCell align="right" style={{ width: '20%' }}>
+                {Math.round(prediction.probability * 100, 5)}%
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 };

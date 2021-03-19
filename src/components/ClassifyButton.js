@@ -1,12 +1,18 @@
 import React from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { Button } from "@material-ui/core";
+import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+
 const ClassifyButton = ({
   setPredictions,
   setIsLoading,
   isLoading,
   setIsPhotoTaken,
-  isPhotoTaken
+  isPhotoTaken,
+  takePhoto,
+  setImageURL,
+  imageURL
+  // image
 }) => {
   // hardcoded image
   const image = new Image();
@@ -31,10 +37,17 @@ const ClassifyButton = ({
     setPredictions(predictions);
   };
 
+  const handleClick = e => {
+    if (!isPhotoTaken) takePhoto(e);
+    else setImageURL("");
+
+    setIsPhotoTaken(!isPhotoTaken);
+  };
+
   return (
     <div>
       <Button
-        onClick={() => setIsPhotoTaken(!isPhotoTaken)}
+        onClick={handleClick}
         variant="contained"
         color="secondary"
         disableElevation
@@ -49,6 +62,15 @@ const ClassifyButton = ({
       >
         {isLoading ? "Loading..." : "Classify"}
       </Button>
+      {isPhotoTaken && (
+        <div>
+          <SystemUpdateAltIcon>
+            <a href={imageURL} download="selfie.png">
+              <i></i>
+            </a>
+          </SystemUpdateAltIcon>
+        </div>
+      )}
     </div>
   );
 };

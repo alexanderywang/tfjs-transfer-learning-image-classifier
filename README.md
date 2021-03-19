@@ -96,3 +96,11 @@ npm install
 - a good introduction to deep learning is through linear regression
 
 * how to decide the number of layer and nodes of memory intensive layers like LSTM? trial and error, run experiments, keras tuning can search through layers for optimizing
+
+#### Bonus lessons
+
+###### taking a photo from a webcam:
+- used the navigator.mediaDevices interface object
+- transfered data from getUserMedia method to an HTML5 video element
+- take a picture by capturing the current video frame and drawing it to a canvas element
+- save picture using anchor element's download attribute

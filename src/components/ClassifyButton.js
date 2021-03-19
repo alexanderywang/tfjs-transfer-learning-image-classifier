@@ -11,7 +11,8 @@ const ClassifyButton = ({
   isPhotoTaken,
   takePhoto,
   setImageURL,
-  imageURL
+  imageURL,
+  model
   // image
 }) => {
   // hardcoded image
@@ -21,18 +22,13 @@ const ClassifyButton = ({
   image.crossOrigin = "anonymous";
 
   // we should load model in app once. and make this loadPredictions instead
-  const loadModel = async () => {
+  const makePrediction = async () => {
     setIsLoading(true);
-    console.log("Loading mobilenet...");
-
-    const model = await mobilenet.load();
-    console.log("Successfully loaded model", model);
-    setIsLoading(false);
-
     // Make prediction through the model on our image
     // const image = document.getElementById("img");
     const predictions = await model.classify(image);
     console.log("mobileNet model predictions:", predictions);
+    setIsLoading(false);
 
     setPredictions(predictions);
   };
@@ -55,7 +51,7 @@ const ClassifyButton = ({
         {isPhotoTaken ? "Retake" : "Take Photo"}
       </Button>
       <Button
-        onClick={loadModel}
+        onClick={makePrediction}
         variant="contained"
         color="primary"
         disableElevation

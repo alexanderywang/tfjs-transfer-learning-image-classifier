@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
+import * as mobilenet from "@tensorflow-models/mobilenet";
 import {
   makeStyles,
   Container,
@@ -20,6 +21,19 @@ import Webcam from "./components/Webcam";
 function App() {
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [model, setModel] = useState(null);
+
+  useEffect(() => {
+    loadModel();
+  }, []);
+
+  const loadModel = async () => {
+    console.log("Loading mobilenet...");
+
+    const model = await mobilenet.load();
+    setModel(model);
+    console.log("Successfully loaded model", model);
+  };
 
   return (
     <div className="App">
@@ -29,6 +43,7 @@ function App() {
           setPredictions={setPredictions}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
+          model={model}
         />
 
         {isLoading && (

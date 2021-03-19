@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import ClassifyButton from "./ClassifyButton";
 
-const Webcam = ({ setPredictions, setIsLoading, isLoading }) => {
+const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState(null);
@@ -74,6 +74,7 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading }) => {
         setImageURL={setImageURL}
         imageURL={imageURL}
         image={image}
+        model={model}
       />
     </div>
   );

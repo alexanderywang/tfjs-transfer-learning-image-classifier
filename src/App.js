@@ -28,6 +28,7 @@ function App() {
         <Webcam />
         <ClassifyButton
           setPredictions={setPredictions}
+          isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
         {isLoading && (

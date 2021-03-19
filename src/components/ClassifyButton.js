@@ -1,7 +1,7 @@
 import React from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { Button } from "@material-ui/core";
-const ClassifyButton = ({ setPredictions, setIsLoading }) => {
+const ClassifyButton = ({ setPredictions, setIsLoading, isLoading }) => {
   // hardcoded image
   const image = new Image();
   image.src =
@@ -32,7 +32,7 @@ const ClassifyButton = ({ setPredictions, setIsLoading }) => {
         color="primary"
         disableElevation
       >
-        Classify
+        {isLoading ? "Loading..." : "Classify"}
       </Button>
     </div>
   );

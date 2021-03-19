@@ -107,4 +107,4 @@ npm install
 - save picture using anchor element's download attribute
 
 it worked!
-![coffee mug](/public/coffee mug.png)
+![coffee mug](/public/coffee_mug.png)

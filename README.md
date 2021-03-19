@@ -65,7 +65,16 @@ npm install
 - npm install @tensorflow-models/mobilenet needed :)
 
 - some debugging issues with react and tensorflow.js:
-  crossorigin='anonymous' needs to be added to the image tag for predictions to work on a static image
+
+  - crossorigin='anonymous' needs to be added to the image tag for predictions to work on a static image
+
+- index.html needed these scripts to run
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+```
 
 #### Takeaways
 

@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import ClassifyButton from "./ClassifyButton";
 
-const Webcam = () => {
+const Webcam = ({ setPredictions, setIsLoading, isLoading }) => {
+  const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const videoRef = useRef(null);
   const photoRef = useRef(null);
 
   useEffect(() => {
     getVideo();
-  }, [videoRef]);
+  }, [videoRef, isPhotoTaken]);
 
   // displays video from webcam
   const getVideo = () => {
@@ -27,7 +29,7 @@ const Webcam = () => {
     const video = videoRef.current;
     const photo = photoRef.current;
     const context = photo.getContext("2d");
-//224 x 224 ?
+    //224 x 224 ?
     const width = 320,
       height = 240;
     photo.width = width;
@@ -38,10 +40,18 @@ const Webcam = () => {
     }, 200);
   };
 
+  const takePhoto = () => {};
   return (
     <div>
-      <video onPlay={() => paintToCanvas()} ref={videoRef} />
-      <canvas ref={photoRef} hidden="true" />
+      {!isPhotoTaken && <video onPlay={() => paintToCanvas()} ref={videoRef} />}
+      <canvas ref={photoRef} hidden={!isPhotoTaken} />
+      <ClassifyButton
+        setPredictions={setPredictions}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        setIsPhotoTaken={setIsPhotoTaken}
+        isPhotoTaken={isPhotoTaken}
+      />
     </div>
   );
 };

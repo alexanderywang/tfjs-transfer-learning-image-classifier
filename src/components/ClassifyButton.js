@@ -1,13 +1,20 @@
 import React from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import { Button } from "@material-ui/core";
-const ClassifyButton = ({ setPredictions, setIsLoading, isLoading }) => {
+const ClassifyButton = ({
+  setPredictions,
+  setIsLoading,
+  isLoading,
+  setIsPhotoTaken,
+  isPhotoTaken
+}) => {
   // hardcoded image
   const image = new Image();
   image.src =
     "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
   image.crossOrigin = "anonymous";
 
+  // we should load model in app once. and make this loadPredictions instead
   const loadModel = async () => {
     setIsLoading(true);
     console.log("Loading mobilenet...");
@@ -26,6 +33,14 @@ const ClassifyButton = ({ setPredictions, setIsLoading, isLoading }) => {
 
   return (
     <div>
+      <Button
+        onClick={() => setIsPhotoTaken(!isPhotoTaken)}
+        variant="contained"
+        color="secondary"
+        disableElevation
+      >
+        {isPhotoTaken ? "Retake" : "Take Photo"}
+      </Button>
       <Button
         onClick={loadModel}
         variant="contained"

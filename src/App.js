@@ -14,7 +14,7 @@ import {
 } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 // import loadModel from "./model/MobileNetInference";
-import ClassifyButton from "./components/ClassifyButton";
+
 import Webcam from "./components/Webcam";
 
 function App() {
@@ -25,12 +25,12 @@ function App() {
     <div className="App">
       <Container>
         <Navbar />
-        <Webcam />
-        <ClassifyButton
+        <Webcam
           setPredictions={setPredictions}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
         />
+
         {isLoading && (
           <div>
             <CircularProgress />

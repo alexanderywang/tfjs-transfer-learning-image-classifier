@@ -9,11 +9,13 @@ const ClassifyButton = ({
   takePhoto,
   setImageURL,
   imageURL,
-  makePrediction
+  makePrediction,
+  setPredictions
 }) => {
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(e);
     else setImageURL("");
+    setPredictions([]);
     setIsPhotoTaken(!isPhotoTaken);
   };
 

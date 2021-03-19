@@ -83,6 +83,7 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
         setImageURL={setImageURL}
         imageURL={imageURL}
         makePrediction={makePrediction}
+        setPredictions={setPredictions}
       />
     </div>
   );

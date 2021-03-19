@@ -27,7 +27,7 @@ const Webcam = () => {
     const video = videoRef.current;
     const photo = photoRef.current;
     const context = photo.getContext("2d");
-
+//224 x 224 ?
     const width = 320,
       height = 240;
     photo.width = width;

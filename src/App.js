@@ -47,7 +47,7 @@ export default App;
 const PredictionsTable = ({ predictions }) => {
   const useStyles = makeStyles({
     table: {
-      minWidth: 650
+      minWidth: window.width
     }
   });
 

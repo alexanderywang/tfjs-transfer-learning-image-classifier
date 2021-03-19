@@ -1,7 +1,7 @@
 import React from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-
-const ClassifyButton = ({ setPredictions }) => {
+import { Button } from "@material-ui/core";
+const ClassifyButton = ({ setPredictions, setIsLoading }) => {
   // hardcoded image
   const image = new Image();
   image.src =
@@ -9,24 +9,31 @@ const ClassifyButton = ({ setPredictions }) => {
   image.crossOrigin = "anonymous";
 
   const loadModel = async () => {
+    setIsLoading(true);
     console.log("Loading mobilenet...");
-    //load the model
+
     const model = await mobilenet.load();
     console.log("Successfully loaded model", model);
+    setIsLoading(false);
 
     // Make prediction through the model on our image
     // const image = document.getElementById("img");
-
-    console.log(image);
     const predictions = await model.classify(image);
-    console.log("predictions:", predictions);
+    console.log("mobileNet model predictions:", predictions);
 
     setPredictions(predictions);
   };
 
   return (
     <div>
-      <button onClick={loadModel}>Classify</button>
+      <Button
+        onClick={loadModel}
+        variant="contained"
+        color="primary"
+        disableElevation
+      >
+        Classify
+      </Button>
     </div>
   );
 };

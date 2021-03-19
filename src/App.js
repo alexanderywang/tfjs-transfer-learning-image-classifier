@@ -9,7 +9,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  CircularProgress
 } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 // import loadModel from "./model/MobileNetInference";
@@ -18,13 +19,22 @@ import Webcam from "./components/Webcam";
 
 function App() {
   const [predictions, setPredictions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="App">
       <Container>
         <Navbar />
         <Webcam />
-        <ClassifyButton setPredictions={setPredictions} />
+        <ClassifyButton
+          setPredictions={setPredictions}
+          setIsLoading={setIsLoading}
+        />
+        {isLoading && (
+          <div>
+            <CircularProgress />
+          </div>
+        )}
         {predictions && <PredictionsTable predictions={predictions} />}
       </Container>
     </div>
@@ -57,12 +67,11 @@ const PredictionsTable = ({ predictions }) => {
               <TableCell
                 component="th"
                 scope="row"
-                style={{ fontWeight: "bold", width: '20%' }}
-
+                style={{ fontWeight: "bold", width: "20%" }}
               >
                 {prediction.className}
               </TableCell>
-              <TableCell align="right" style={{ width: '20%' }}>
+              <TableCell align="right" style={{ width: "20%" }}>
                 {Math.round(prediction.probability * 100, 5)}%
               </TableCell>
             </TableRow>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import * as mobilenet from "@tensorflow-models/mobilenet";
 import ClassifyButton from "./ClassifyButton";
 
 const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
@@ -38,10 +37,9 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     canvasRef.current.height = height;
     // draw current frame to canvas
     ctx.drawImage(videoRef.current, 0, 0, width, height);
-    //get image dataURL
+    // get image dataURL
     const imageDataURL = canvasRef.current.toDataURL("image/png");
     // set dataURL as source, stop webcam
-
     stopCam();
     setImageURL(imageDataURL);
     createImage(imageDataURL);

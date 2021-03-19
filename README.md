@@ -100,7 +100,11 @@ npm install
 #### Bonus lessons
 
 ###### taking a photo from a webcam:
+
 - used the navigator.mediaDevices interface object
 - transfered data from getUserMedia method to an HTML5 video element
 - take a picture by capturing the current video frame and drawing it to a canvas element
 - save picture using anchor element's download attribute
+
+it worked!
+![coffee mug]('./public/coffee mug.png)

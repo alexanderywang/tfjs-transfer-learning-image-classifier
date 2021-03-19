@@ -28,7 +28,9 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 #### Extra:
 
 - Create a progressive web application for mobile use
+- ask for access to camera AND camera roll
 - hook up google translate API and allow the user to translate the object into another language. be able to read and hear the translation as options
+- deploy with CI/CD
 
 ## Tech Stack:
 

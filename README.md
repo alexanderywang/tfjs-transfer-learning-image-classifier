@@ -7,13 +7,22 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 - Tensorflow.js allows you to run machine learning models in the browser for analysis and training.
 
+- **the codelab merged with React can be found in branch tfjs-image-classifier-with-react**
+
+- next steps: create a user experience and solve a user problem
+1. loading page for the model on initial load
+2. try other models for accuracy
+3. deploy with CI/CD
+4. add 2 way cameras for mobile use
+5. use google translate api and give the user language options, text, and pronounciation to learn
+
 ### Goal:
 
 The goal of this solution is to build a ["teachable machine"](https://teachablemachine.withgoogle.com/). In this case, a custom image classifier to be trained in the browser
 
 1. load and run a pre-trained model called MobileNet for image classification in the browser. make a prediction with new data
 2. use "transfer learning", which customizes the MobileNet model for the application
-3. make a prediciton through the webcam
+3. make a prediction through the webcam
 
 ### Some additional Features on top of the tutorial
 

@@ -30,23 +30,23 @@ const ClassifyButton = ({
         {isPhotoTaken ? "Retake" : "Take Photo"}
       </Button>
       {isPhotoTaken && (
-        <Button
-          onClick={makePrediction}
-          variant="contained"
-          color="primary"
-          disableElevation
-        >
-          {isLoading ? "Loading..." : "Classify"}
-        </Button>
-      )}
-      {isPhotoTaken && (
-        <div>
-          <SystemUpdateAltIcon>
-            <a href={imageURL} download="selfie.png">
-              <i></i>
-            </a>
-          </SystemUpdateAltIcon>
-        </div>
+        <>
+          <Button
+            onClick={makePrediction}
+            variant="contained"
+            color="primary"
+            disableElevation
+          >
+            {isLoading ? "Loading..." : "Classify"}
+          </Button>
+          <div>
+            <SystemUpdateAltIcon>
+              <a href={imageURL} download="selfie.png">
+                <i></i>
+              </a>
+            </SystemUpdateAltIcon>
+          </div>
+        </>
       )}
     </div>
   );

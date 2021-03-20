@@ -35,6 +35,8 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     const ctx = canvasRef.current.getContext("2d");
     canvasRef.current.width = width;
     canvasRef.current.height = height;
+    // flip to mirror
+    ctx.setTransform(-1, 0, 0, 1, canvasRef.current.width, 0);
     // draw current frame to canvas
     ctx.drawImage(videoRef.current, 0, 0, width, height);
     // get image dataURL

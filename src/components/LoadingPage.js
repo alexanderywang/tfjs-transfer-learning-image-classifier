@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Backdrop, LinearProgress } from "@material-ui/core";
+import { Backdrop, LinearProgress, Card, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import WhatIsThis from "../WhatIsThis.png";
 
 const useStyles = makeStyles(theme => ({
   backdrop: {
@@ -8,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     color: "#fff"
   },
   root: {
-    width: "55%"
+    width: "100%"
   }
 }));
 
@@ -33,14 +34,30 @@ const LoadingPage = ({ open }) => {
   }, []);
 
   return (
-    <div>
+    <Grid>
       <Backdrop className={classes.backdrop} open={open}>
-        <div className={classes.root}>
-          <LinearProgress variant="determinate" value={progress} />
-        </div>
-        <h3>Loading Model...</h3>
+        <Grid>
+          <Grid>
+            <Card>
+              <img
+                src={WhatIsThis}
+                alt="what is this"
+                width="250px"
+                height="40%"
+              />
+            </Card>
+          </Grid>
+          <Grid>
+            <Grid className={classes.root}>
+              <LinearProgress variant="determinate" value={progress} />
+            </Grid>
+            <Grid>
+              <h3>Loading Model...</h3>
+            </Grid>
+          </Grid>
+        </Grid>
       </Backdrop>
-    </div>
+    </Grid>
   );
 };
 

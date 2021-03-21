@@ -18,7 +18,7 @@ const Webcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const getVideo = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
-        video: { width: 300, facingMode: "environment" }
+        video: { audio: false, width: 300, facingMode: "environment" }
       });
       videoRef.current.srcObject = stream;
       videoRef.current.play();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Backdrop, LinearProgress, Card, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import WhatIsThis from "../WhatIsThis.png";
+import whatisthis from "./whatisthis.png";
 
 const useStyles = makeStyles(theme => ({
   backdrop: {
@@ -40,7 +40,7 @@ const LoadingPage = ({ open }) => {
           <Grid>
             <Card>
               <img
-                src={WhatIsThis}
+                src={whatisthis}
                 alt="what is this"
                 width="250px"
                 height="40%"

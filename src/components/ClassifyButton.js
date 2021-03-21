@@ -39,13 +39,13 @@ const ClassifyButton = ({
           >
             {isLoading ? "Loading..." : "Classify"}
           </Button>
-          <div>
+          {/* <div>
             <SystemUpdateAltIcon>
               <a href={imageURL} download="selfie.png">
                 <i></i>
               </a>
             </SystemUpdateAltIcon>
-          </div>
+          </div> */}
         </>
       )}
     </div>

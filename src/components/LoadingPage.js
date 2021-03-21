@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Backdrop, LinearProgress, Card, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import WhatIsThis from "../WhatIsThis.png";
+import WhatIsThis from "./WhatIsThis.png";
 
 const useStyles = makeStyles(theme => ({
   backdrop: {

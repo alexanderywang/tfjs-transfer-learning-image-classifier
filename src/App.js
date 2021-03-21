@@ -14,17 +14,22 @@ import {
   CircularProgress
 } from "@material-ui/core";
 import Navbar from "./components/Navbar";
+import LoadingPage from "./components/LoadingPage";
 // import loadModel from "./model/MobileNetInference";
 
 import Webcam from "./components/Webcam";
 
 function App() {
+  const [isLoadingModel, setIsLoadingModel] = useState(true);
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
 
   useEffect(() => {
     loadModel();
+    setTimeout(() => {
+      setIsLoadingModel(false);
+    }, 4000);
   }, []);
 
   const loadModel = async () => {
@@ -36,23 +41,31 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Container>
-        <Navbar />
-        <Webcam
-          setPredictions={setPredictions}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-          model={model}
-        />
+    <div>
+      {isLoadingModel ? (
+        <div>
+          <LoadingPage open={isLoadingModel} />
+        </div>
+      ) : (
+        <div className="App">
+          <Container>
+            <Navbar />
+            <Webcam
+              setPredictions={setPredictions}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+              model={model}
+            />
 
-        {isLoading && (
-          <div>
-            <CircularProgress />
-          </div>
-        )}
-        {predictions && <PredictionsTable predictions={predictions} />}
-      </Container>
+            {isLoading && (
+              <div>
+                <CircularProgress />
+              </div>
+            )}
+            {predictions && <PredictionsTable predictions={predictions} />}
+          </Container>
+        </div>
+      )}
     </div>
   );
 }

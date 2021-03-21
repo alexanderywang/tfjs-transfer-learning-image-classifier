@@ -32,12 +32,17 @@ function App() {
     }, 4000);
   }, []);
 
+  // make this a try/catch
   const loadModel = async () => {
-    console.log("Loading mobilenet...");
+    try {
+      console.log("Loading mobilenet...");
 
-    const model = await mobilenet.load();
-    setModel(model);
-    console.log("Successfully loaded model", model);
+      const model = await mobilenet.load();
+      setModel(model);
+      console.log("Successfully loaded model", model);
+    } catch (error) {
+      console.error("Error loading model:", error);
+    }
   };
 
   return (

@@ -32,11 +32,10 @@ function App() {
     }, 4000);
   }, []);
 
-  // make this a try/catch
+  // make this a retry function and setIsLoadingModel in here
   const loadModel = async () => {
     try {
       console.log("Loading mobilenet...");
-
       const model = await mobilenet.load();
       setModel(model);
       console.log("Successfully loaded model", model);

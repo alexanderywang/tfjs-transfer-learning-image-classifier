@@ -10,7 +10,9 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 - **the codelab merged with React can be found in branch tfjs-image-classifier-with-react**
 
 - next steps: create a user experience and solve a user problem
+
 1. loading page for the model on initial load
+   1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
 2. try other models for accuracy
 3. deploy with CI/CD
 4. add 2 way cameras for mobile use
@@ -87,7 +89,6 @@ npm install
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.
-
 
 **Javascript in Machine Learning is relatively new and it's important that users can use your models and ideas interactively in the browser without having to install anything**
 

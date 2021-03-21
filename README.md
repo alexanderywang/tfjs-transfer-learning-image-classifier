@@ -14,8 +14,8 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 1. loading page for the model on initial load
    1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
 2. try other models for accuracy
-3. deploy with CI/CD
-4. add 2 way cameras for mobile use
+3. deploy with CI/CD - heroku/travis CI?
+4. add 2 way cameras for mobile use // going to need a different webcam element to be used on both mobile and client side for deployment
 5. use google translate api and give the user language options, text, and pronounciation to learn
 
 ### Goal:

@@ -112,3 +112,13 @@ npm install
 
 it worked! MobileNet's model seems semi-accurate abou 50-75% of the time, depending on the picture quality, lighting, and item.
 ![coffee mug](/public/coffee_mug.png)
+
+##### Heroku apps run server-side. they're web apps. users interact with them through browsers.
+
+- from stack overflow
+
+if you wanted to access a user's webcam, that would have to happen through the browser. that requires WebRTC or similar APIs. that means serving a web page that contains client-side javascript (or other) code which accesses the user's webcam through the browser, and then sends a video feed (or single pictures) of that back to the server.
+
+you can only directly access server resources inside the web app, not client-side resources.
+
+if you wanted to do eye tracking browser-side, there's OpenCV.js which runs completely in the browser. I don't know if the required procedures for eye tracking have been ported to OpenCV.js but it's worth a look. you could do the analysis client-side and just send back heatmaps or lists of coordinates.

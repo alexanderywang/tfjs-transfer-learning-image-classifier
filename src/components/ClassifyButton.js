@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@material-ui/core";
-import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+// import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
 
 const ClassifyButton = ({
   isLoading,

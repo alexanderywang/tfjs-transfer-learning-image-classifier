@@ -1,8 +1,11 @@
 language: node_js
-
 node_js:
-  - "12"
-
+- '12'
 script:
-  - npm test
-  - npm run build
+- npm test
+- npm run build
+deploy:
+  provider: heroku
+  app: https://tfjs-what-is-this.herokuapp.com/
+  api_key:
+    secure: 

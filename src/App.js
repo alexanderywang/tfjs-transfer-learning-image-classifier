@@ -25,7 +25,10 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
 
+  const API_KEY =`${process.env.REACT_APP_API_KEY}`
+
   useEffect(() => {
+    console.log("API", API_KEY)
     loadModel();
     setTimeout(() => {
       setIsLoadingModel(false);

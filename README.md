@@ -13,6 +13,7 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 1. loading page for the model on initial load
    1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
+   1B. loadModel and prediction needs a retry function to avoid looping endlessly
 2. try other models for accuracy
 3. deploy with CI/CD - heroku/travis CI?
 4. add 2 way cameras for mobile use // going to need a different webcam element to be used on both mobile and client side for deployment
@@ -126,3 +127,6 @@ you can only directly access server resources inside the web app, not client-sid
 if you wanted to do eye tracking browser-side, there's OpenCV.js which runs completely in the browser. I don't know if the required procedures for eye tracking have been ported to OpenCV.js but it's worth a look. you could do the analysis client-side and just send back heatmaps or lists of coordinates.
 
 - also heroku needs png files in lowercase
+
+- start script in package.json goes from
+  "start": "react-scripts start", --> "start": "serve -s build",

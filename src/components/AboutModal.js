@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
-import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 // import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
 import MenuIcon from "@material-ui/icons/Menu";
+import { Typography, Link, Dialog, IconButton } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -91,7 +89,17 @@ const AboutModal = () => {
         <DialogContent dividers>
           <Typography gutterBottom>
             Code can be found at
-            https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
+            <a
+              href="https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {" "}
+              <Typography>
+                {" "}
+                https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
+              </Typography>
+            </a>
           </Typography>
         </DialogContent>
       </Dialog>

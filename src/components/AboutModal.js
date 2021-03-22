@@ -102,6 +102,11 @@ const AboutModal = () => {
             </a>
           </Typography>
         </DialogContent>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Loading icon illustrated by Maddy Wang
+          </Typography>
+        </DialogContent>
       </Dialog>
     </div>
   );

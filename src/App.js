@@ -17,7 +17,7 @@ import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
 // import loadModel from "./model/MobileNetInference";
 
-import DeviceWebcam from "./components/DeviceWebcam";
+import CaptureImage from "./components/CaptureImage";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
@@ -54,7 +54,7 @@ function App() {
         <div className="App">
           <Container>
             <Navbar />
-            <DeviceWebcam
+            <CaptureImage
               setPredictions={setPredictions}
               isLoading={isLoading}
               setIsLoading={setIsLoading}

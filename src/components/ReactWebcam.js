@@ -91,5 +91,3 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 };
 
 export default DeviceWebcam;
-
-// classify button can be modularized

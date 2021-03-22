@@ -40,6 +40,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 - ask for access to camera AND camera roll
 - hook up google translate API and allow the user to translate the object into another language. be able to read and hear the translation as options
 - deploy with CI/CD
+- offline capability as a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 
 ## Tech Stack:
 

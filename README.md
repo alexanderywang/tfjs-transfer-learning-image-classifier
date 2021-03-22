@@ -7,6 +7,8 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 - Tensorflow.js allows you to run machine learning models in the browser for analysis and training.
 
+You can find a working version of this app at https://tfjs-what-is-this.herokuapp.com
+
 - **the codelab merged with React can be found in branch tfjs-image-classifier-with-react**
 
 - next steps: create a user experience and solve a user problem

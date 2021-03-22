@@ -88,6 +88,12 @@ const AboutModal = () => {
             TensorFlow.js to give a probability of predictions.
           </Typography>
         </DialogContent>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            Code can be found at
+            https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
+          </Typography>
+        </DialogContent>
       </Dialog>
     </div>
   );

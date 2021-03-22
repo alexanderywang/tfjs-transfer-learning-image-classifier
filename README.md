@@ -37,7 +37,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 #### Extra:
 
 - Create a progressive web application for mobile use
-- ask for access to camera AND camera roll
+- ask for access to camera AND camera roll. camera roll access maybe https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications, https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
 - hook up google translate API and allow the user to translate the object into another language. be able to read and hear the translation as options
 - deploy with CI/CD
 - offline capability as a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps), read about [Service Workers](https://create-react-app.dev/docs/making-a-progressive-web-app/)

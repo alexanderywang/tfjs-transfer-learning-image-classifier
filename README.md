@@ -47,6 +47,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 - [Tensorflow.js](https://www.tensorflow.org/js/): A JavaScript library for training and deploying Machine Learning models in the browser
 - [Axios](https://www.npmjs.com/package/axios): Promise based HTTP client for browser and Node.js.
 - [Material-UI](https://material-ui.com/): Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications.
+- [React Webcam](https://www.npmjs.com/package/react-webcam) in order to get clientside webcam functionality, we need a plugin. Since we're only looking for static images and not a full communications app, I'm using React Webcam.
 
 ## Local Setup
 

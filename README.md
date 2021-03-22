@@ -75,6 +75,15 @@ npm install
 
 ### Some key learning points
 
+- the biggest roadblock has been getting a camera feed for mobile use. Locally, the app has no issue running through the laptop webcam whether it was through WebRTC API getUserMediaDevices() or through the react-webcam library. The react-webcam was easy to use, without needing to draw the video context on a hidden canvas.  But it didn't work on the phone. Finally, I found
+
+https://developers.google.com/web/fundamentals/media/capturing-images
+
+```
+Modern browsers can get direct access to cameras, allowing you to build experiences that are fully integrated with the web page, so the user need never leave the browser.
+```
+
+
 - npm install @tensorflow-models/mobilenet needed :)
 
 - some debugging issues with react and tensorflow.js:

@@ -16,9 +16,9 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 1. loading page for the model on initial load
    1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
    1B. loadModel and prediction needs a retry function to avoid looping endlessly
-2. try other models for accuracy
-3. deploy with CI/CD - heroku/travis CI?
-4. add 2 way cameras for mobile use // going to need a different webcam element to be used on both mobile and client side for deployment
+2. try other models for accuracy / give choices for fast/slow loading models
+3. deploy with CI/CD - heroku/travis CI
+4. add 2 way cameras for mobile use
 5. use google translate api and give the user language options, text, and pronounciation to learn
 
 ### Goal:
@@ -32,7 +32,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 ### Some additional Features on top of the tutorial
 
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
--
+- deployed at https://tfjs-what-is-this.herokuapp.com with travis-ci
 -
 -
 

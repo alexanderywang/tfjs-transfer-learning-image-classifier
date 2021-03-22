@@ -23,7 +23,7 @@ const LoadingPage = ({ open }) => {
         if (prevProgress === 100) {
           return 0;
         }
-        const diff = Math.random() * 15;
+        const diff = Math.random() * 10;
         return Math.min(prevProgress + diff, 100);
       });
     }, 150);

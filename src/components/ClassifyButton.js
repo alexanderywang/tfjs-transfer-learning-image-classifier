@@ -22,19 +22,24 @@ const ClassifyButton = ({
 
   return (
     <Grid>
-      <Button
-        onClick={handleClick}
-        variant="contained"
-        color="secondary"
-        disableElevation
-      >
-        {isPhotoTaken ? "Retake" : "Take Photo"}
-      </Button>
-      <IconButton onClick={flipCamera}>
-        <FlipCameraIosIcon />
-      </IconButton>
+      <Grid>
+        <Button
+          onClick={handleClick}
+          variant="contained"
+          color="secondary"
+          disableElevation
+        >
+          {isPhotoTaken ? "Retake" : "Take Photo"}
+        </Button>
+        {!isPhotoTaken && (
+          <IconButton onClick={flipCamera}>
+            <FlipCameraIosIcon />
+          </IconButton>
+        )}
+      </Grid>
+
       {isPhotoTaken && (
-        <>
+        <Grid>
           <Button
             onClick={makePrediction}
             variant="contained"
@@ -50,7 +55,7 @@ const ClassifyButton = ({
               </a>
             </SystemUpdateAltIcon>
           </Grid> */}
-        </>
+        </Grid>
       )}
     </Grid>
   );

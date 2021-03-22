@@ -8,7 +8,7 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar>
           <AboutModal />
-          <Typography variant="h6">Test Classify Image</Typography>
+          <Typography variant="h6">Classify Image</Typography>
         </Toolbar>
       </AppBar>
     </div>

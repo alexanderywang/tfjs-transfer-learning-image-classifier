@@ -17,7 +17,7 @@ import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
 // import loadModel from "./model/MobileNetInference";
 
-import CaptureImage from "./components/CaptureImage";
+import DeviceWebcam from "./components/DeviceWebcam";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
@@ -29,7 +29,7 @@ function App() {
     loadModel();
     setTimeout(() => {
       setIsLoadingModel(false);
-    }, 4000);
+    }, 3000);
   }, []);
 
   // make this a retry function and setIsLoadingModel in here
@@ -54,7 +54,7 @@ function App() {
         <div className="App">
           <Container>
             <Navbar />
-            <CaptureImage
+            <DeviceWebcam
               setPredictions={setPredictions}
               isLoading={isLoading}
               setIsLoading={setIsLoading}

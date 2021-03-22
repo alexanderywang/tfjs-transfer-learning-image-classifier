@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Grid, Button, IconButton } from "@material-ui/core";
+import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
 // import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
 
 const ClassifyButton = ({
@@ -8,9 +9,9 @@ const ClassifyButton = ({
   isPhotoTaken,
   takePhoto,
   setImageURL,
-  imageURL,
   makePrediction,
-  setPredictions
+  setPredictions,
+  flipCamera
 }) => {
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(e);
@@ -20,7 +21,7 @@ const ClassifyButton = ({
   };
 
   return (
-    <div>
+    <Grid>
       <Button
         onClick={handleClick}
         variant="contained"
@@ -29,6 +30,9 @@ const ClassifyButton = ({
       >
         {isPhotoTaken ? "Retake" : "Take Photo"}
       </Button>
+      <IconButton onClick={flipCamera}>
+        <FlipCameraIosIcon />
+      </IconButton>
       {isPhotoTaken && (
         <>
           <Button
@@ -39,16 +43,16 @@ const ClassifyButton = ({
           >
             {isLoading ? "Loading..." : "Classify"}
           </Button>
-          {/* <div>
+          {/* <Grid>
             <SystemUpdateAltIcon>
               <a href={imageURL} download="selfie.png">
                 <i></i>
               </a>
             </SystemUpdateAltIcon>
-          </div> */}
+          </Grid> */}
         </>
       )}
-    </div>
+    </Grid>
   );
 };
 

@@ -138,5 +138,8 @@ if you wanted to do eye tracking browser-side, there's OpenCV.js which runs comp
 
 - also heroku needs png files in lowercase
 
-- start script in package.json goes from
-  "start": "react-scripts start", --> "start": "serve -s build",
+/**
+for package.json
+for local testing: "start": "react-scripts start",
+for deployment: "start": "serve -s build",
+**/

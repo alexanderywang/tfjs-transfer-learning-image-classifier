@@ -18,7 +18,6 @@ import {
 import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
 import retry from "../src/utilities/retryFunction";
-
 import DeviceWebcam from "./components/DeviceWebcam";
 
 function App() {

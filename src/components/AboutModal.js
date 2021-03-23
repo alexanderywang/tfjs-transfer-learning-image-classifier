@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
@@ -6,6 +6,7 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Grid, Typography, Dialog, IconButton } from "@material-ui/core";
+import useModalHook from "../utilities/useModalHook";
 
 const styles = theme => ({
   root: {
@@ -52,14 +53,8 @@ const DialogContent = withStyles(theme => ({
 // }))(MuiDialogActions);
 
 const AboutModal = () => {
-  const [open, setOpen] = useState(false);
+  const { open, handleClick, handleClose } = useModalHook();
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <Grid>
       <IconButton

@@ -1,9 +1,8 @@
 import React from "react";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
-// import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
 
-const ClassifyButton = ({
+const ClassifyButtons = ({
   isLoading,
   setIsPhotoTaken,
   isPhotoTaken,
@@ -47,17 +46,10 @@ const ClassifyButton = ({
           >
             {isLoading ? "Loading..." : "Classify"}
           </Button>
-          {/* <Grid>
-            <SystemUpdateAltIcon>
-            <a href={imageURL} download="selfie.png">
-            <i></i>
-            </a>
-            </SystemUpdateAltIcon>
-          </Grid> */}
         </Grid>
       )}
     </Grid>
   );
 };
 
-export default ClassifyButton;
+export default ClassifyButtons;

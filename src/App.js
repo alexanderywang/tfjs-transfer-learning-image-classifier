@@ -11,7 +11,8 @@ import {
   TableHead,
   TableRow,
   Paper,
-  CircularProgress
+  CircularProgress,
+  Grid
 } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
@@ -45,13 +46,13 @@ function App() {
   };
 
   return (
-    <div>
+    <Grid>
       {isLoadingModel ? (
-        <div>
+        <Grid>
           <LoadingPage open={isLoadingModel} />
-        </div>
+        </Grid>
       ) : (
-        <div className="App">
+        <Grid className="App">
           <Container>
             <Navbar />
             <DeviceWebcam
@@ -62,15 +63,15 @@ function App() {
             />
 
             {isLoading && (
-              <div>
+              <Grid>
                 <CircularProgress />
-              </div>
+              </Grid>
             )}
             {predictions && <PredictionsTable predictions={predictions} />}
           </Container>
-        </div>
+        </Grid>
       )}
-    </div>
+    </Grid>
   );
 }
 

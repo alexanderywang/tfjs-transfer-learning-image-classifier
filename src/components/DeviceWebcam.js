@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
-import ClassifyButton from "./ClassifyButton";
+import ClassifyButtons from "./ClassifyButtons";
 import { Grid, Snackbar } from "@material-ui/core";
 
 const userVideo = {
@@ -97,7 +97,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
         />
       </Grid>
       {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
-      <ClassifyButton
+      <ClassifyButtons
         isLoading={isLoading}
         setIsPhotoTaken={setIsPhotoTaken}
         isPhotoTaken={isPhotoTaken}
@@ -113,4 +113,3 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 
 export default DeviceWebcam;
 
-// classify button can be modularized

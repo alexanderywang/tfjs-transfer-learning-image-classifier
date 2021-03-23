@@ -5,7 +5,7 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 // import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Typography, Dialog, IconButton } from "@material-ui/core";
+import { Grid, Typography, Dialog, IconButton } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -61,7 +61,7 @@ const AboutModal = () => {
     setOpen(false);
   };
   return (
-    <div>
+    <Grid>
       <IconButton
         edge="start"
         color="inherit"
@@ -108,7 +108,7 @@ const AboutModal = () => {
           </Typography>
         </DialogContent>
       </Dialog>
-    </div>
+    </Grid>
   );
 };
 

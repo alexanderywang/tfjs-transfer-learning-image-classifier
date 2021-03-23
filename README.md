@@ -13,13 +13,11 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 
 - next steps: create a user experience and solve a user problem
 
-1. loading page for the model on initial load
-   1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
-   1B. loadModel and prediction needs a retry function to avoid looping endlessly
+1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
+1B. loadModel and prediction needs a retry function to avoid looping endlessly
+
 2. try other models for accuracy / give choices for fast/slow loading models
-3. deploy with CI/CD - heroku/travis CI
-4. add 2 way cameras for mobile use
-5. use google translate api and give the user language options, text, and pronounciation to learn
+3. use google translate api and give the user language options, text, and pronounciation to learn
 
 ### Goal:
 
@@ -32,7 +30,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 ### Some additional Features on top of the tutorial
 
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
-- deployed at https://tfjs-what-is-this.herokuapp.com with travis-ci
+- deployed at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile
 -
 -
 
@@ -71,6 +69,12 @@ cd tfjs-linear-regression-predictions
 
 ```
 npm install
+```
+
+```
+in package.json change the script
+for local testing: "start": "react-scripts start",
+for heroku deployment: "start": "serve -s build",
 ```
 
 3. Run `npm run start` to start the app on http://localhost:3000/
@@ -130,9 +134,3 @@ you can only directly access server resources inside the web app, not client-sid
 if you wanted to do eye tracking browser-side, there's OpenCV.js which runs completely in the browser. I don't know if the required procedures for eye tracking have been ported to OpenCV.js but it's worth a look. you could do the analysis client-side and just send back heatmaps or lists of coordinates.
 
 - also heroku needs png files in lowercase
-
-/**
-for package.json
-for local testing: "start": "react-scripts start",
-for deployment: "start": "serve -s build",
-**/

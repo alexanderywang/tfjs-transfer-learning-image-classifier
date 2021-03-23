@@ -74,7 +74,6 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     }
     setIsMirrored(!isMirrored);
     setIsFacingUser(!isFacingUser);
-    console.log(videoConstraints);
   };
 
   return (

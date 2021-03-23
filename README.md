@@ -13,11 +13,8 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 
 - next steps: create a user experience and solve a user problem
 
-1A. make loadModel a retry function and setIsLoadingModel in here, return error if failed x times with 3 as default
-1B. loadModel and prediction needs a retry function to avoid looping endlessly
-
-2. try other models for accuracy / give choices for fast/slow loading models
-3. use google translate api and give the user language options, text, and pronounciation to learn
+1. try other models for accuracy / give choices for fast/slow loading models
+2. use google translate api and give the user language options, text, and pronounciation to learn
 
 ### Goal:
 
@@ -30,8 +27,8 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 ### Some additional Features on top of the tutorial
 
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
+- retry design pattern
 - deployed at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile
--
 -
 
 #### Extra:

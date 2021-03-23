@@ -12,16 +12,18 @@ import {
   TableRow,
   Paper,
   CircularProgress,
-  Grid
+  Grid,
+  Snackbar
 } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
-// import loadModel from "./model/MobileNetInference";
+import retry from "../src/utilities/retryFunction";
 
 import DeviceWebcam from "./components/DeviceWebcam";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
+  const [open, setOpen] = useState(false);
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
@@ -33,16 +35,21 @@ function App() {
     }, 3000);
   }, []);
 
-  // make this a retry function and setIsLoadingModel in here
   const loadModel = async () => {
     try {
       console.log("Loading mobilenet...");
-      const model = await mobilenet.load();
+      const model = await retry(mobilenet.load, 3, 2);
       setModel(model);
       console.log("Successfully loaded model", model);
     } catch (error) {
+      setOpen(true);
       console.error("Error loading model:", error);
     }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") return;
+    setOpen(false);
   };
 
   return (
@@ -71,6 +78,17 @@ function App() {
           </Container>
         </Grid>
       )}
+
+      <Snackbar
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center"
+        }}
+        open={open}
+        autoHideDuration={9000}
+        onClose={handleClose}
+        message="Model having trouble loading. Please refresh and try again"
+      />
     </Grid>
   );
 }

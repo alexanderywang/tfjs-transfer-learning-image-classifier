@@ -23,6 +23,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const [isMirrored, setIsMirrored] = useState(true);
   const [videoConstraints, setVideoConstraints] = useState(userVideo);
   const [open, setOpen] = useState(false);
+  const [snackBarMessage, setSnackBarMessage] = useState("");
 
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
@@ -45,9 +46,9 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setImage(newImage);
   };
 
-  // could use a retry here
   const makePrediction = async () => {
     if (imageURL === null) {
+      setSnackBarMessage("Take another picture");
       setOpen(true);
       return;
     }
@@ -59,6 +60,8 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 
       setPredictions(predictions);
     } catch (err) {
+      setSnackBarMessage("No predictions can be made. Take another picture");
+      setOpen(true);
       console.error("error:", err);
     }
   };
@@ -82,9 +85,9 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
           horizontal: "center"
         }}
         open={open}
-        autoHideDuration={4000}
+        autoHideDuration={5000}
         onClose={handleClose}
-        message="Take another picture"
+        message={snackBarMessage}
       />
       <Grid>
         <Webcam
@@ -112,4 +115,3 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 };
 
 export default DeviceWebcam;
-

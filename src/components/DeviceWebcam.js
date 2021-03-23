@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import ClassifyButton from "./ClassifyButton";
-import { Grid } from "@material-ui/core";
+import { Grid, Snackbar } from "@material-ui/core";
 
 const userVideo = {
   width: 300,
@@ -22,9 +22,15 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const [isFacingUser, setIsFacingUser] = useState(true);
   const [isMirrored, setIsMirrored] = useState(true);
   const [videoConstraints, setVideoConstraints] = useState(userVideo);
+  const [open, setOpen] = useState(false);
 
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") return;
+    setOpen(false);
+  };
 
   const takePhoto = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -41,6 +47,10 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 
   // could use a retry here
   const makePrediction = async () => {
+    if (imageURL === null) {
+      setOpen(true);
+      return;
+    }
     setIsLoading(true);
     try {
       const predictions = await model.classify(image);
@@ -66,6 +76,16 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 
   return (
     <Grid>
+      <Snackbar
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "center"
+        }}
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message="Take another picture"
+      />
       <Grid>
         <Webcam
           audio={false}

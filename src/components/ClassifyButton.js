@@ -37,7 +37,6 @@ const ClassifyButton = ({
           </IconButton>
         )}
       </Grid>
-
       {isPhotoTaken && (
         <Grid>
           <Button
@@ -50,9 +49,9 @@ const ClassifyButton = ({
           </Button>
           {/* <Grid>
             <SystemUpdateAltIcon>
-              <a href={imageURL} download="selfie.png">
-                <i></i>
-              </a>
+            <a href={imageURL} download="selfie.png">
+            <i></i>
+            </a>
             </SystemUpdateAltIcon>
           </Grid> */}
         </Grid>

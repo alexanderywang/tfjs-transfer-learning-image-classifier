@@ -21,7 +21,7 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 The goal of this solution is to build a ["teachable machine"](https://teachablemachine.withgoogle.com/). In this case, a custom image classifier to be trained in the browser
 
 1. load and run a pre-trained model called MobileNet for image classification in the browser. make a prediction with new data
-2. use "transfer learning", which customizes the MobileNet model for the application
+2. use "transfer learning", which customizes the MobileNet model for the application. We started with a pretrained model in MobileNet.
 3. make a prediction through the webcam
 
 ### Some additional Features on top of the tutorial

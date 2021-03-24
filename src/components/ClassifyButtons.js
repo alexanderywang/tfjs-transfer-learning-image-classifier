@@ -16,7 +16,7 @@ const ClassifyButtons = ({
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(e);
     else {
-      setIsLoading(false)
+      setIsLoading(false);
       setImageURL("");
     }
     setPredictions([]);

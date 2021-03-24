@@ -102,6 +102,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
       {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
       <ClassifyButtons
         isLoading={isLoading}
+        setIsLoading={setIsLoading}
         setIsPhotoTaken={setIsPhotoTaken}
         isPhotoTaken={isPhotoTaken}
         takePhoto={takePhoto}

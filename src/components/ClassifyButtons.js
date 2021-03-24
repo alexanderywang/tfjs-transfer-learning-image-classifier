@@ -4,6 +4,7 @@ import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
 
 const ClassifyButtons = ({
   isLoading,
+  setIsLoading,
   setIsPhotoTaken,
   isPhotoTaken,
   takePhoto,
@@ -14,7 +15,10 @@ const ClassifyButtons = ({
 }) => {
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(e);
-    else setImageURL("");
+    else {
+      setIsLoading(false)
+      setImageURL("");
+    }
     setPredictions([]);
     setIsPhotoTaken(!isPhotoTaken);
   };

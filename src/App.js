@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import * as tf from "@tensorflow/tfjs";
 import {
   makeStyles,
   Container,
@@ -28,7 +29,7 @@ function App() {
   const [model, setModel] = useState(null);
 
   useEffect(() => {
-    loadModel();
+    tf.ready().then(() => loadModel());
     setTimeout(() => {
       setIsLoadingModel(false);
     }, 3000);

@@ -84,7 +84,7 @@ for heroku deployment: "start": "serve -s build",
 
   - crossorigin='anonymous' needs to be added to the image tag for predictions to work on a static image
 
-- index.html needed these scripts to run
+- index.html needed these scripts to run // fixed this by using tf.ready() prior to loading model. tf.ready() returns a promise that resolves when the currently selected backend (or the highest priority one) has initialized. Await this promise when you are using a backend that has async initialization.
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>

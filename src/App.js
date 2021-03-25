@@ -28,6 +28,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
 
+  // simulating model load even though mobilenet is light and fast, other models might be longer load times
   useEffect(() => {
     tf.ready().then(() => loadModel());
     setTimeout(() => {

@@ -1,4 +1,4 @@
-## TensorFlow JS Transfer Learning Image Classifier
+## TensorFlow JS Machine Learning Image Classifier
 
 The Tensorflow.js tutorial uses script tag as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I'll add Material UI with an eye towards developing a progressive web application.
 I'll refer and refactor the code from the two-dimensional linear regression tutorial on Tensorflow JS found here:
@@ -13,8 +13,9 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 
 - next steps: create a user experience and solve a user problem
 
-1. try other models for accuracy / give choices for fast/slow loading models
+1. try other models for accuracy / give choices for fast/slow loading models as well as for object detection rather than strict image classification
 2. use google translate api and give the user language options, text, and pronounciation to learn
+3. Try to use transfer learning instead of simply loading a pretrained model, allowing the user to train their own model based on their input
 
 ### Goal:
 

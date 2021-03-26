@@ -82,7 +82,7 @@ function App() {
 
       <Snackbar
         anchorOrigin={{
-          vertical: "center",
+          vertical: "top",
           horizontal: "center"
         }}
         open={open}

@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import ClassifyButtons from "./ClassifyButtons";
 import { Grid, Snackbar } from "@material-ui/core";
+import throttle from "../utilities/throttle";
 
 const userVideo = {
   width: 300,
@@ -46,7 +47,12 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setImage(newImage);
   };
 
-  const makePrediction = async () => {
+  const makePrediction = () => {
+    throttle(predict, 10000)();
+  };
+
+  // should we throttle this
+  const predict = async () => {
     if (imageURL === null) {
       setSnackBarMessage("Take another picture");
       setOpen(true);

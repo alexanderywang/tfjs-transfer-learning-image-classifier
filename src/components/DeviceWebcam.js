@@ -54,7 +54,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     }
     setIsLoading(true);
     try {
-      const predictions = await model.classify(image);
+      const predictions = await model.classify(image, 5);
       console.log("mobileNet model predictions:", predictions);
       setIsLoading(false);
 

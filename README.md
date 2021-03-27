@@ -13,7 +13,7 @@ You can find a working version of this app at https://tfjs-what-is-this.herokuap
 
 - next steps: create a user experience and solve a user problem
 
-1. try other models for accuracy / give choices for fast/slow loading models as well as for object detection rather than strict image classification
+1. try other models for accuracy / give choices for fast/slow loading models as well as for object detection rather than strict image classification. Google Cloud Vision API looks quite accurate https://cloud.google.com/vision/#industry-leading-accuracy-for-image-understanding
 2. use google translate api and give the user language options, text, and pronounciation to learn
 3. Try to use transfer learning instead of simply loading a pretrained model, allowing the user to train their own model based on their input
 

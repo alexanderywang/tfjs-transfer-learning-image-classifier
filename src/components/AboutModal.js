@@ -53,7 +53,7 @@ const DialogContent = withStyles(theme => ({
 // }))(MuiDialogActions);
 
 const AboutModal = () => {
-  const { open, handleClick, handleClose } = useModalHook();
+  const { open, handleClickOpen, handleClose } = useModalHook();
 
   return (
     <Grid>
@@ -61,7 +61,7 @@ const AboutModal = () => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={handleClick}
+        onClick={handleClickOpen}
       >
         <MenuIcon />
       </IconButton>
@@ -90,10 +90,7 @@ const AboutModal = () => {
               rel="noreferrer"
             >
               {" "}
-              <Typography>
-                {" "}
-                https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
-              </Typography>
+              https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
             </a>
           </Typography>
         </DialogContent>

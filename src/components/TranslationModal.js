@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   Grid,
@@ -41,19 +41,59 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const supportedLanguages = [
+  {
+    id: 0,
+    languageCode: "chinese",
+    language: "Mandarin"
+  },
+  {
+    id: 1,
+    languageCode: "spanish",
+    language: "Spanish"
+  },
+  {
+    id: 2,
+    languageCode: "french",
+    language: "French"
+  },
+  {
+    id: 3,
+    languageCode: "russian",
+    language: "Russian"
+  }
+];
+
+const LanguageOptions = () => {
+  return supportedLanguages.map(lang => (
+    <MenuItem key={lang.id} value={lang.languageCode} name={lang.language}>
+      {lang.language}
+    </MenuItem>
+  ));
+};
+
 const TranslationModal = ({ words }) => {
   const classes = useStyles();
   const { open, handleClickOpen, handleClose } = useModalHook();
   const [language, setLanguage] = useState("");
+  const [languageCode, setLanguageCode] = useState("");
   const [translatedWords, setTranslatedWords] = useState("palabras");
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleChange = event => {
-    setLanguage(event.target.value);
-    // check local storage for memoized language, word
-    // else make throttled api call, set translation to be displayed, set local storage
+  const handleChange = (event, action) => {
+    setLanguage(action.props.name);
+    setLanguageCode(event.target.value);
   };
+
+  useEffect(() => {
+    // const translations = translateWords(words, language, languageCode) // string
+    // setTranslatedWords(translations)
+
+    // translateWords ---> put this logic in a util
+    // check local storage for memoized language, word
+    // else make throttled api call, set local storage
+  }, [language]);
 
   return (
     <Grid>
@@ -86,9 +126,10 @@ const TranslationModal = ({ words }) => {
               value={language}
               onChange={handleChange}
             >
-              <MenuItem value={""}>None</MenuItem>
+              {LanguageOptions()}
+              {/* <MenuItem value={""}>None</MenuItem>
               <MenuItem value={"chinese"}>Mandarin</MenuItem>
-              <MenuItem value={"spanish"}>Spanish</MenuItem>
+              <MenuItem value={"spanish"}>Spanish</MenuItem> */}
             </Select>
           </FormControl>
         </DialogContent>

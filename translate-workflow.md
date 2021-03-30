@@ -1,10 +1,13 @@
 1. test out api key hiding - .env, works
 2. register with google cloud for translate api key but don't use it yet
-
 3. create modal for prediction onClick - done but could use some refactoring
+
+
 3a. make the dropdown menu more dynamic and separate component - getsupported languages with api key
 
 3b. make translated words dynamically adjust with a useEffect and separated async api call logic
+
+3c. write out README process of getting a google api key
 
 4. write debounce function/api call/dummy data
 

@@ -75,7 +75,9 @@ for local testing: "start": "react-scripts start",
 for heroku deployment: "start": "serve -s build",
 ```
 
-3. Run `npm run start` to start the app on http://localhost:3000/
+3. In order to use Google Translate API, you'll have to register with Google and retrieve a key....
+
+4. Run `npm run start` to start the app on http://localhost:3000/
 
 ### Some key learning points
 

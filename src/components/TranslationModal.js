@@ -19,8 +19,7 @@ import GTranslateIcon from "@material-ui/icons/GTranslate";
 import CloseIcon from "@material-ui/icons/Close";
 import useModalHook from "../utilities/useModalHook";
 import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
-// import translateText from "../utilities/googleTranslateAPI";
-import axios from "axios";
+import translateText from "../utilities/googleTranslateAPI";
 
 // import Dialog from "@material-ui/core/Dialog";
 // import DialogActions from "@material-ui/core/DialogActions";
@@ -66,30 +65,14 @@ const TranslationModal = ({ words }) => {
     setLanguageCode(event.target.value);
     setTranslatedWords("");
   };
-  const GoogleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   useEffect(() => {
-    translateText();
-  }, [language]);
-
-  const translateText = async () => {
-    try {
-      if (languageCode) {
-        const GoogleTranslateAPIEndpoint = `https://translation.googleapis.com/language/translate/v2?key=${GoogleAPIKey}&q=${[
-          words
-        ]}&target=${languageCode}`;
-
-        const { data } = await axios.post(GoogleTranslateAPIEndpoint);
-        const translation = data.data.translations[0].translatedText;
-        setTranslatedWords(translation);
-      } else {
-        setTranslatedWords("Please select a language");
-      }
-    } catch (err) {
-      console.error(`Error getting translation from Google API: ${err}`);
-      setTranslatedWords("Error translating. Please try again later.");
-    }
-  };
+    const fetchData = async () => {
+      const translation = await translateText(words, languageCode);
+      setTranslatedWords(translation);
+    };
+    fetchData();
+  }, [words, languageCode]);
 
   return (
     <Grid>

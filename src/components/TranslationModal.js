@@ -68,11 +68,11 @@ const TranslationModal = ({ words }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const translation = await translateText(words, languageCode);
+      const translation = await translateText(words, languageCode, language);
       setTranslatedWords(translation);
     };
     fetchData();
-  }, [words, languageCode]);
+  }, [words, languageCode, language]);
 
   return (
     <Grid>

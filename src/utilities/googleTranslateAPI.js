@@ -1,7 +1,7 @@
 import axios from "axios";
 const GoogleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-const translateText = async (words, languageCode) => {
+const translateText = async (words, languageCode, language) => {
   let translation;
   try {
     if (languageCode) {

@@ -21,7 +21,7 @@ function App() {
     tf.ready().then(() => loadModel());
     setTimeout(() => {
       setIsLoadingModel(false);
-    }, 3000);
+    }, 300);
   }, []);
 
   const loadModel = async () => {
@@ -40,8 +40,6 @@ function App() {
     if (reason === "clickaway") return;
     setOpen(false);
   };
-
-  // console.log(process.env.REACT_APP_GOOGLE_API_KEY);
 
   return (
     <Grid>
@@ -72,7 +70,7 @@ function App() {
 
       <Snackbar
         anchorOrigin={{
-          vertical: "center",
+          vertical: "bottom",
           horizontal: "center"
         }}
         open={open}

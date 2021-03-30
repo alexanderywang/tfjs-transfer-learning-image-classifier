@@ -18,6 +18,9 @@ import {
 import GTranslateIcon from "@material-ui/icons/GTranslate";
 import CloseIcon from "@material-ui/icons/Close";
 import useModalHook from "../utilities/useModalHook";
+import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
+// import translateText from "../utilities/googleTranslateAPI";
+import axios from "axios";
 
 // import Dialog from "@material-ui/core/Dialog";
 // import DialogActions from "@material-ui/core/DialogActions";
@@ -41,31 +44,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const supportedLanguages = [
-  {
-    id: 0,
-    languageCode: "chinese",
-    language: "Mandarin"
-  },
-  {
-    id: 1,
-    languageCode: "spanish",
-    language: "Spanish"
-  },
-  {
-    id: 2,
-    languageCode: "french",
-    language: "French"
-  },
-  {
-    id: 3,
-    languageCode: "russian",
-    language: "Russian"
-  }
-];
-
-const LanguageOptions = () => {
-  return supportedLanguages.map(lang => (
+const DropDownLanguageOptions = () => {
+  return SUPPORTED_LANGUAGES.map(lang => (
     <MenuItem key={lang.id} value={lang.languageCode} name={lang.language}>
       {lang.language}
     </MenuItem>
@@ -77,23 +57,39 @@ const TranslationModal = ({ words }) => {
   const { open, handleClickOpen, handleClose } = useModalHook();
   const [language, setLanguage] = useState("");
   const [languageCode, setLanguageCode] = useState("");
-  const [translatedWords, setTranslatedWords] = useState("palabras");
+  const [translatedWords, setTranslatedWords] = useState("");
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (event, action) => {
     setLanguage(action.props.name);
     setLanguageCode(event.target.value);
+    setTranslatedWords("");
   };
+  const GoogleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   useEffect(() => {
-    // const translations = translateWords(words, language, languageCode) // string
-    // setTranslatedWords(translations)
-
-    // translateWords ---> put this logic in a util
-    // check local storage for memoized language, word
-    // else make throttled api call, set local storage
+    translateText();
   }, [language]);
+
+  const translateText = async () => {
+    try {
+      if (languageCode) {
+        const GoogleTranslateAPIEndpoint = `https://translation.googleapis.com/language/translate/v2?key=${GoogleAPIKey}&q=${[
+          words
+        ]}&target=${languageCode}`;
+
+        const { data } = await axios.post(GoogleTranslateAPIEndpoint);
+        const translation = data.data.translations[0].translatedText;
+        setTranslatedWords(translation);
+      } else {
+        setTranslatedWords("Please select a language");
+      }
+    } catch (err) {
+      console.error(`Error getting translation from Google API: ${err}`);
+      setTranslatedWords("Error translating. Please try again later.");
+    }
+  };
 
   return (
     <Grid>
@@ -126,7 +122,7 @@ const TranslationModal = ({ words }) => {
               value={language}
               onChange={handleChange}
             >
-              {LanguageOptions()}
+              {DropDownLanguageOptions()}
               {/* <MenuItem value={""}>None</MenuItem>
               <MenuItem value={"chinese"}>Mandarin</MenuItem>
               <MenuItem value={"spanish"}>Spanish</MenuItem> */}

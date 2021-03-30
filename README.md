@@ -92,10 +92,22 @@ for heroku deployment: "start": "serve -s build",
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 ```
+- In ReactJS environment variables are fetched from .env files. If you set the variable in .env file and your variables returned undefined check the below items.
+
+Assumption: You have used Create React App (CRA) to bootstrap your application
+
+1. The .env file should be in the root for you application folder. That is one level above your src folder, the same place where you have your package.json
+2. The variable should be prefixed with REACT_APP_
+3. You need to restart the server to reflect the changes in your code.
+4. You should access the variable in your code like this
+process.env.REACT_APP_SOME_VARIABLE
+5. No need to wrap your variable value in single or double quotes.
+6. Do not put semicolon ; or comma , at the end of each line.
 
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.
+
 
 **Javascript in Machine Learning is relatively new and it's important that users can use your models and ideas interactively in the browser without having to install anything**
 

@@ -4,9 +4,8 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
-import MenuIcon from "@material-ui/icons/Menu";
+import Card from "@material-ui/core/Card";
 import { Grid, Typography, Dialog, IconButton } from "@material-ui/core";
-import useModalHook from "../utilities/useModalHook";
 
 const styles = theme => ({
   root: {
@@ -52,19 +51,9 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-const AboutModal = () => {
-  const { open, handleClickOpen, handleClose } = useModalHook();
-
+const AboutModal = ({ open, handleClose }) => {
   return (
-    <Grid>
-      <IconButton
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        onClick={handleClickOpen}
-      >
-        <MenuIcon />
-      </IconButton>
+    <Card>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -75,10 +64,12 @@ const AboutModal = () => {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            This is a web application where users can classify images taken with
-            the webcam or a device's camera. Everything is local and stays
-            private with the user. The app uses a pre-trained model converted to
-            TensorFlow.js to give a probability of predictions.
+            This is a web application where users can use Machine Learning and
+            classify images taken with the webcam or a device's camera.
+            Everything is local and stays private with the user. The app uses a
+            pre-trained model converted to TensorFlow.js to give a probability
+            of predictions. The prediction table offers a translation option via
+            Google Translate API.
           </Typography>
         </DialogContent>
         <DialogContent dividers>
@@ -99,8 +90,9 @@ const AboutModal = () => {
             Loading icon illustrated by Maddy Wang
           </Typography>
         </DialogContent>
+        <DialogActions></DialogActions>
       </Dialog>
-    </Grid>
+    </Card>
   );
 };
 

@@ -11,8 +11,4 @@ abstract async: app, devicewebcam
 
 -modal could use some refactoring
 
-
-
-- design:
-https://mui-treasury.com/components/card/
-- https://material-ui.com/components/dialogs/#dialog
+8. some photo tips might be helpful

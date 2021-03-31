@@ -45,7 +45,7 @@ const PredictionsTable = ({ predictions }) => {
 export default PredictionsTable;
 
 const PredictionRow = ({ prediction }) => {
-  const { open, handleClickOpen } = useModalHook();
+  const { open, handleClickOpen, handleClose } = useModalHook();
 
   return (
     <TableRow>
@@ -57,7 +57,13 @@ const PredictionRow = ({ prediction }) => {
         >
           <GTranslateIcon />
         </IconButton>
-        {open && <TranslationModal words={prediction.className} open={open}/>}
+        {open && (
+          <TranslationModal
+            words={prediction.className}
+            open={open}
+            handleClose={handleClose}
+          />
+        )}
       </TableCell>
       <TableCell
         component="th"

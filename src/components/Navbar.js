@@ -1,13 +1,31 @@
 import React from "react";
-import { Grid, AppBar, Toolbar, Typography } from "@material-ui/core";
+import {
+  Grid,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
 import AboutModal from "./AboutModal";
+import useModalHook from "../utilities/useModalHook";
 
 const Navbar = () => {
+  const { open, handleClickOpen, handleClose } = useModalHook();
+
   return (
     <Grid>
       <AppBar position="static" style={{ background: "#171769" }}>
         <Toolbar>
-          <AboutModal />
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleClickOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+          <AboutModal open={open} handleClose={handleClose} />
           <Typography variant="h6">Classify Image</Typography>
         </Toolbar>
       </AppBar>

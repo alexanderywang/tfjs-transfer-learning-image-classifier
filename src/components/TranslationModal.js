@@ -15,21 +15,8 @@ import {
   Select
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import useModalHook from "../utilities/useModalHook";
 import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
 import translateText from "../utilities/googleTranslateAPI";
-
-// import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
-// import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-// import DialogTitle from "@material-ui/core/DialogTitle";
-// import useMediaQuery from "@material-ui/core/useMediaQuery";
-// import { useTheme } from "@material-ui/core/styles";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import MenuItem from "@material-ui/core/MenuItem";
-// import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -41,14 +28,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TranslationModal = ({ words, open }) => {
+const TranslationModal = ({ words, open, handleClose }) => {
   const classes = useStyles();
-  const { handleClose } = useModalHook();
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [language, setLanguage] = useState("");
   const [languageCode, setLanguageCode] = useState("");
   const [translatedWords, setTranslatedWords] = useState("");
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (event, action) => {
     setLanguageCode(action.props.name);
@@ -70,6 +57,7 @@ const TranslationModal = ({ words, open }) => {
         fullScreen={fullScreen}
         open={open}
         aria-labelledby="responsive-dialog-title"
+        onClose={handleClose}
       >
         <DialogTitle id="responsive-dialog-title">
           {"Use Google Translate         "}
@@ -103,24 +91,9 @@ const TranslationModal = ({ words, open }) => {
             </Select>
           </FormControl>
         </DialogContent>
-
-        <DialogContent dividers>
-          <DialogContentText>
-            <Typography gutterBottom style={{ fontWeight: "bold" }}>
-              {words}
-            </Typography>
-            <Typography gutterBottom>English</Typography>
-          </DialogContentText>
-        </DialogContent>
+        <Content text={words} language={"English"} />
         {translatedWords && (
-          <DialogContent dividers>
-            <DialogContentText>
-              <Typography gutterBottom style={{ fontWeight: "bold" }}>
-                {translatedWords}
-              </Typography>
-              <Typography gutterBottom>{language}</Typography>
-            </DialogContentText>
-          </DialogContent>
+          <Content text={translatedWords} language={language} />
         )}
         <DialogActions></DialogActions>
       </Dialog>
@@ -129,3 +102,16 @@ const TranslationModal = ({ words, open }) => {
 };
 
 export default TranslationModal;
+
+const Content = ({ text, language }) => {
+  return (
+    <DialogContent dividers>
+      <DialogContentText>
+        <Typography gutterBottom style={{ fontWeight: "bold" }}>
+          {text}
+        </Typography>
+        <Typography gutterBottom>{language}</Typography>
+      </DialogContentText>
+    </DialogContent>
+  );
+};

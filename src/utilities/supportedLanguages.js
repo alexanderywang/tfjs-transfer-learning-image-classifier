@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 const languages = {
   af: "Afrikaans",
   sq: "Albanian",
@@ -110,13 +112,13 @@ const languages = {
  { id: 73, languageCode: 'pt', language: 'Portuguese' },
  */
 const formatObj = langObj => {
-   let formattedArrayOfObjects = [];
-   Object.entries(langObj).forEach((entry,id) => {
-      const [languageCode, language] = entry;
-      formattedArrayOfObjects.push({id, languageCode, language})
-   })
-   return formattedArrayOfObjects;
- };
+  let formattedArrayOfObjects = [];
+  Object.entries(langObj).forEach(entry => {
+    const [languageCode, language] = entry;
+    formattedArrayOfObjects.push({ id: uuidv4(), languageCode, language });
+  });
+  return formattedArrayOfObjects;
+};
 
 const SUPPORTED_LANGUAGES = formatObj(languages);
 

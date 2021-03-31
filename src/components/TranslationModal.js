@@ -43,14 +43,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const DropDownLanguageOptions = () => {
-  return SUPPORTED_LANGUAGES.map(lang => (
-    <MenuItem key={lang.id} value={lang.languageCode} name={lang.language}>
-      {lang.language}
-    </MenuItem>
-  ));
-};
-
 const TranslationModal = ({ words }) => {
   const classes = useStyles();
   const { open, handleClickOpen, handleClose } = useModalHook();
@@ -67,11 +59,11 @@ const TranslationModal = ({ words }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const translate = async () => {
       const translation = await translateText(words, languageCode, language);
       setTranslatedWords(translation);
     };
-    fetchData();
+    translate();
   }, [words, languageCode, language]);
 
   return (
@@ -105,10 +97,15 @@ const TranslationModal = ({ words }) => {
               value={language}
               onChange={handleChange}
             >
-              {DropDownLanguageOptions()}
-              {/* <MenuItem value={""}>None</MenuItem>
-              <MenuItem value={"chinese"}>Mandarin</MenuItem>
-              <MenuItem value={"spanish"}>Spanish</MenuItem> */}
+              {SUPPORTED_LANGUAGES.map(lang => (
+                <MenuItem
+                  key={lang.id}
+                  value={lang.languageCode}
+                  name={lang.language}
+                >
+                  {lang.language}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </DialogContent>

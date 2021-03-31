@@ -48,6 +48,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 - [Axios](https://www.npmjs.com/package/axios): Promise based HTTP client for browser and Node.js.
 - [Material-UI](https://material-ui.com/): Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications.
 - [React Webcam](https://www.npmjs.com/package/react-webcam) in order to get clientside webcam functionality, we need a plugin. Since we're only looking for static images and not a full communications app, I'm using React Webcam.
+- [uuid](https://www.npmjs.com/package/uuid) random unique id generator for component mapping
 
 ## Local Setup
 

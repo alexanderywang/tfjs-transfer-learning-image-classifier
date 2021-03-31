@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-// import { makeStyles, useTheme } from "@material-ui/core/styles";
+import React from "react";
 import {
   makeStyles,
   useTheme,
@@ -18,7 +17,7 @@ import {
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
-import translateText from "../utilities/googleTranslateAPI";
+import useGoogleTranslateAPI from "../utilities/useGoogleTranslateAPI";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
@@ -35,23 +34,9 @@ const TranslationModal = ({ words, open, handleClose }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [language, setLanguage] = useState("");
-  const [languageCode, setLanguageCode] = useState("");
-  const [translatedWords, setTranslatedWords] = useState("");
-
-  const handleChange = (event, action) => {
-    setLanguageCode(action.props.name);
-    setLanguage(event.target.value);
-    setTranslatedWords("");
-  };
-
-  useEffect(() => {
-    const translate = async () => {
-      const translation = await translateText(words, languageCode, language);
-      setTranslatedWords(translation);
-    };
-    translate();
-  }, [words, languageCode, language]);
+  const { handleChange, language, translatedWords } = useGoogleTranslateAPI(
+    words
+  );
 
   return (
     <>
@@ -93,9 +78,9 @@ const TranslationModal = ({ words, open, handleClose }) => {
             </Select>
           </FormControl>
         </DialogContent>
-        <Content text={words} language={"English"} />
+        <TextContent text={words} language={"English"} />
         {translatedWords && (
-          <Content text={translatedWords} language={language} />
+          <TextContent text={translatedWords} language={language} />
         )}
         <DialogActions></DialogActions>
       </Dialog>
@@ -105,7 +90,7 @@ const TranslationModal = ({ words, open, handleClose }) => {
 
 export default TranslationModal;
 
-const Content = ({ text, language }) => {
+const TextContent = ({ text, language }) => {
   return (
     <DialogContent dividers>
       <DialogContentText>

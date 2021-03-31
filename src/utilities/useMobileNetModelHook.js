@@ -3,7 +3,7 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 import useSnackBarHook from "./useSnackBarHook";
 import retry from "./retryFunction";
 
-const useLoadModelHook = () => {
+const useMobileNetModelHook = () => {
   const [model, setModel] = useState(null);
 
   const {
@@ -38,4 +38,4 @@ const useLoadModelHook = () => {
   };
 };
 
-export default useLoadModelHook;
+export default useMobileNetModelHook;

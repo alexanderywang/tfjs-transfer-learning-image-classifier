@@ -5,7 +5,7 @@ import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import Card from "@material-ui/core/Card";
-import { Grid, Typography, Dialog, IconButton } from "@material-ui/core";
+import { Typography, Dialog, IconButton } from "@material-ui/core";
 
 const styles = theme => ({
   root: {

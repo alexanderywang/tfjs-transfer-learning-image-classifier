@@ -2,26 +2,29 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import ClassifyButtons from "./ClassifyButtons";
 import { Grid, Snackbar } from "@material-ui/core";
+import useFlipCameraHook from "../utilities/useFlipCameraHook";
+// const userVideo = {
+//   width: 240,
+//   height: 240,
+//   facingMode: "user"
+// };
 
-const userVideo = {
-  width: 300,
-  height: 300,
-  facingMode: "user"
-};
-
-const facingOutVideo = {
-  width: 300,
-  height: 300,
-  facingMode: { exact: "environment" }
-};
+// const facingOutVideo = {
+//   width: 240,
+//   height: 240,
+//   facingMode: { exact: "environment" }
+// };
 
 const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
+  const { flipCamera,isMirrored, videoConstraints } = useFlipCameraHook();
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState(null);
-  const [isFacingUser, setIsFacingUser] = useState(true);
-  const [isMirrored, setIsMirrored] = useState(true);
-  const [videoConstraints, setVideoConstraints] = useState(userVideo);
+
+  // const [isFacingUser, setIsFacingUser] = useState(true);
+  // const [isMirrored, setIsMirrored] = useState(true);
+  // const [videoConstraints, setVideoConstraints] = useState(userVideo);
+
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
 
@@ -56,7 +59,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setIsLoading(true);
     try {
       const predictions = await model.classify(image, 5);
-      console.log("mobileNet model predictions:", predictions);
+      // console.log("mobileNet model predictions:", predictions);
       setIsLoading(false);
 
       setPredictions(predictions);
@@ -67,16 +70,16 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     }
   };
 
-  const flipCamera = () => {
-    // if (isFacingUser) {
-    //   setVideoConstraints(facingOutVideo);
-    // } else {
-    //   setVideoConstraints(userVideo);
-    // }
-    setVideoConstraints(isFacingUser ? facingOutVideo : userVideo);
-    setIsMirrored(!isMirrored);
-    setIsFacingUser(!isFacingUser);
-  };
+  // const flipCamera = () => {
+  //   // if (isFacingUser) {
+  //   //   setVideoConstraints(facingOutVideo);
+  //   // } else {
+  //   //   setVideoConstraints(userVideo);
+  //   // }
+  //   setVideoConstraints(isFacingUser ? facingOutVideo : userVideo);
+  //   setIsMirrored(!isMirrored);
+  //   setIsFacingUser(!isFacingUser);
+  // };
 
   return (
     <Grid>

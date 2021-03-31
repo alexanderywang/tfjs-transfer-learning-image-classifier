@@ -24,6 +24,7 @@ function App() {
     }, 1500);
   }, []);
 
+  // abstract
   const loadModel = async () => {
     try {
       console.log("Loading mobilenet...");

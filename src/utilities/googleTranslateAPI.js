@@ -1,11 +1,12 @@
 import axios from "axios";
+const BASE_URL = "https://translation.googleapis.com/language/translate/v2";
 const GoogleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const translateText = async (words, languageCode, language) => {
   let translation;
   try {
     if (languageCode) {
-      const GoogleTranslateAPIEndpoint = `https://translation.googleapis.com/language/translate/v2?key=${GoogleAPIKey}&q=${[
+      const GoogleTranslateAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}&q=${[
         words
       ]}&target=${languageCode}`;
 
@@ -23,6 +24,5 @@ const translateText = async (words, languageCode, language) => {
 
 export default translateText;
 
-
-    // check local storage for memoized language, word
-    // else make throttled api call, set local storage
+// check local storage for memoized language, word
+// else make throttled api call, set local storage

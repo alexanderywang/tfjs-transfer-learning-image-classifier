@@ -7,6 +7,7 @@
 6. look for text-to-voice functionality
 
 7. abstract, refactor
+abstract async: app, devicewebcam
 
 -modal could use some refactoring
 

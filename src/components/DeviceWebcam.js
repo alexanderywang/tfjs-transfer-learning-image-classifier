@@ -46,6 +46,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setImage(newImage);
   };
 
+  // abstract
   const makePrediction = async () => {
     if (imageURL === null) {
       setSnackBarMessage("Take another picture");

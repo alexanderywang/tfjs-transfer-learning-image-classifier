@@ -1,10 +1,4 @@
-1. test out api key hiding - .env, works
-2. register with google cloud for translate api key but don't use it yet
-3. create modal for prediction onClick - done but could use some refactoring
-3a. make the dropdown menu more dynamic and separate component - done with a util function and a static object for languages
-3b. make translated words dynamically adjust with a useEffect and separated async api call logic - done
 
-3c. write out README process of getting a google api key
 
 4. write debounce function/api call/dummy data
 
@@ -13,7 +7,10 @@
 6. look for text-to-voice functionality
 
 7. abstract, refactor
-- try to separate prediction taable component into presentational parts
+
+-modal could use some refactoring
+
+- try to separate prediction table component into presentational parts
 https://medium.com/frontend-digest/six-ways-to-get-better-at-react-ccb321a7c35
 
 - translationModal -> instead of select, use a menu:

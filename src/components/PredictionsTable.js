@@ -11,13 +11,12 @@ import {
 } from "@material-ui/core";
 import TranslationModal from "./TranslationModal";
 
+const useStyles = makeStyles({
+  table: {
+    minWidth: window.width
+  }
+});
 const PredictionsTable = ({ predictions }) => {
-  const useStyles = makeStyles({
-    table: {
-      minWidth: window.width
-    }
-  });
-
   const classes = useStyles();
 
   return (
@@ -32,21 +31,7 @@ const PredictionsTable = ({ predictions }) => {
         </TableHead>
         <TableBody>
           {predictions.map(prediction => (
-            <TableRow key={prediction.className}>
-              <TableCell align="left" scope="row" style={{ width: "2%" }}>
-                <TranslationModal words={prediction.className}/>
-              </TableCell>
-              <TableCell
-                component="th"
-                scope="row"
-                style={{ fontWeight: "bold", width: "20%" }}
-              >
-                {prediction.className}
-              </TableCell>
-              <TableCell align="right" style={{ width: "20%" }}>
-                {Math.round(prediction.probability * 100, 5)}%
-              </TableCell>
-            </TableRow>
+            <PredictionRow prediction={prediction} />
           ))}
         </TableBody>
       </Table>
@@ -55,3 +40,23 @@ const PredictionsTable = ({ predictions }) => {
 };
 
 export default PredictionsTable;
+
+const PredictionRow = ({ prediction }) => {
+  return (
+    <TableRow key={prediction.className}>
+      <TableCell align="left" scope="row" style={{ width: "2%" }}>
+        <TranslationModal words={prediction.className} />
+      </TableCell>
+      <TableCell
+        component="th"
+        scope="row"
+        style={{ fontWeight: "bold", width: "20%" }}
+      >
+        {prediction.className}
+      </TableCell>
+      <TableCell align="right" style={{ width: "20%" }}>
+        {Math.round(prediction.probability * 100, 5)}%
+      </TableCell>
+    </TableRow>
+  );
+};

@@ -76,7 +76,11 @@ for local testing: "start": "react-scripts start",
 for heroku deployment: "start": "serve -s build",
 ```
 
-3. In order to use Google Translate API, you'll have to register with Google and retrieve a key....
+3. In order to use Google Translate API, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT_APP_ to the key. Example:
+```
+REACT_APP_GOOGLE_API_KEY=123456
+```
+more in key learning points below...
 
 4. Run `npm run start` to start the app on http://localhost:3000/
 
@@ -107,6 +111,8 @@ process.env.REACT_APP_SOME_VARIABLE
 5. No need to wrap your variable value in single or double quotes.
 6. Do not put semicolon ; or comma , at the end of each line.
 
+helpful link:
+[https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6](https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6)
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.

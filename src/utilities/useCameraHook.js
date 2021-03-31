@@ -12,10 +12,14 @@ const facingOutVideo = {
   facingMode: { exact: "environment" }
 };
 
-const useFlipCameraHook = () => {
+const useCameraHook = () => {
+  // camera orientation
   const [isFacingUser, setIsFacingUser] = useState(true);
   const [isMirrored, setIsMirrored] = useState(true);
   const [videoConstraints, setVideoConstraints] = useState(userVideo);
+  // taking photo and setting image
+  const [imageURL, setImageURL] = useState("");
+  const [image, setImage] = useState(null);
 
   const flipCamera = () => {
     // if (isFacingUser) {
@@ -37,7 +41,28 @@ const useFlipCameraHook = () => {
     // );
   };
 
-  return { flipCamera,isMirrored, videoConstraints };
+  const takePhoto = webcamRef => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImageURL(imageSrc);
+    createImage(imageSrc);
+  };
+
+  const createImage = url => {
+    const newImage = new Image();
+    newImage.src = url;
+    newImage.crossOrigin = "anonymous";
+    setImage(newImage);
+  };
+
+  return {
+    flipCamera,
+    isMirrored,
+    videoConstraints,
+    imageURL,
+    setImageURL,
+    image,
+    takePhoto
+  };
 };
 
-export default useFlipCameraHook;
+export default useCameraHook;

@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import Buttons from "./Buttons";
 import { Grid, Snackbar } from "@material-ui/core";
-import useFlipCameraHook from "../utilities/useFlipCameraHook";
+import useCameraHook from "../utilities/useCameraHook";
 // const userVideo = {
 //   width: 240,
 //   height: 240,
@@ -16,10 +16,11 @@ import useFlipCameraHook from "../utilities/useFlipCameraHook";
 // };
 
 const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
-  const { flipCamera, isMirrored, videoConstraints } = useFlipCameraHook();
+
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
-  const [imageURL, setImageURL] = useState("");
-  const [image, setImage] = useState(null);
+
+  // const [imageURL, setImageURL] = useState("");
+  // const [image, setImage] = useState(null);
 
   // const [isFacingUser, setIsFacingUser] = useState(true);
   // const [isMirrored, setIsMirrored] = useState(true);
@@ -31,13 +32,23 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
 
+  const {
+    flipCamera,
+    isMirrored,
+    videoConstraints,
+    imageURL,
+    setImageURL,
+    image,
+    takePhoto
+  } = useCameraHook();
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
     setOpen(false);
   };
 
   const handleClick = e => {
-    if (!isPhotoTaken) takePhoto(e);
+    if (!isPhotoTaken) takePhoto(webcamRef);
     else {
       setIsLoading(false);
       setImageURL("");
@@ -46,18 +57,17 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setIsPhotoTaken(!isPhotoTaken);
   };
 
-  const takePhoto = () => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImageURL(imageSrc);
-    createImage(imageSrc);
-  };
-
-  const createImage = url => {
-    const newImage = new Image();
-    newImage.src = url;
-    newImage.crossOrigin = "anonymous";
-    setImage(newImage);
-  };
+  // const takePhoto = () => {
+  //   const imageSrc = webcamRef.current.getScreenshot();
+  //   setImageURL(imageSrc);
+  //   createImage(imageSrc);
+  // };
+  // const createImage = url => {
+  //   const newImage = new Image();
+  //   newImage.src = url;
+  //   newImage.crossOrigin = "anonymous";
+  //   setImage(newImage);
+  // };
 
   // abstract
   const makePrediction = async () => {

@@ -67,7 +67,7 @@ const TranslationModal = ({ words }) => {
   }, [words, languageCode, language]);
 
   return (
-    <Grid>
+    <>
       <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
         <GTranslateIcon />
       </IconButton>
@@ -78,7 +78,7 @@ const TranslationModal = ({ words }) => {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Use Google Translate"}
+          {"Use Google Translate         "}
           <IconButton
             align="right"
             variant="outlined"
@@ -130,7 +130,7 @@ const TranslationModal = ({ words }) => {
         )}
         <DialogActions></DialogActions>
       </Dialog>
-    </Grid>
+    </>
   );
 };
 

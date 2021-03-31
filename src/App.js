@@ -1,28 +1,37 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import * as mobilenet from "@tensorflow-models/mobilenet";
+// import * as mobilenet from "@tensorflow-models/mobilenet";
 import * as tf from "@tensorflow/tfjs";
 import { Container, CircularProgress, Grid, Snackbar } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
 import PredictionsTable from "./components/PredictionsTable";
-import retry from "../src/utilities/retryFunction";
+// import retry from "../src/utilities/retryFunction";
 import DeviceWebcam from "./components/DeviceWebcam";
-import useSnackBarHook from "./utilities/useSnackBarHook";
+// import useSnackBarHook from "./utilities/useSnackBarHook";
+import useLoadModelHook from "./utilities/useLoadModelHook";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [model, setModel] = useState(null);
 
   const {
-    handleClose,
-    open,
-    setOpen,
+    model,
+    loadModel,
     snackBarMessage,
-    setSnackBarMessage
-  } = useSnackBarHook();
+    open,
+    handleClose
+  } = useLoadModelHook();
+  // const [model, setModel] = useState(null);
+
+  // const {
+  //   handleClose,
+  //   open,
+  //   setOpen,
+  //   snackBarMessage,
+  //   setSnackBarMessage
+  // } = useSnackBarHook();
 
   // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css :)
   useEffect(() => {
@@ -37,20 +46,20 @@ function App() {
   }, []);
 
   // abstract?
-  const loadModel = async () => {
-    try {
-      console.log("Loading mobilenet...");
-      const model = await retry(mobilenet.load, 3, 2);
-      setModel(model);
-      console.log("Successfully loaded model", model);
-      setOpen(true);
-      setSnackBarMessage(`Model loaded!`);
-    } catch (error) {
-      console.error("Error loading model:", error);
-      setOpen(true);
-      setSnackBarMessage("Error loading model. Please refresh and try again.");
-    }
-  };
+  // const loadModel = async () => {
+  //   try {
+  //     console.log("Loading mobilenet...");
+  //     const model = await retry(mobilenet.load, 3, 2);
+  //     setModel(model);
+  //     console.log("Successfully loaded model", model);
+  //     setOpen(true);
+  //     setSnackBarMessage(`Model loaded!`);
+  //   } catch (error) {
+  //     console.error("Error loading model:", error);
+  //     setOpen(true);
+  //     setSnackBarMessage("Error loading model. Please refresh and try again.");
+  //   }
+  // };
 
   return (
     <Grid>

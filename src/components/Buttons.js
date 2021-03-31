@@ -2,27 +2,13 @@ import React from "react";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
 
-const ClassifyButtons = ({
+const Buttons = ({
   isLoading,
-  setIsLoading,
-  setIsPhotoTaken,
   isPhotoTaken,
-  takePhoto,
-  setImageURL,
   makePrediction,
-  setPredictions,
-  flipCamera
+  flipCamera,
+  handleClick
 }) => {
-  const handleClick = e => {
-    if (!isPhotoTaken) takePhoto(e);
-    else {
-      setIsLoading(false);
-      setImageURL("");
-    }
-    setPredictions([]);
-    setIsPhotoTaken(!isPhotoTaken);
-  };
-
   return (
     <Grid>
       <Grid>
@@ -56,4 +42,4 @@ const ClassifyButtons = ({
   );
 };
 
-export default ClassifyButtons;
+export default Buttons;

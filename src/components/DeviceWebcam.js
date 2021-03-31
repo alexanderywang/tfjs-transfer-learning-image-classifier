@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
-import ClassifyButtons from "./ClassifyButtons";
+import Buttons from "./Buttons";
 import { Grid, Snackbar } from "@material-ui/core";
 import useFlipCameraHook from "../utilities/useFlipCameraHook";
 // const userVideo = {
@@ -16,7 +16,7 @@ import useFlipCameraHook from "../utilities/useFlipCameraHook";
 // };
 
 const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
-  const { flipCamera,isMirrored, videoConstraints } = useFlipCameraHook();
+  const { flipCamera, isMirrored, videoConstraints } = useFlipCameraHook();
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState(null);
@@ -34,6 +34,16 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   const handleClose = (event, reason) => {
     if (reason === "clickaway") return;
     setOpen(false);
+  };
+
+  const handleClick = e => {
+    if (!isPhotoTaken) takePhoto(e);
+    else {
+      setIsLoading(false);
+      setImageURL("");
+    }
+    setPredictions([]);
+    setIsPhotoTaken(!isPhotoTaken);
   };
 
   const takePhoto = () => {
@@ -104,16 +114,12 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
         />
       </Grid>
       {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
-      <ClassifyButtons
+      <Buttons
         isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        setIsPhotoTaken={setIsPhotoTaken}
         isPhotoTaken={isPhotoTaken}
-        takePhoto={takePhoto}
-        setImageURL={setImageURL}
         makePrediction={makePrediction}
-        setPredictions={setPredictions}
         flipCamera={flipCamera}
+        handleClick={handleClick}
       />
     </Grid>
   );

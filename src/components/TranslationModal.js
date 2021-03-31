@@ -93,7 +93,7 @@ const TranslationModal = ({ words }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={language}
+              value={languageCode}
               onChange={handleChange}
             >
               {SUPPORTED_LANGUAGES.map(lang => (

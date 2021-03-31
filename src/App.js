@@ -21,7 +21,7 @@ function App() {
     tf.ready().then(() => loadModel());
     setTimeout(() => {
       setIsLoadingModel(false);
-    }, 300);
+    }, 1500);
   }, []);
 
   const loadModel = async () => {

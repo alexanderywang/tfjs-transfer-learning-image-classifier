@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Backdrop, LinearProgress, Card, Grid } from "@material-ui/core";
+import { Typography, Backdrop, LinearProgress, Card, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import whatisthis from "./whatisthis.png";
 
@@ -38,6 +38,9 @@ const LoadingPage = ({ open }) => {
       <Backdrop className={classes.backdrop} open={open}>
         <Grid>
           <Grid>
+            <Typography>What Is This??</Typography>
+          </Grid>
+          <Grid>
             <Card>
               <img
                 src={whatisthis}
@@ -52,7 +55,7 @@ const LoadingPage = ({ open }) => {
               <LinearProgress variant="determinate" value={progress} />
             </Grid>
             <Grid>
-              <h3>Loading Model...</h3>
+              <Typography>Loading Model...</Typography>
             </Grid>
           </Grid>
         </Grid>

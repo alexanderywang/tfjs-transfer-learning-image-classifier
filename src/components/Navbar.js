@@ -5,7 +5,7 @@ import AboutModal from "./AboutModal";
 const Navbar = () => {
   return (
     <Grid>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: "#171769" }}>
         <Toolbar>
           <AboutModal />
           <Typography variant="h6">Classify Image</Typography>

@@ -67,14 +67,14 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   };
 
   const flipCamera = () => {
-    if (isFacingUser) {
-      setVideoConstraints(facingOutVideo);
-    } else {
-      setVideoConstraints(userVideo);
-    }
+    // if (isFacingUser) {
+    //   setVideoConstraints(facingOutVideo);
+    // } else {
+    //   setVideoConstraints(userVideo);
+    // }
+    setVideoConstraints(isFacingUser ? facingOutVideo : userVideo);
     setIsMirrored(!isMirrored);
     setIsFacingUser(!isFacingUser);
-    console.log(videoConstraints);
   };
 
   return (

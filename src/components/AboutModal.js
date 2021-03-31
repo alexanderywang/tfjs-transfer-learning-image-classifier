@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-// import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Grid, Typography, Dialog, IconButton } from "@material-ui/core";
@@ -45,15 +45,15 @@ const DialogContent = withStyles(theme => ({
   }
 }))(MuiDialogContent);
 
-// const DialogActions = withStyles(theme => ({
-//   root: {
-//     margin: 0,
-//     padding: theme.spacing(1)
-//   }
-// }))(MuiDialogActions);
+const DialogActions = withStyles(theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1)
+  }
+}))(MuiDialogActions);
 
 const AboutModal = () => {
-  const { open, handleClick, handleClose } = useModalHook();
+  const { open, handleClickOpen, handleClose } = useModalHook();
 
   return (
     <Grid>
@@ -61,7 +61,7 @@ const AboutModal = () => {
         edge="start"
         color="inherit"
         aria-label="menu"
-        onClick={handleClick}
+        onClick={handleClickOpen}
       >
         <MenuIcon />
       </IconButton>
@@ -90,10 +90,7 @@ const AboutModal = () => {
               rel="noreferrer"
             >
               {" "}
-              <Typography>
-                {" "}
-                https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
-              </Typography>
+              https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier
             </a>
           </Typography>
         </DialogContent>

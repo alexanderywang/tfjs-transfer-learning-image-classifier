@@ -48,6 +48,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 - [Axios](https://www.npmjs.com/package/axios): Promise based HTTP client for browser and Node.js.
 - [Material-UI](https://material-ui.com/): Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications.
 - [React Webcam](https://www.npmjs.com/package/react-webcam) in order to get clientside webcam functionality, we need a plugin. Since we're only looking for static images and not a full communications app, I'm using React Webcam.
+- [uuid](https://www.npmjs.com/package/uuid) random unique id generator for component mapping
 
 ## Local Setup
 
@@ -75,7 +76,13 @@ for local testing: "start": "react-scripts start",
 for heroku deployment: "start": "serve -s build",
 ```
 
-3. Run `npm run start` to start the app on http://localhost:3000/
+3. In order to use Google Translate API, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT_APP_ to the key. Example:
+```
+REACT_APP_GOOGLE_API_KEY=123456
+```
+more in key learning points below...
+
+4. Run `npm run start` to start the app on http://localhost:3000/
 
 ### Some key learning points
 
@@ -92,10 +99,24 @@ for heroku deployment: "start": "serve -s build",
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
 ```
+- In ReactJS environment variables are fetched from .env files. If you set the variable in .env file and your variables returned undefined check the below items.
 
+Assumption: You have used Create React App (CRA) to bootstrap your application
+
+1. The .env file should be in the root for you application folder. That is one level above your src folder, the same place where you have your package.json
+2. The variable should be prefixed with REACT_APP_
+3. You need to restart the server to reflect the changes in your code.
+4. You should access the variable in your code like this
+process.env.REACT_APP_SOME_VARIABLE
+5. No need to wrap your variable value in single or double quotes.
+6. Do not put semicolon ; or comma , at the end of each line.
+
+helpful link:
+[https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6](https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6)
 #### Takeaways
 
 - Data remains on device and classification is performed locally. Nothing is uploaded to the server. Inferences are done locally. User data remains private.
+
 
 **Javascript in Machine Learning is relatively new and it's important that users can use your models and ideas interactively in the browser without having to install anything**
 

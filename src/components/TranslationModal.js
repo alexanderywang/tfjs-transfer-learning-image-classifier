@@ -52,8 +52,8 @@ const TranslationModal = ({ words }) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleChange = (event, action) => {
-    setLanguage(action.props.name);
-    setLanguageCode(event.target.value);
+    setLanguageCode(action.props.name);
+    setLanguage(event.target.value);
     setTranslatedWords("");
   };
 
@@ -93,14 +93,14 @@ const TranslationModal = ({ words }) => {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={languageCode}
+              value={language}
               onChange={handleChange}
             >
               {SUPPORTED_LANGUAGES.map(lang => (
                 <MenuItem
                   key={lang.id}
-                  value={lang.languageCode}
-                  name={lang.language}
+                  name={lang.languageCode}
+                  value={lang.language}
                 >
                   {lang.language}
                 </MenuItem>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useModalHook = () => {
+const useModal = () => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -13,4 +13,4 @@ const useModalHook = () => {
   return { open, setOpen, handleClickOpen, handleClose };
 };
 
-export default useModalHook;
+export default useModal;

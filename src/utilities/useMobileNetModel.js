@@ -1,9 +1,9 @@
 import { useState } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import useSnackBarHook from "./useSnackBarHook";
+import useSnackBar from "./useSnackBar";
 import retry from "./retryFunction";
 
-const useMobileNetModelHook = () => {
+const useMobileNetModel = () => {
   const [model, setModel] = useState(null);
 
   const {
@@ -12,7 +12,7 @@ const useMobileNetModelHook = () => {
     setOpen,
     snackBarMessage,
     setSnackBarMessage
-  } = useSnackBarHook();
+  } = useSnackBar();
 
   const loadModel = async () => {
     try {
@@ -38,4 +38,4 @@ const useMobileNetModelHook = () => {
   };
 };
 
-export default useMobileNetModelHook;
+export default useMobileNetModel;

@@ -8,10 +8,10 @@ import {
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import AboutModal from "./AboutModal";
-import useModalHook from "../utilities/useModalHook";
+import useModal from "../utilities/useModal";
 
 const Navbar = () => {
-  const { open, handleClickOpen, handleClose } = useModalHook();
+  const { open, handleClickOpen, handleClose } = useModal();
 
   return (
     <Grid>

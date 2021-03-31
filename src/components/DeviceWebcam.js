@@ -2,8 +2,8 @@ import React, { useState, useRef } from "react";
 import Webcam from "react-webcam";
 import Buttons from "./Buttons";
 import { Grid, Snackbar } from "@material-ui/core";
-import useCameraHook from "../utilities/useCameraHook";
-import useSnackBarHook from "../utilities/useSnackBarHook";
+import useCamera from "../utilities/useCamera";
+import useSnackBar from "../utilities/useSnackBar";
 
 // const userVideo = {
 //   width: 240,
@@ -39,7 +39,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     takePhoto,
     isPhotoTaken,
     setIsPhotoTaken
-  } = useCameraHook();
+  } = useCamera();
 
   const {
     handleClose,
@@ -47,7 +47,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setOpen,
     snackBarMessage,
     setSnackBarMessage
-  } = useSnackBarHook();
+  } = useSnackBar();
 
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(webcamRef);

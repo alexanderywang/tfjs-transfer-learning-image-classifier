@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
 import PredictionsTable from "./components/PredictionsTable";
 import DeviceWebcam from "./components/DeviceWebcam";
-import useMobileNetModelHook from "./utilities/useMobileNetModelHook";
+import useMobileNetModel from "./utilities/useMobileNetModel";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
@@ -19,7 +19,7 @@ function App() {
     snackBarMessage,
     open,
     handleClose
-  } = useMobileNetModelHook();
+  } = useMobileNetModel();
 
   // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css, otherwise isLoadingModel goes in async/await function :)
   useEffect(() => {

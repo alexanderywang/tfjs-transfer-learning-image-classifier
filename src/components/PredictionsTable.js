@@ -11,7 +11,7 @@ import {
   IconButton
 } from "@material-ui/core";
 import GTranslateIcon from "@material-ui/icons/GTranslate";
-import useModalHook from "../utilities/useModalHook";
+import useModal from "../utilities/useModal";
 import TranslationModal from "./TranslationModal";
 
 const useStyles = makeStyles({
@@ -45,7 +45,7 @@ const PredictionsTable = ({ predictions }) => {
 export default PredictionsTable;
 
 const PredictionRow = ({ prediction }) => {
-  const { open, handleClickOpen, handleClose } = useModalHook();
+  const { open, handleClickOpen, handleClose } = useModal();
 
   return (
     <TableRow>

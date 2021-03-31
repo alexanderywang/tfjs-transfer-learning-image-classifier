@@ -12,7 +12,7 @@ const facingOutVideo = {
   facingMode: { exact: "environment" }
 };
 
-const useCameraHook = () => {
+const useCamera = () => {
   // camera orientation
   const [isFacingUser, setIsFacingUser] = useState(true);
   const [isMirrored, setIsMirrored] = useState(true);
@@ -68,4 +68,4 @@ const useCameraHook = () => {
   };
 };
 
-export default useCameraHook;
+export default useCamera;

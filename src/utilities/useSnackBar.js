@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useSnackBarHook = () => {
+const useSnackBar = () => {
   const [open, setOpen] = useState(false);
   const [snackBarMessage, setSnackBarMessage] = useState("");
 
@@ -18,4 +18,4 @@ const useSnackBarHook = () => {
   };
 };
 
-export default useSnackBarHook;
+export default useSnackBar;

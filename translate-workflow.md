@@ -10,8 +10,6 @@
 
 -modal could use some refactoring
 
-- try to separate prediction table component into presentational parts
-https://medium.com/frontend-digest/six-ways-to-get-better-at-react-ccb321a7c35
 
 - translationModal -> instead of select, use a menu:
 https://javascript.plainenglish.io/material-ui-links-and-menus-cea96901d650

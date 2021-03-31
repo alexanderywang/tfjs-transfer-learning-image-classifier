@@ -3,6 +3,8 @@ import Webcam from "react-webcam";
 import Buttons from "./Buttons";
 import { Grid, Snackbar } from "@material-ui/core";
 import useCameraHook from "../utilities/useCameraHook";
+import useSnackBarHook from "../utilities/useSnackBarHook";
+
 // const userVideo = {
 //   width: 240,
 //   height: 240,
@@ -16,18 +18,13 @@ import useCameraHook from "../utilities/useCameraHook";
 // };
 
 const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
-
-  const [isPhotoTaken, setIsPhotoTaken] = useState(false);
-
+  // const [isPhotoTaken, setIsPhotoTaken] = useState(false);
   // const [imageURL, setImageURL] = useState("");
   // const [image, setImage] = useState(null);
 
   // const [isFacingUser, setIsFacingUser] = useState(true);
   // const [isMirrored, setIsMirrored] = useState(true);
   // const [videoConstraints, setVideoConstraints] = useState(userVideo);
-
-  const [open, setOpen] = useState(false);
-  const [snackBarMessage, setSnackBarMessage] = useState("");
 
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
@@ -39,13 +36,18 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     imageURL,
     setImageURL,
     image,
-    takePhoto
+    takePhoto,
+    isPhotoTaken,
+    setIsPhotoTaken
   } = useCameraHook();
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") return;
-    setOpen(false);
-  };
+  const {
+    handleClose,
+    open,
+    setOpen,
+    snackBarMessage,
+    setSnackBarMessage
+  } = useSnackBarHook();
 
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(webcamRef);
@@ -69,7 +71,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   //   setImage(newImage);
   // };
 
-  // abstract
+  // abstract?
   const makePrediction = async () => {
     if (imageURL === null) {
       setSnackBarMessage("Take another picture");

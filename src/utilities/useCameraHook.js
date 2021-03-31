@@ -20,6 +20,7 @@ const useCameraHook = () => {
   // taking photo and setting image
   const [imageURL, setImageURL] = useState("");
   const [image, setImage] = useState(null);
+  const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
   const flipCamera = () => {
     // if (isFacingUser) {
@@ -61,7 +62,9 @@ const useCameraHook = () => {
     imageURL,
     setImageURL,
     image,
-    takePhoto
+    takePhoto,
+    isPhotoTaken,
+    setIsPhotoTaken
   };
 };
 

@@ -8,38 +8,48 @@ import LoadingPage from "./components/LoadingPage";
 import PredictionsTable from "./components/PredictionsTable";
 import retry from "../src/utilities/retryFunction";
 import DeviceWebcam from "./components/DeviceWebcam";
+import useSnackBarHook from "./utilities/useSnackBarHook";
 
 function App() {
   const [isLoadingModel, setIsLoadingModel] = useState(true);
-  const [open, setOpen] = useState(false);
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
 
-  // simulating model load even though mobilenet is light and fast, other models might be longer load times
+  const {
+    handleClose,
+    open,
+    setOpen,
+    snackBarMessage,
+    setSnackBarMessage
+  } = useSnackBarHook();
+
+  // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css :)
   useEffect(() => {
-    tf.ready().then(() => loadModel());
-    setTimeout(() => {
+    const prepareModel = () => {
+      tf.ready().then(() => loadModel());
+    };
+    prepareModel();
+    let timer = setTimeout(() => {
       setIsLoadingModel(false);
     }, 1500);
+    return () => clearTimeout(timer);
   }, []);
 
-  // abstract
+  // abstract?
   const loadModel = async () => {
     try {
       console.log("Loading mobilenet...");
       const model = await retry(mobilenet.load, 3, 2);
       setModel(model);
       console.log("Successfully loaded model", model);
-    } catch (error) {
       setOpen(true);
+      setSnackBarMessage(`Model loaded!`);
+    } catch (error) {
       console.error("Error loading model:", error);
+      setOpen(true);
+      setSnackBarMessage("Error loading model. Please refresh and try again.");
     }
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") return;
-    setOpen(false);
   };
 
   return (
@@ -75,9 +85,9 @@ function App() {
           horizontal: "center"
         }}
         open={open}
-        autoHideDuration={9000}
+        autoHideDuration={5000}
         onClose={handleClose}
-        message="Model having trouble loading. Please refresh and try again"
+        message={snackBarMessage}
       />
     </Grid>
   );

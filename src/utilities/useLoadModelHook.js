@@ -20,12 +20,12 @@ const useLoadModelHook = () => {
       const model = await retry(mobilenet.load, 3, 2);
       setModel(model);
       console.log("Successfully loaded model", model);
-      setOpen(true);
       setSnackBarMessage(`Model loaded!`);
+      setOpen(true);
     } catch (error) {
       console.error("Error loading model:", error);
-      setOpen(true);
       setSnackBarMessage("Error loading model. Please refresh and try again.");
+      setOpen(true);
     }
   };
 

@@ -5,6 +5,6 @@
 6. look for text-to-voice functionality
 
 7. abstract, refactor
-   abstract async: app, devicewebcam...not sure how to do this well
+   abstract async: devicewebcam...not sure how to do this well
 
 8. some photo tips might be helpful

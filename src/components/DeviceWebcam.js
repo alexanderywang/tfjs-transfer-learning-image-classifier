@@ -74,7 +74,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
   // abstract?
   const makePrediction = async () => {
     if (imageURL === null) {
-      setSnackBarMessage("Take another picture");
+      setSnackBarMessage("Take another picture please");
       setOpen(true);
       return;
     }
@@ -86,7 +86,9 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
 
       setPredictions(predictions);
     } catch (err) {
-      setSnackBarMessage("No predictions can be made. Take another picture");
+      setSnackBarMessage(
+        "No predictions can be made. Take another picture. Check out the tips"
+      );
       setOpen(true);
       console.error("error:", err);
     }

@@ -31,7 +31,7 @@ const PredictionsTable = ({ predictions }) => {
         </TableHead>
         <TableBody>
           {predictions.map(prediction => (
-            <PredictionRow prediction={prediction} />
+            <PredictionRow key={prediction.className} prediction={prediction} />
           ))}
         </TableBody>
       </Table>
@@ -43,7 +43,7 @@ export default PredictionsTable;
 
 const PredictionRow = ({ prediction }) => {
   return (
-    <TableRow key={prediction.className}>
+    <TableRow>
       <TableCell align="left" scope="row" style={{ width: "2%" }}>
         <TranslationModal words={prediction.className} />
       </TableCell>

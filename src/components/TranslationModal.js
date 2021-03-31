@@ -14,7 +14,6 @@ import {
   FormControl,
   Select
 } from "@material-ui/core";
-import GTranslateIcon from "@material-ui/icons/GTranslate";
 import CloseIcon from "@material-ui/icons/Close";
 import useModalHook from "../utilities/useModalHook";
 import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
@@ -42,9 +41,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const TranslationModal = ({ words }) => {
+const TranslationModal = ({ words, open }) => {
   const classes = useStyles();
-  const { open, handleClickOpen, handleClose } = useModalHook();
+  const { handleClose } = useModalHook();
   const [language, setLanguage] = useState("");
   const [languageCode, setLanguageCode] = useState("");
   const [translatedWords, setTranslatedWords] = useState("");
@@ -67,10 +66,6 @@ const TranslationModal = ({ words }) => {
 
   return (
     <>
-      <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
-        <GTranslateIcon />
-      </IconButton>
-
       <Dialog
         fullScreen={fullScreen}
         open={open}

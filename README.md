@@ -96,6 +96,11 @@ more in key learning points below...
 
 - index.html needed these scripts to run // fixed this by using tf.ready() prior to loading model. tf.ready() returns a promise that resolves when the currently selected backend (or the highest priority one) has initialized. Await this promise when you are using a backend that has async initialization.
 
+- Unsure what is best practices here, but I had a prediction table displayed with 5 rows. Each row has a button that opens a TranslationModal. The modal has a select dropdown of 100 languages. If a language is selected, a useEffect is triggered to make an api call to Google Translate.
+  When the table is initially rendered, the useEffect in the modal is triggered 5 times. Is there a way to prevent this?
+
+SOLUTION: I was rendering the modal in the table rows with the button in the modal to open/close. The useEffect ran as soon as the table opened up. that makes sense. So I moved the button to the table rows and only opened the modal when the button clicked. so the useEffect still runs once before a language is selected from the dropdown and once when the language is selected. Not perfect, but better!
+
 ```
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>

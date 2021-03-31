@@ -7,8 +7,11 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  Paper,
+  IconButton
 } from "@material-ui/core";
+import GTranslateIcon from "@material-ui/icons/GTranslate";
+import useModalHook from "../utilities/useModalHook";
 import TranslationModal from "./TranslationModal";
 
 const useStyles = makeStyles({
@@ -42,10 +45,19 @@ const PredictionsTable = ({ predictions }) => {
 export default PredictionsTable;
 
 const PredictionRow = ({ prediction }) => {
+  const { open, handleClickOpen } = useModalHook();
+
   return (
     <TableRow>
       <TableCell align="left" scope="row" style={{ width: "2%" }}>
-        <TranslationModal words={prediction.className} />
+        <IconButton
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}
+        >
+          <GTranslateIcon />
+        </IconButton>
+        {open && <TranslationModal words={prediction.className} open={open}/>}
       </TableCell>
       <TableCell
         component="th"

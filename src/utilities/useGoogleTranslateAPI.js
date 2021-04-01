@@ -22,7 +22,15 @@ const useGoogleTranslateAPI = words => {
         setTranslatedWords("Please select a language");
         return;
       }
-      await translateText();
+      const [isCached, cachedTranslation] = checkCached(
+        debouncedLanguageCode,
+        words
+      );
+      if (isCached) {
+        setTranslatedWords(cachedTranslation);
+      } else {
+        await translateText();
+      }
     };
     translate();
   }, [debouncedLanguageCode]);
@@ -35,6 +43,7 @@ const useGoogleTranslateAPI = words => {
       const { data } = await axios.post(GoogleTranslateAPIEndpoint);
       const translation = data.data.translations[0].translatedText;
       setTranslatedWords(translation);
+      setSessionStorageCache(debouncedLanguageCode, words, translation);
     } catch (err) {
       console.error(`Error getting translation from Google API: ${err}`);
       setTranslatedWords("Error translating. Please try again later.");
@@ -54,5 +63,25 @@ export default useGoogleTranslateAPI;
 I substituted translatedWords for error handling since this is a user expected response, but realistically a developer would expect some errors thrown
 */
 
-// check local storage for memoized language, word
-// else make throttled api call, set local storage
+const checkCached = (languageCode, string) => {
+  const cached = sessionStorage.getItem(languageCode);
+  if (cached) {
+    const dictionary = JSON.parse(cached);
+    // console.log("dictionary in sessionStorage:", dictionary);
+    if (dictionary.hasOwnProperty(string)) {
+      const translation = dictionary[string];
+      // console.log("translation exists:", translation);
+      return [true, translation];
+    }
+  }
+  return [false, ""];
+};
+
+const setSessionStorageCache = (languageCode, words, translation) => {
+  const cache = sessionStorage.getItem(languageCode) || {};
+  cache[words] = translation;
+  // console.log("words cached?", cache, words, translation);
+  sessionStorage.setItem(languageCode, JSON.stringify(cache));
+  // console.log("checking sessionStorage", sessionStorage.getItem(languageCode));
+};
+// can test sessionStorage.length, .key(1), api calls...

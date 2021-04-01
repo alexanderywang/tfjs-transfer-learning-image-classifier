@@ -4,6 +4,9 @@ import useSnackBar from "./useSnackBar";
 import retry from "./retryFunction";
 
 const useMobileNetModel = () => {
+  const [isLoadingModel, setIsLoadingModel] = useState(true);
+  const [predictions, setPredictions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
 
   const {
@@ -29,12 +32,41 @@ const useMobileNetModel = () => {
     }
   };
 
+  const makePrediction = async (image, imageURL) => {
+    if (imageURL === null) {
+      setSnackBarMessage("Take another picture please");
+      setOpen(true);
+      return;
+    }
+    setIsLoading(true);
+    try {
+      const predictions = await model.classify(image, 5);
+      // console.log("mobileNet model predictions:", predictions);
+      setIsLoading(false);
+
+      setPredictions(predictions);
+    } catch (err) {
+      setSnackBarMessage(
+        "No predictions can be made. Take another picture. Check out the tips"
+      );
+      setOpen(true);
+      console.error("error:", err);
+    }
+  };
+
   return {
     model,
     loadModel,
     snackBarMessage,
     open,
-    handleClose
+    handleClose,
+    isLoadingModel,
+    setIsLoadingModel,
+    predictions,
+    setPredictions,
+    isLoading,
+    setIsLoading,
+    makePrediction
   };
 };
 

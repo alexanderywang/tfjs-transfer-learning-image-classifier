@@ -5,7 +5,12 @@ import { Grid, Snackbar } from "@material-ui/core";
 import useCamera from "../utilities/useCamera";
 import useSnackBar from "../utilities/useSnackBar";
 
-const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
+const DeviceWebcam = ({
+  setPredictions,
+  isLoading,
+  setIsLoading,
+  makePrediction
+}) => {
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
 
@@ -14,20 +19,14 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     isMirrored,
     videoConstraints,
     imageURL,
-    setImageURL,
     image,
+    setImageURL,
     takePhoto,
     isPhotoTaken,
     setIsPhotoTaken
   } = useCamera();
 
-  const {
-    handleClose,
-    open,
-    setOpen,
-    snackBarMessage,
-    setSnackBarMessage
-  } = useSnackBar();
+  const { handleClose, open, snackBarMessage } = useSnackBar();
 
   const handleClick = e => {
     if (!isPhotoTaken) takePhoto(webcamRef);
@@ -37,29 +36,6 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     }
     setPredictions([]);
     setIsPhotoTaken(!isPhotoTaken);
-  };
-
-  // abstract into useMobileNetModel hook?
-  const makePrediction = async () => {
-    if (imageURL === null) {
-      setSnackBarMessage("Take another picture please");
-      setOpen(true);
-      return;
-    }
-    setIsLoading(true);
-    try {
-      const predictions = await model.classify(image, 5);
-      // console.log("mobileNet model predictions:", predictions);
-      setIsLoading(false);
-
-      setPredictions(predictions);
-    } catch (err) {
-      setSnackBarMessage(
-        "No predictions can be made. Take another picture. Check out the tips"
-      );
-      setOpen(true);
-      console.error("error:", err);
-    }
   };
 
   return (
@@ -88,7 +64,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
       <Buttons
         isLoading={isLoading}
         isPhotoTaken={isPhotoTaken}
-        makePrediction={makePrediction}
+        makePrediction={() => makePrediction(image, imageURL)}
         flipCamera={flipCamera}
         handleClick={handleClick}
       />

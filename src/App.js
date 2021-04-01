@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import * as tf from "@tensorflow/tfjs";
 import { Container, CircularProgress, Grid, Snackbar } from "@material-ui/core";
@@ -8,17 +8,19 @@ import PredictionsTable from "./components/PredictionsTable";
 import DeviceWebcam from "./components/DeviceWebcam";
 import useMobileNetModel from "./utilities/useMobileNetModel";
 
-function App() {
-  const [isLoadingModel, setIsLoadingModel] = useState(true);
-  const [predictions, setPredictions] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
+const App = () => {
   const {
-    model,
     loadModel,
     snackBarMessage,
     open,
-    handleClose
+    handleClose,
+    isLoadingModel,
+    setIsLoadingModel,
+    predictions,
+    setPredictions,
+    isLoading,
+    setIsLoading,
+    makePrediction
   } = useMobileNetModel();
 
   // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css, otherwise isLoadingModel goes in async/await function :)
@@ -47,7 +49,7 @@ function App() {
               setPredictions={setPredictions}
               isLoading={isLoading}
               setIsLoading={setIsLoading}
-              model={model}
+              makePrediction={makePrediction}
             />
 
             {isLoading && (
@@ -71,6 +73,6 @@ function App() {
       />
     </Grid>
   );
-}
+};
 
 export default App;

@@ -1,5 +1,3 @@
-
-
 6. look for text-to-voice functionality
 
 7. abstract, refactor

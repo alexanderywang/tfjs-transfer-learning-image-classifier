@@ -33,7 +33,7 @@ const useGoogleTranslateAPI = words => {
       }
     };
     translate();
-  }, [debouncedLanguageCode]);
+  }, [debouncedLanguageCode, words, translateText]);
 
   const translateText = async () => {
     try {

@@ -33,7 +33,7 @@ const App = () => {
       setIsLoadingModel(false);
     }, 1500);
     return () => clearTimeout(timer);
-  }, []);
+  }, [setIsLoadingModel, loadModel]);
 
   return (
     <Grid>

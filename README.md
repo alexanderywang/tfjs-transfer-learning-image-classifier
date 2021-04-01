@@ -71,9 +71,9 @@ npm install
 ```
 
 ```
-in package.json change the script
-for local testing: "start": "react-scripts start",
-for heroku deployment: "start": "serve -s build",
+in package.json change the start script
+for development: local testing: "start": "react-scripts start",
+for production/heroku deployment: "start": "serve -s build",
 ```
 
 3. In order to use Google Translate API, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT*APP* to the key. Example:
@@ -124,9 +124,9 @@ helpful link:
 
 - implementing retry design for loading the model.
 - utilizing a debounce for an api call
-- wrote a few custom hooks to help separate logic/view in components
+- creating several custom hooks to really helped separate logic components from view components
 
-- Since we're emphasizing user privacy with keeping everything client/browser-side, I thought I'd try session storage in place of localStorage. Every time the user closes the browser, the cache will empty again, but refreshing the browser will not.  This will save API calls when taking similar pictures but not keep anything in cache once the app is closed.  [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) is another possibilty, as is localStorage for some use cases.
+- Since we're emphasizing user privacy with keeping everything client/browser-side, I thought I'd try session storage in place of localStorage. Every time the user closes the browser, the cache will empty again, but refreshing the browser will not. This will save API calls when taking similar pictures but not keep anything in cache once the app is closed. [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) is another possibilty, as is localStorage for some use cases.
 
 #### Takeaways
 

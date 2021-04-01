@@ -6,6 +6,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import Card from "@material-ui/core/Card";
 import { Typography, Dialog, IconButton } from "@material-ui/core";
+import whatisthis from "./whatisthis.png";
 
 const styles = theme => ({
   root: {
@@ -60,7 +61,8 @@ const AboutModal = ({ open, handleClose }) => {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          About
+          {"About       "}
+          <img alt="logo" src={whatisthis} width="40px" height="40px" />
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>

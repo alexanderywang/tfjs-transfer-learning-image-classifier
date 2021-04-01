@@ -124,7 +124,7 @@ helpful link:
 
 - implementing retry design for loading the model.
 - utilizing a debounce for an api call
-- wrote a few custom hooks to help separate logic/view in components
+- creating several custom hooks to really helped separate logic components from view components
 
 - Since we're emphasizing user privacy with keeping everything client/browser-side, I thought I'd try session storage in place of localStorage. Every time the user closes the browser, the cache will empty again, but refreshing the browser will not. This will save API calls when taking similar pictures but not keep anything in cache once the app is closed. [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) is another possibilty, as is localStorage for some use cases.
 

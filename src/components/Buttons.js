@@ -9,6 +9,7 @@ const Buttons = ({
   flipCamera,
   handleClick
 }) => {
+  //abstract buttons?
   return (
     <Grid>
       <Grid>
@@ -26,8 +27,8 @@ const Buttons = ({
           </IconButton>
         )}
       </Grid>
-      {isPhotoTaken && (
-        <Grid>
+      <Grid>
+        {isPhotoTaken && (
           <Button
             onClick={makePrediction}
             variant="contained"
@@ -36,8 +37,8 @@ const Buttons = ({
           >
             {isLoading ? "Loading..." : "Classify"}
           </Button>
-        </Grid>
-      )}
+        )}
+      </Grid>
     </Grid>
   );
 };

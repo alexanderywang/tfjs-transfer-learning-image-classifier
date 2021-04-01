@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import * as tf from "@tensorflow/tfjs";
 import { Container, CircularProgress, Grid, Snackbar } from "@material-ui/core";
 import Navbar from "./components/Navbar";
 import LoadingPage from "./components/LoadingPage";
@@ -25,10 +24,7 @@ const App = () => {
 
   // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css, otherwise isLoadingModel goes in async/await function :)
   useEffect(() => {
-    const prepareModel = () => {
-      tf.ready().then(() => loadModel());
-    };
-    prepareModel();
+    loadModel();
     let timer = setTimeout(() => {
       setIsLoadingModel(false);
     }, 1500);

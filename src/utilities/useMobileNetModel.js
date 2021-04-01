@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import * as tf from "@tensorflow/tfjs";
 import * as mobilenet from "@tensorflow-models/mobilenet";
 import useSnackBar from "./useSnackBar";
 import retry from "./retryFunction";
@@ -17,7 +18,8 @@ const useMobileNetModel = () => {
     setSnackBarMessage
   } = useSnackBar();
 
-  const loadModel = async () => {
+  const loadModel = useCallback(async () => {
+    await tf.ready();
     try {
       console.log("Loading mobilenet...");
       const model = await retry(mobilenet.load, 3, 2);
@@ -30,7 +32,7 @@ const useMobileNetModel = () => {
       setSnackBarMessage("Error loading model. Please refresh and try again.");
       setOpen(true);
     }
-  };
+  }, [setOpen, setSnackBarMessage]);
 
   const makePrediction = async (image, imageURL) => {
     if (imageURL === null) {

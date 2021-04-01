@@ -6,6 +6,3 @@
 8. some photo tips might be helpful
 
 9. write some tests
-
-
-check travis CI/CD

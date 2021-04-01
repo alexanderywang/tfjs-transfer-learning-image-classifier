@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import useDebounce from "./useDebounce";
 const BASE_URL = "https://translation.googleapis.com/language/translate/v2";
@@ -15,6 +15,21 @@ const useGoogleTranslateAPI = words => {
     setLanguage(event.target.value);
     setTranslatedWords("");
   };
+
+  const translateText = useCallback(async () => {
+    try {
+      const GoogleTranslateAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}&q=${[
+        words
+      ]}&target=${debouncedLanguageCode}`;
+      const { data } = await axios.post(GoogleTranslateAPIEndpoint);
+      const translation = data.data.translations[0].translatedText;
+      setTranslatedWords(translation);
+      setSessionStorageCache(debouncedLanguageCode, words, translation);
+    } catch (err) {
+      console.error(`Error getting translation from Google API: ${err}`);
+      setTranslatedWords("Error translating. Please try again later.");
+    }
+  }, [debouncedLanguageCode, words]);
 
   useEffect(() => {
     const translate = async () => {
@@ -34,21 +49,6 @@ const useGoogleTranslateAPI = words => {
     };
     translate();
   }, [debouncedLanguageCode, words, translateText]);
-
-  const translateText = async () => {
-    try {
-      const GoogleTranslateAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}&q=${[
-        words
-      ]}&target=${debouncedLanguageCode}`;
-      const { data } = await axios.post(GoogleTranslateAPIEndpoint);
-      const translation = data.data.translations[0].translatedText;
-      setTranslatedWords(translation);
-      setSessionStorageCache(debouncedLanguageCode, words, translation);
-    } catch (err) {
-      console.error(`Error getting translation from Google API: ${err}`);
-      setTranslatedWords("Error translating. Please try again later.");
-    }
-  };
 
   return {
     handleChange,

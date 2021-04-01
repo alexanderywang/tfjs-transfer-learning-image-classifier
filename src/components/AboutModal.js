@@ -61,7 +61,7 @@ const AboutModal = ({ open, handleClose }) => {
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          {"About       "}
+          {"About       testing CI"}
           <img alt="logo" src={whatisthis} width="40px" height="40px" />
         </DialogTitle>
         <DialogContent dividers>

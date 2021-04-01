@@ -28,7 +28,7 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 ### Some additional Features on top of the tutorial
 
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
-- retry design pattern
+- retry design pattern, debounce function
 - deployed at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile
 - Google Translate API hooked up with over 100 languages to translate the prediction to.
 
@@ -121,6 +121,10 @@ Assumption: You have used Create React App (CRA) to bootstrap your application
 
 helpful link:
 [https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6](https://betterprogramming.pub/how-to-hide-your-api-keys-c2b952bc07e6)
+
+- implementing retry design for loading the model.
+- utilizing a debounce for an api call
+- wrote a few custom hooks to help separate logic/view in components
 
 #### Takeaways
 

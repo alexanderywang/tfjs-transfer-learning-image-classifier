@@ -84,4 +84,3 @@ const setSessionStorageCache = (languageCode, words, translation) => {
   sessionStorage.setItem(languageCode, JSON.stringify(cache));
   // console.log("checking sessionStorage", sessionStorage.getItem(languageCode));
 };
-// can test sessionStorage.length, .key(1), api calls...

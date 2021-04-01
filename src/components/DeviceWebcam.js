@@ -1,31 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Webcam from "react-webcam";
 import Buttons from "./Buttons";
 import { Grid, Snackbar } from "@material-ui/core";
 import useCamera from "../utilities/useCamera";
 import useSnackBar from "../utilities/useSnackBar";
 
-// const userVideo = {
-//   width: 240,
-//   height: 240,
-//   facingMode: "user"
-// };
-
-// const facingOutVideo = {
-//   width: 240,
-//   height: 240,
-//   facingMode: { exact: "environment" }
-// };
-
 const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
-  // const [isPhotoTaken, setIsPhotoTaken] = useState(false);
-  // const [imageURL, setImageURL] = useState("");
-  // const [image, setImage] = useState(null);
-
-  // const [isFacingUser, setIsFacingUser] = useState(true);
-  // const [isMirrored, setIsMirrored] = useState(true);
-  // const [videoConstraints, setVideoConstraints] = useState(userVideo);
-
   const webcamRef = useRef(null);
   const imageRef = useRef(null);
 
@@ -59,19 +39,7 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
     setIsPhotoTaken(!isPhotoTaken);
   };
 
-  // const takePhoto = () => {
-  //   const imageSrc = webcamRef.current.getScreenshot();
-  //   setImageURL(imageSrc);
-  //   createImage(imageSrc);
-  // };
-  // const createImage = url => {
-  //   const newImage = new Image();
-  //   newImage.src = url;
-  //   newImage.crossOrigin = "anonymous";
-  //   setImage(newImage);
-  // };
-
-  // abstract?
+  // abstract into useMobileNetModel hook?
   const makePrediction = async () => {
     if (imageURL === null) {
       setSnackBarMessage("Take another picture please");
@@ -93,17 +61,6 @@ const DeviceWebcam = ({ setPredictions, setIsLoading, isLoading, model }) => {
       console.error("error:", err);
     }
   };
-
-  // const flipCamera = () => {
-  //   // if (isFacingUser) {
-  //   //   setVideoConstraints(facingOutVideo);
-  //   // } else {
-  //   //   setVideoConstraints(userVideo);
-  //   // }
-  //   setVideoConstraints(isFacingUser ? facingOutVideo : userVideo);
-  //   setIsMirrored(!isMirrored);
-  //   setIsFacingUser(!isFacingUser);
-  // };
 
   return (
     <Grid>

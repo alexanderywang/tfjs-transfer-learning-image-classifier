@@ -23,23 +23,9 @@ const useCamera = () => {
   const [isPhotoTaken, setIsPhotoTaken] = useState(false);
 
   const flipCamera = () => {
-    // if (isFacingUser) {
-    //   setVideoConstraints(facingOutVideo);
-    // } else {
-    //   setVideoConstraints(userVideo);
-    // }
-    // console.log("flipping camera");
     setVideoConstraints(isFacingUser ? facingOutVideo : userVideo);
     setIsMirrored(!isMirrored);
     setIsFacingUser(!isFacingUser);
-    // console.log(
-    //   "facing:",
-    //   isFacingUser,
-    //   "mirrored:",
-    //   isMirrored,
-    //   "video:",
-    //   videoConstraints
-    // );
   };
 
   const takePhoto = webcamRef => {

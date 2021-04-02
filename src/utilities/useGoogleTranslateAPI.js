@@ -53,6 +53,7 @@ const useGoogleTranslateAPI = words => {
   return {
     handleChange,
     language,
+    languageCode,
     translatedWords
   };
 };

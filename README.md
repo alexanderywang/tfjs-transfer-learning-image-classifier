@@ -70,12 +70,6 @@ cd tfjs-linear-regression-predictions
 npm install
 ```
 
-```
-in package.json change the start script
-for development: local testing: "start": "react-scripts start",
-for production/heroku deployment: "start": "serve -s build",
-```
-
 3. In order to use Google Translate API, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT*APP* to the key. Example:
 
 ```
@@ -84,7 +78,8 @@ REACT_APP_GOOGLE_API_KEY=123456
 
 more in key learning points below...
 
-4. Run `npm run start` to start the app on http://localhost:3000/
+4. Run `npm run start-dev` to start the app on http://localhost:3000/
+   for production/heroku deployment: "start": "serve -s build",
 
 ### Some key learning points
 

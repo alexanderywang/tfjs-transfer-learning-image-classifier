@@ -16,6 +16,7 @@ import {
   Select
 } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import AudioButton from "./AudioButton";
 import SUPPORTED_LANGUAGES from "../utilities/supportedLanguages";
 import useGoogleTranslateAPI from "../utilities/useGoogleTranslateAPI";
 
@@ -34,9 +35,12 @@ const TranslationModal = ({ words, open, handleClose }) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const { handleChange, language, translatedWords } = useGoogleTranslateAPI(
-    words
-  );
+  const {
+    handleChange,
+    language,
+    translatedWords,
+    languageCode
+  } = useGoogleTranslateAPI(words);
 
   return (
     <>
@@ -78,9 +82,13 @@ const TranslationModal = ({ words, open, handleClose }) => {
             </Select>
           </FormControl>
         </DialogContent>
-        <TextContent text={words} language={"English"} />
+        <TextContent text={words} language={"English"} languageCode={"en-US"} />
         {translatedWords && (
-          <TextContent text={translatedWords} language={language} />
+          <TextContent
+            text={translatedWords}
+            language={language}
+            languageCode={languageCode}
+          />
         )}
         <DialogActions></DialogActions>
       </Dialog>
@@ -90,13 +98,14 @@ const TranslationModal = ({ words, open, handleClose }) => {
 
 export default TranslationModal;
 
-const TextContent = ({ text, language }) => {
+const TextContent = ({ text, language, languageCode }) => {
   return (
     <DialogContent dividers>
       <DialogContentText>
         <Typography gutterBottom style={{ fontWeight: "bold" }}>
           {text}
         </Typography>
+        <AudioButton text={text} languageCode={languageCode} />
         <Typography gutterBottom>{language}</Typography>
       </DialogContentText>
     </DialogContent>

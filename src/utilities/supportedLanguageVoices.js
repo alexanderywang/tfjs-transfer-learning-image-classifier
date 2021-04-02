@@ -1,5 +1,6 @@
 /*******
  * Returns a random female voice (for now) if language is supported by Google
+ * function all the way at the bottom
  */
 
 // https://cloud.google.com/text-to-speech/docs/reference/rest/v1/voices/list
@@ -1658,14 +1659,21 @@ const VOICES = [
 
 const supportedVoices = languageCode => {
   if (languageCode === "en-US") return "en-US-Wavenet-F";
-  const femaleVoiceChoices = VOICES.filter(
-    voiceObject =>
-      languageCode === voiceObject.languageCodes[0].split("-")[0] &&
-      voiceObject.ssmlGender === "FEMALE"
+  const voiceChoices = VOICES.filter(
+    voiceObject => languageCode === voiceObject.languageCodes[0].split("-")[0]
   );
-  if (!femaleVoiceChoices.length) return "en-US-Wavenet-F";
-  let random = Math.round(Math.random() * femaleVoiceChoices.length);
-  return femaleVoiceChoices[random]["name"];
+  if (!voiceChoices.length) return "en-US-Wavenet-F";
+  let random = Math.floor(Math.random() * voiceChoices.length);
+  return voiceChoices[random]["name"];
+
+  // const femaleVoiceChoices = VOICES.filter(
+  //   voiceObject =>
+  //     languageCode === voiceObject.languageCodes[0].split("-")[0] &&
+  //     voiceObject.ssmlGender === "FEMALE"
+  // );
+  // if (!femaleVoiceChoices.length) return "en-US-Wavenet-F";
+  // let random = Math.floor(Math.random() * femaleVoiceChoices.length);
+  // return femaleVoiceChoices[random]["name"];
 };
 
 export default supportedVoices;

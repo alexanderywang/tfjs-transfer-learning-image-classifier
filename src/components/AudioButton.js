@@ -4,13 +4,14 @@ import RecordVoiceOverIcon from "@material-ui/icons/RecordVoiceOver";
 import useGoogleTextToSpeechAPI from "../utilities/useGoogleTextToSpeechAPI";
 
 const AudioButton = ({ text, languageCode }) => {
-  const { textToSpeech } = useGoogleTextToSpeechAPI();
+  const { textToSpeech, isDisabled } = useGoogleTextToSpeechAPI();
 
   return (
     <>
       <IconButton
         variant="contained"
         color="grey"
+        disabled={isDisabled}
         disableElevation
         onClick={() => textToSpeech(text, languageCode)}
       >

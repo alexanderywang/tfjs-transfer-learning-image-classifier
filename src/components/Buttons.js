@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
+// import useGoogleTextToSpeechAPI from "../utilities/useGoogleTextToSpeechAPI";
 
 const Buttons = ({
   isLoading,
@@ -9,6 +10,8 @@ const Buttons = ({
   flipCamera,
   handleClick
 }) => {
+  // const { textToSpeech } = useGoogleTextToSpeechAPI();
+
   //abstract buttons?
   return (
     <Grid>
@@ -39,6 +42,18 @@ const Buttons = ({
           </Button>
         )}
       </Grid>
+      {/* <Button
+        onClick={() =>
+          textToSpeech(
+            "i live for you i love for you Oliver, don't let me go-o-o-o-o. I also love miss EMMA"
+          )
+        }
+        variant="contained"
+        color="secondary"
+        disableElevation
+      >
+        SING
+      </Button> */}
     </Grid>
   );
 };

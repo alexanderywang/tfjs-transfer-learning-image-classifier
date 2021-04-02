@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
+// https://cloud.google.com/translate/docs/languages
 const languages = {
   "": "None",
   af: "Afrikaans",

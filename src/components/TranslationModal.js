@@ -104,8 +104,8 @@ const TextContent = ({ text, language, languageCode }) => {
       <DialogContentText>
         <Typography gutterBottom style={{ fontWeight: "bold" }}>
           {text}
+          <AudioButton text={text} languageCode={languageCode} />
         </Typography>
-        <AudioButton text={text} languageCode={languageCode} />
         <Typography gutterBottom>{language}</Typography>
       </DialogContentText>
     </DialogContent>

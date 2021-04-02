@@ -1,10 +1,3 @@
-6. look for text-to-voice functionality
-
-- google wavenet text-to-speech looks good
-- create button for mock test sample
-- get api and hook up
-- create buttons for translation modal
-
 7. abstract, refactor
 
 - button abstraction possible?

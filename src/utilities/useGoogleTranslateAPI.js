@@ -17,10 +17,10 @@ const useGoogleTranslateAPI = words => {
   };
 
   const translateText = useCallback(async () => {
+    const GoogleTranslateAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}&q=${[
+      words
+    ]}&target=${debouncedLanguageCode}`;
     try {
-      const GoogleTranslateAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}&q=${[
-        words
-      ]}&target=${debouncedLanguageCode}`;
       const { data } = await axios.post(GoogleTranslateAPIEndpoint);
       const translation = data.data.translations[0].translatedText;
       setTranslatedWords(translation);

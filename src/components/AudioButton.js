@@ -10,7 +10,7 @@ const AudioButton = ({ text, languageCode }) => {
     <>
       <IconButton
         variant="contained"
-        color="secondary"
+        color="grey"
         disableElevation
         onClick={() => textToSpeech(text, languageCode)}
       >

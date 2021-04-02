@@ -10,6 +10,7 @@ const useGoogleTextToSpeechAPI = () => {
 
   const textToSpeech = async (text, languageCode = "en-US") => {
     console.log(text, languageCode);
+    if (text === "Please select a language") languageCode = "en-US";
     const GoogleTextToSpeechAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}`;
     const name = supportedVoices(languageCode);
 

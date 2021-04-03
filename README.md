@@ -169,7 +169,8 @@ if you wanted to do eye tracking browser-side, there's OpenCV.js which runs comp
 
 ##### Google text-to-voice functionality
 
-![translation](/public/translations.png)
+<img src="/public/translations.png" alt="translations" width="200"/>
+
 
 Audio data is binary data. You can read the binary data directly from a gRPC response; however, JSON is used when responding to a REST request. Because JSON is a text format that does not directly support binary data, Text-to-Speech returns a response string encoded in Base64. You must convert the base64-encoded text data from the response to binary before you can play it on a device.
 

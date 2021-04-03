@@ -16,23 +16,20 @@ cmn-TW : zh-tw
 
 canto? yue-HK? try a button for chinese
 
--------
+---
+
 need to prevent spamming of button
 
-
-
 memoize either the base64 encoding or the new Audio
--> see which makes sense both as an operation and for storage. local/session storage can only store strings, so have to go with base64 encoded.  indexedDB can store audio...
+-> see which makes sense both as an operation and for storage. local/session storage can only store strings, so have to go with base64 encoded. indexedDB can store audio...
 
 -> abstract the session Storage object and store languageCode instead of language
 {
-  LC : { word: [translation, audio]},
-  LC : { another word: [translation, audio]}
+LC : { word: [translation, audio]},
+LC : { another word: [translation, audio]}...
 }
-see if there's a way to detect when audio is playing, disable button until then
 
 looks like ~4m characters for session storage. storing enough base64 encoded audio files might be an issue eventually? dunno.
-
 
 List of css ideaS:
 

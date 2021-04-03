@@ -76,6 +76,11 @@ const AboutModal = ({ open, handleClose }) => {
         </DialogContent>
         <DialogContent dividers>
           <Typography component={'span'} gutterBottom>
+            Some photo tips
+          </Typography>
+        </DialogContent>
+        <DialogContent dividers>
+          <Typography component={'span'} gutterBottom>
             Code can be found at
             <a
               href="https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier"

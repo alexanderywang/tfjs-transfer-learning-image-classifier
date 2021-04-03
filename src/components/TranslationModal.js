@@ -96,6 +96,13 @@ const TranslationModal = ({ words, open, handleClose }) => {
             languageCode={languageCode}
           />
         </DialogContent>
+        {languageCode.split('-')[0] === "zh" &&<DialogContent dividers>
+          <TextContent
+            text={translatedWords}
+            language={"Cantonese"}
+            languageCode={"yue-HK"}
+          />
+        </DialogContent>}
         <DialogActions></DialogActions>
       </Dialog>
     </>

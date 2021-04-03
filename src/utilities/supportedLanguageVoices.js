@@ -1658,9 +1658,17 @@ const VOICES = [
 ];
 
 const supportedVoices = languageCode => {
+  console.log("supportedVoices", languageCode);
   if (languageCode === "en-US") return "en-US-Wavenet-F";
-  const voiceChoices = VOICES.filter(
-    voiceObject => languageCode === voiceObject.languageCodes[0].split("-")[0]
+  if (languageCode === "tl") languageCode = "fil";
+  if (languageCode === "zh-cn") languageCode = "cmn-CN";
+  if (languageCode === "zh-tw") languageCode = "cmn-TW";
+  if (languageCode === "yue-HK") languageCode = "yue";
+  
+  const voiceChoices = VOICES.filter(voiceObject =>
+    languageCode.startsWith("cmn")
+      ? (languageCode = voiceObject.languageCodes[0])
+      : languageCode === voiceObject.languageCodes[0].split("-")[0]
   );
   if (!voiceChoices.length) return "en-US-Wavenet-F";
   let random = Math.floor(Math.random() * voiceChoices.length);

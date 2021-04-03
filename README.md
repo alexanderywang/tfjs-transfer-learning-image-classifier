@@ -204,3 +204,5 @@ snd.play();
 ```
 
 the request body also offers a lot of customizable options and Google supports over 100 voices...
+
+I wanted to stall spamming the voice button and used a timeout as a work around, but that created memory leaks in the useEffect for translation. So I used sessionStorage to memoize base74 encoding for repeat button clicks. IndexedDB can store audio, but I think this solution is adequate for now with short audio clips. Session Storage can store about 4 million characters and gets cleared on browser/tab exit. As of now, we are using session storage as a cache for both translations and for base64 encoded strings.

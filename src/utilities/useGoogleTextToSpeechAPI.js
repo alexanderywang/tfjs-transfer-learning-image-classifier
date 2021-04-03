@@ -9,35 +9,48 @@ const useGoogleTextToSpeechAPI = () => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const textToSpeech = async (text, languageCode = "en-US") => {
+    setIsDisabled(true);
     console.log(text, languageCode);
     if (text === "Please select a language") languageCode = "en-US";
-    const GoogleTextToSpeechAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}`;
-    const name = supportedVoices(languageCode);
-
-    const requestBody = {
-      audioConfig: {
-        audioEncoding: "MP3",
-        pitch: 0,
-        speakingRate: 1
-      },
-      input: {
-        text
-      },
-      voice: {
-        languageCode,
-        name
-      }
-    };
-    setIsDisabled(true);
-    try {
-      const { data } = await axios.post(
-        GoogleTextToSpeechAPIEndpoint,
-        requestBody
-      );
-      let audio = new Audio("data:audio/wav;base64," + data.audioContent);
+    const key = `${languageCode}+${text}`;
+    if (sessionStorage.getItem(key)) {
+      // console.log("audio played before");
+      let audio = new Audio(sessionStorage.getItem(key));
       audio.play();
-    } catch (err) {
-      console.error(`Error getting translation from Google API: ${err}`);
+    } else {
+      const GoogleTextToSpeechAPIEndpoint = `${BASE_URL}?key=${GoogleAPIKey}`;
+      const name = supportedVoices(languageCode);
+
+      const requestBody = {
+        audioConfig: {
+          audioEncoding: "MP3",
+          pitch: 0,
+          speakingRate: 1
+        },
+        input: {
+          text
+        },
+        voice: {
+          languageCode,
+          name
+        }
+      };
+
+      try {
+        const { data } = await axios.post(
+          GoogleTextToSpeechAPIEndpoint,
+          requestBody
+        );
+        sessionStorage.setItem(
+          key,
+          "data:audio/wav;base64," + data.audioContent
+        );
+        // console.log("set sessionStorage:", sessionStorage.getItem(key));
+        let audio = new Audio("data:audio/wav;base64," + data.audioContent);
+        audio.play();
+      } catch (err) {
+        console.error(`Error getting translation from Google API: ${err}`);
+      }
     }
     setTimeout(() => setIsDisabled(false), 5000);
   };

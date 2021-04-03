@@ -151,7 +151,9 @@ helpful link:
 - save picture using anchor element's download attribute
 
 it worked! MobileNet's model seems semi-accurate abou 50-75% of the time, depending on the picture quality, lighting, and item.
-![coffee mug](/public/coffeemug.png)
+
+<img src="/public/coffeemug.png" alt="coffee" width="200"/>
+
 
 ##### Heroku apps run server-side. they're web apps. users interact with them through browsers.
 

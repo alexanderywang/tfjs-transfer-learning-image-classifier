@@ -49,7 +49,7 @@ const App = () => {
             />
 
             {isLoading && (
-              <Grid>
+              <Grid component="span">
                 <CircularProgress />
               </Grid>
             )}

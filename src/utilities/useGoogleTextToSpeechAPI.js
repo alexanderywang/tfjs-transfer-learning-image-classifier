@@ -4,13 +4,11 @@ import supportedVoices from "./supportedLanguageVoices";
 const BASE_URL = "https://texttospeech.googleapis.com/v1beta1/text:synthesize";
 const GoogleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
-// can toggle gender with Wavenet-D
 const useGoogleTextToSpeechAPI = () => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   const textToSpeech = async (text, languageCode = "en-US") => {
     setIsDisabled(true);
-    console.log(text, languageCode);
     if (text === "Please select a language") languageCode = "en-US";
     const key = `${languageCode}+${text}`;
     if (sessionStorage.getItem(key)) {
@@ -52,7 +50,8 @@ const useGoogleTextToSpeechAPI = () => {
         console.error(`Error getting translation from Google API: ${err}`);
       }
     }
-    setTimeout(() => setIsDisabled(false), 5000);
+    // this timeout was to disable the audio button to prevent spamming, but it creates a memory leak with the useEffect I can't fix. caching the audio in session storage saves on repeated api calls, so i guess for now, i'll leave it like this.
+    setTimeout(() => setIsDisabled(false), 1);
   };
   return { textToSpeech, isDisabled };
 };

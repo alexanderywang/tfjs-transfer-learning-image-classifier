@@ -68,13 +68,6 @@ const checkCached = (languageCode, string) => {
   const cached = sessionStorage.getItem(languageCode);
   if (cached) {
     const dictionary = JSON.parse(cached);
-    // console.log(
-    //   "dictionary exists in sessionStorage already:",
-    //   dictionary,
-    //   "ss",
-    //   sessionStorage.getItem(languageCode),
-    //   dictionary[`${string}`]
-    // );
     if (dictionary.hasOwnProperty(string)) {
       const translation = dictionary[string];
       // console.log("translation exists already:", translation);
@@ -89,16 +82,7 @@ const setSessionStorageCache = (languageCode, words, translation) => {
   if (sessionStorage.getItem(languageCode)) {
     cache = JSON.parse(sessionStorage.getItem(languageCode));
   }
-  // console.log(
-  //   "getting cache to set",
-  //   cache,
-  //   "ss",
-  //   sessionStorage.getItem(languageCode),
-  //   "setting new words:",
-  //   words
-  // );
   cache[words] = translation;
-  // console.log("after words cached?", cache, words, translation);
   sessionStorage.setItem(languageCode, JSON.stringify(cache));
   // console.log("checking sessionStorage", sessionStorage.getItem(languageCode));
 };

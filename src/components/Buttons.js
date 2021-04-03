@@ -20,7 +20,7 @@ const Buttons = ({
           onClick={handleClick}
           variant="contained"
           color="secondary"
-          disableElevation
+          
         >
           {isPhotoTaken ? "Retake" : "Take Photo"}
         </Button>
@@ -36,7 +36,7 @@ const Buttons = ({
             onClick={makePrediction}
             variant="contained"
             color="primary"
-            disableElevation
+            
           >
             {isLoading ? "Loading..." : "Classify"}
           </Button>
@@ -50,7 +50,7 @@ const Buttons = ({
         }
         variant="contained"
         color="secondary"
-        disableElevation
+        
       >
         SING
       </Button> */}

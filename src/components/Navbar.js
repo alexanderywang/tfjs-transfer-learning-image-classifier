@@ -26,7 +26,7 @@ const Navbar = () => {
             <MenuIcon />
           </IconButton>
           <AboutModal open={open} handleClose={handleClose} />
-          <Typography variant="h6">Classify Image</Typography>
+          <Typography component={'span'} variant="h6">Classify Image</Typography>
         </Toolbar>
       </AppBar>
     </Grid>

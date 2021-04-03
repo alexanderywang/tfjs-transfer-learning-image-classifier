@@ -59,6 +59,7 @@ const PredictionRow = ({ prediction }) => {
         </IconButton>
         {open && (
           <TranslationModal
+            component={`span`}
             words={prediction.className}
             open={open}
             handleClose={handleClose}

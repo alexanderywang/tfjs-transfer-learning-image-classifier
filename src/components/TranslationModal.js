@@ -82,14 +82,20 @@ const TranslationModal = ({ words, open, handleClose }) => {
             </Select>
           </FormControl>
         </DialogContent>
-        <TextContent text={words} language={"English"} languageCode={"en-US"} />
-        {translatedWords && (
+        <DialogContent dividers>
+          <TextContent
+            text={words}
+            language={"English"}
+            languageCode={"en-US"}
+          />
+        </DialogContent>
+        <DialogContent dividers>
           <TextContent
             text={translatedWords}
             language={language}
             languageCode={languageCode}
           />
-        )}
+        </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
     </>
@@ -100,14 +106,20 @@ export default TranslationModal;
 
 const TextContent = ({ text, language, languageCode }) => {
   return (
-    <DialogContent dividers>
-      <DialogContentText>
-        <Typography gutterBottom style={{ fontWeight: "bold" }}>
-          {text}
-          <AudioButton text={text} languageCode={languageCode} />
-        </Typography>
-        <Typography gutterBottom>{language}</Typography>
-      </DialogContentText>
-    </DialogContent>
+    <DialogContentText>
+      <Typography
+        component={"span"}
+        gutterBottom
+        style={{ fontWeight: "bold" }}
+        display="inline"
+      >
+        {text}
+        <AudioButton text={text} languageCode={languageCode} />
+      </Typography>
+      <br></br>
+      <Typography component={"span"} display="inline" gutterBottom>
+        {language}
+      </Typography>
+    </DialogContentText>
   );
 };

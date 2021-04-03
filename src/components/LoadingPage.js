@@ -44,7 +44,7 @@ const LoadingPage = ({ open }) => {
       <Backdrop className={classes.backdrop} open={open}>
         <Grid>
           <Grid>
-            <Typography>What Is This??</Typography>
+            <Typography component={"span"}>What Is This??</Typography>
           </Grid>
           <Grid>
             <Card>
@@ -61,7 +61,7 @@ const LoadingPage = ({ open }) => {
               <LinearProgress variant="determinate" value={progress} />
             </Grid>
             <Grid>
-              <Typography>Loading Model...</Typography>
+              <Typography component={"span"}>Loading Model...</Typography>
             </Grid>
           </Grid>
         </Grid>

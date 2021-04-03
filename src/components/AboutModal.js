@@ -25,7 +25,9 @@ const DialogTitle = withStyles(styles)(props => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography component={'span'} variant="h6">{children}</Typography>
+      <Typography component={"span"} variant="h6">
+        {children}
+      </Typography>
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -65,7 +67,7 @@ const AboutModal = ({ open, handleClose }) => {
           <img alt="logo" src={whatisthis} width="40px" height="40px" />
         </DialogTitle>
         <DialogContent dividers>
-          <Typography component={'span'} gutterBottom>
+          <Typography component={"span"} gutterBottom>
             This is a web application where users can use Machine Learning and
             classify images taken with the webcam or a device's camera.
             Everything is local and stays private with the user. The app uses a
@@ -75,12 +77,15 @@ const AboutModal = ({ open, handleClose }) => {
           </Typography>
         </DialogContent>
         <DialogContent dividers>
-          <Typography component={'span'} gutterBottom>
-            Some photo tips
+          <Typography component={"span"} gutterBottom>
+            Some photo tips to help our imperfect image classifier: Take a photo
+            of a single object with good lighting and as little background noise
+            as possible. With a lightweight model, object id accuracy is about
+            60%. Have fun!
           </Typography>
         </DialogContent>
         <DialogContent dividers>
-          <Typography component={'span'} gutterBottom>
+          <Typography component={"span"} gutterBottom>
             Code can be found at
             <a
               href="https://github.com/alexanderywang/tfjs-transfer-learning-image-classifier"
@@ -93,7 +98,7 @@ const AboutModal = ({ open, handleClose }) => {
           </Typography>
         </DialogContent>
         <DialogContent dividers>
-          <Typography component={'span'} gutterBottom>
+          <Typography component={"span"} gutterBottom>
             Loading icon illustrated by Maddy Wang
           </Typography>
         </DialogContent>

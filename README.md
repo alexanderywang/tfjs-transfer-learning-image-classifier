@@ -103,6 +103,8 @@ first solution: I was rendering the modal in the table rows with the button in t
 
 Better solution: useCallback to memoize the function. see in useGoogleTranslateAPI.js.
 
+- branch named "fun" contains a form for translating phrases to supported languages and the ability to hear it spoken.
+
 - In ReactJS environment variables are fetched from .env files. If you set the variable in .env file and your variables returned undefined check the below items.
 
 Assumption: You have used Create React App (CRA) to bootstrap your application
@@ -154,7 +156,6 @@ it worked! MobileNet's model seems semi-accurate abou 50-75% of the time, depend
 
 <img src="/public/coffeemug.png" alt="coffee" width="200"/>
 
-
 ##### Heroku apps run server-side. they're web apps. users interact with them through browsers.
 
 - from stack overflow
@@ -170,7 +171,6 @@ if you wanted to do eye tracking browser-side, there's OpenCV.js which runs comp
 ##### Google text-to-voice functionality
 
 <img src="/public/translations.png" alt="translations" width="200"/>
-
 
 Audio data is binary data. You can read the binary data directly from a gRPC response; however, JSON is used when responding to a REST request. Because JSON is a text format that does not directly support binary data, Text-to-Speech returns a response string encoded in Base64. You must convert the base64-encoded text data from the response to binary before you can play it on a device.
 

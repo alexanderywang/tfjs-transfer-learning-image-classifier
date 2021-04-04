@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Button, IconButton } from "@material-ui/core";
 import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
-import TextToSpeech from "./TextToSpeech";
+// import TextToSpeech from "./TextToSpeech";
 
 const Buttons = ({
   isLoading,
@@ -30,7 +30,7 @@ const Buttons = ({
           </Button>
         )}
       </Grid>
-      <TextToSpeech />
+      {/* <TextToSpeech /> */}
     </Grid>
   );
 };

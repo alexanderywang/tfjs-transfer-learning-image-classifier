@@ -1,7 +1,6 @@
 ## TensorFlow JS Machine Learning Image Classifier
 
-The Tensorflow.js tutorial uses script tag as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I'll add Material UI with an eye towards developing a progressive web application.
-I'll refer and refactor the code from the machine learning image classifier tutorial on Tensorflow JS found here:
+The Tensorflow.js tutorial uses script tags as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I'll add Material UI with an eye towards developing a progressive web application. I'll refer and refactor the code from the machine learning image classifier tutorial on Tensorflow JS found here:
 
 https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-codelab/index.html#0
 
@@ -9,15 +8,11 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 You can find a working version of this app at https://tfjs-what-is-this.herokuapp.com
 
-- **the codelab merged with React can be found in branch tfjs-image-classifier-with-react**
+- **the codelab merged with React can be found in branch tfjs-image-classifier-with-react (without Google APIs)**
 
 ### Goal:
 
 The goal of this solution is to build a ["teachable machine"](https://teachablemachine.withgoogle.com/). In this case, a custom image classifier to be trained in the browser
-
-1. load and run a pre-trained model called MobileNet for image classification in the browser. make a prediction with new data
-2. use "transfer learning", which customizes the MobileNet model for the application. We started with a pretrained model in MobileNet.
-3. make a prediction through the webcam
 
 some next improvements possible:
 
@@ -28,11 +23,11 @@ some next improvements possible:
 ### Some bonus Features on top of the tutorial
 
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
-- retry design pattern, debounce function, memoized API call
+- retry design pattern, debounce function, memoized API calls
 - deployed with CI/CD at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile and mobile webcams
 - Google Translate API hooked up with over 100 languages to translate the prediction to.
-- Google Text-to-speech offers language supported pronounciation. Wavenet sounds more human than ever before
-- cached translate API calls in sessionStorage
+- Google Text-to-speech offers language supported pronounciation. Wavenet sounds even more human
+- mobile webcam friendtly thanks to [React Webcam](https://www.npmjs.com/package/react-webcam)
 
 ## Tech Stack:
 
@@ -68,7 +63,6 @@ npm install
 
 3. In order to use Google Translate and Google Text-To-Speech APIs, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT*APP* to the key. Example:
 
-message me with any questions and I'll try to respond in a timely matter
 
 ```
 REACT_APP_GOOGLE_API_KEY=123456
@@ -92,18 +86,18 @@ more in key learning points below...
 
 - some debugging issues with react and tensorflow.js:
 
-  - crossorigin='anonymous' needs to be added to the image tag for predictions to work on a static image
+  - needed to add crossorigin='anonymous' to the image tag for predictions to work on a static image
 
 - index.html needed these scripts to run // fixed this by using tf.ready() prior to loading model. tf.ready() returns a promise that resolves when the currently selected backend (or the highest priority one) has initialized. Await this promise when you are using a backend that has async initialization.
 
-- Unsure what is best practices here, but I had a prediction table displayed with 5 rows. Each row has a button that opens a TranslationModal. The modal has a select dropdown of 100 languages. If a language is selected, a useEffect is triggered to make an api call to Google Translate.
+- Initially, I had a prediction table displayed with 5 rows. Each row has a button that opens a TranslationModal. The modal has a select dropdown of 100 languages. If a language is selected, a useEffect is triggered to make an api call to Google Translate.
   When the table is initially rendered, the useEffect in the modal is triggered 5 times. Is there a way to prevent this?
 
 first solution: I was rendering the modal in the table rows with the button in the modal to open/close. The useEffect ran as soon as the table opened up. that makes sense. So I moved the button to the table rows and only opened the modal when the button clicked. so the useEffect still runs once before a language is selected from the dropdown and once when the language is selected. Not perfect, but better!
 
 Better solution: useCallback to memoize the function. see in useGoogleTranslateAPI.js.
 
-- branch named "fun" contains a form for translating phrases to supported languages and the ability to hear it spoken.
+- There is a commented out TextTSpeech component that provides a form for translating phrases to supported languages and the ability to hear it spoken. 
 
 - In ReactJS environment variables are fetched from .env files. If you set the variable in .env file and your variables returned undefined check the below items.
 
@@ -140,8 +134,6 @@ helpful link:
 - Lower cost
 - Interactivity
 - Reach and Scale
-
-* how to decide the number of layer and nodes of memory intensive layers like LSTM? trial and error, run experiments, keras tuning can search through layers for optimizing
 
 #### Bonus lessons
 
@@ -201,13 +193,6 @@ in the response body:
 **so it returns base64** and we need to convert to wav file to use the
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
 
-after some stackoverflow and googling, I found:
-
-```
-var snd = new Audio("data:audio/wav;base64," + base64string);
-snd.play();
-```
-
 the request body also offers a lot of customizable options and Google supports over 100 voices...
 
-I wanted to stall spamming the voice button and used a timeout as a work around, but that created memory leaks in the useEffect for translation. So I used sessionStorage to memoize base74 encoding for repeat button clicks. IndexedDB can store audio, but I think this solution is adequate for now with short audio clips. Session Storage can store about 4 million characters and gets cleared on browser/tab exit. As of now, we are using session storage as a cache for both translations and for base64 encoded strings.
+I wanted to stall spamming the voice button and used a timeout as a work around, but that created memory leaks in the useEffect for translation. So I used sessionStorage to memoize base64 encoding for repeat button clicks. IndexedDB can store audio, but I think this solution is adequate for now with short audio clips. Session Storage can store about 4 million characters and gets cleared on browser/tab exit. As of now, I'll use session storage as a cache for both translations and for base64 encoded strings for audio.

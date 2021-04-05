@@ -61,7 +61,7 @@ cd tfjs-transfer-learning-image-classifier
 npm install
 ```
 
-3. In order to use Google Translate and Google Text-To-Speech APIs, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT*APP* to the key. Example:
+3. In order to use Google Translate and Google Text-To-Speech APIs, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT _APP_ to the key. Example:
 
 
 ```
@@ -104,7 +104,7 @@ Better solution: useCallback to memoize the function. see in useGoogleTranslateA
 Assumption: You have used Create React App (CRA) to bootstrap your application
 
 1. The .env file should be in the root for you application folder. That is one level above your src folder, the same place where you have your package.json
-2. The variable should be prefixed with REACT*APP*
+2. The variable should be prefixed with REACT _APP_
 3. You need to restart the server to reflect the changes in your code.
 4. You should access the variable in your code like this
    process.env.REACT_APP_SOME_VARIABLE

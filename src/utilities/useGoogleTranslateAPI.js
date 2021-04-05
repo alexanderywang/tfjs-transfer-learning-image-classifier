@@ -86,3 +86,5 @@ const setSessionStorageCache = (languageCode, words, translation) => {
   sessionStorage.setItem(languageCode, JSON.stringify(cache));
   // console.log("checking sessionStorage", sessionStorage.getItem(languageCode));
 };
+
+// not as readable... sessionStorage.setItem("test", JSON.stringify({...JSON.parse(sessionStorage.getItem("test")), "name2":"alex wang"}))

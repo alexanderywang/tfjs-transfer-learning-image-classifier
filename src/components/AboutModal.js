@@ -71,7 +71,7 @@ const AboutModal = ({ open, handleClose }) => {
             This is a web application where users can use Machine Learning and
             classify images taken with the webcam or a device's camera.
             Everything is local and stays private with the user. The app uses a
-            pre-trained model converted to TensorFlow.js to give a probability
+            pre-trained model with TensorFlow.js to give a probability
             of predictions. The prediction table offers a translation option via
             Google Translate API.
           </Typography>

@@ -9,12 +9,15 @@ import useMobileNetModel from "./utilities/useMobileNetModel";
 
 const App = () => {
   const {
+    model,
     loadModel,
+    createClassifier,
+    classifier,
     snackBarMessage,
     open,
     handleClose,
     isLoadingModel,
-    setIsLoadingModel,
+    // setIsLoadingModel,
     predictions,
     setPredictions,
     isLoading,
@@ -25,11 +28,15 @@ const App = () => {
   // simulating model load even though mobilenet is light and fast, other models might be longer load times. mostly to test out some css, otherwise isLoadingModel goes in async/await function :)
   useEffect(() => {
     loadModel();
-    let timer = setTimeout(() => {
-      setIsLoadingModel(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [setIsLoadingModel, loadModel]);
+    // let timer = setTimeout(() => {
+    //   setIsLoadingModel(false);
+    // }, 1500);
+    // return () => clearTimeout(timer);
+  }, [loadModel]);
+
+  useEffect(() => {
+    createClassifier();
+  }, [createClassifier]);
 
   return (
     <Grid>
@@ -46,6 +53,8 @@ const App = () => {
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               makePrediction={makePrediction}
+              model={model}
+              classifier={classifier}
             />
 
             {isLoading && (

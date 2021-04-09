@@ -1,6 +1,7 @@
 import { useState, useCallback } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import * as knnClassifier from "@tensorflow-models/knn-classifier";
 import useSnackBar from "./useSnackBar";
 import retry from "./retryFunction";
 
@@ -9,6 +10,7 @@ const useMobileNetModel = () => {
   const [predictions, setPredictions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [model, setModel] = useState(null);
+  const [classifier, setClassifier] = useState(null);
 
   const {
     handleClose,
@@ -18,6 +20,16 @@ const useMobileNetModel = () => {
     setSnackBarMessage
   } = useSnackBar();
 
+  const createClassifier = useCallback(async () => {
+    try {
+      console.log("creating KNN classifier");
+      const knnclassifier = await knnClassifier.create();
+      setClassifier(knnclassifier);
+    } catch (error) {
+      console.error("Error creating classifier", error);
+    }
+  }, []);
+
   const loadModel = useCallback(async () => {
     await tf.ready();
     try {
@@ -26,12 +38,12 @@ const useMobileNetModel = () => {
       setModel(model);
       console.log("Successfully loaded model", model);
       setSnackBarMessage(`Model loaded!`);
-      setOpen(true);
+      setIsLoadingModel(false);
     } catch (error) {
       console.error("Error loading model:", error);
       setSnackBarMessage("Error loading model. Please refresh and try again.");
-      setOpen(true);
     }
+    setOpen(true);
   }, [setOpen, setSnackBarMessage]);
 
   const makePrediction = async (image, imageURL) => {
@@ -41,24 +53,60 @@ const useMobileNetModel = () => {
       return;
     }
     setIsLoading(true);
+    if (classifier.getNumClasses() > 0) {
+      const activation = tf.browser.fromPixels(image);
+      // console.log("tensor:", activation);
+      const result = await classifier.predictClass(activation);
+      // console.log(
+      //   "predicted before:",
+      //   result,
+      //   "type:",
+      //   typeof result.confidences,
+      //   "result.confidences:",
+      //   result.confidences
+      // );
+
+      if (result.confidences[result.label] >= 0.5) {
+        let predictions = [];
+        for (const label in result.confidences) {
+          if (result.confidences[label] >= 0.25) {
+            predictions.push({
+              className: `${label}`,
+              probability: result.confidences[label]
+            });
+          }
+        }
+        predictions = predictions.sort((a, b) => b.probability - a.probability);
+
+        setIsLoading(false);
+        setPredictions(predictions);
+        return;
+      }
+    }
+
     try {
       const predictions = await model.classify(image, 5);
       // console.log("mobileNet model predictions:", predictions);
+      // console.log("model.infer works", await model.infer(image, "conv_preds"));
       setIsLoading(false);
-
       setPredictions(predictions);
+      setSnackBarMessage(
+        "Experience tells me these are possbilities, but if you disagree, you can train me to learn what you think it is..."
+      );
     } catch (err) {
       setSnackBarMessage(
         "No predictions can be made. Take another picture. Check out the tips"
       );
-      setOpen(true);
       console.error("error:", err);
     }
+    setOpen(true);
   };
 
   return {
     model,
     loadModel,
+    createClassifier,
+    classifier,
     snackBarMessage,
     open,
     handleClose,

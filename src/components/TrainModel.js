@@ -28,7 +28,7 @@ const TrainModel = ({ model, image, classifier }) => {
     event.preventDefault();
     addExample(suggestion, image);
     setMessage(
-      `Very interesting, I'll try to remember this is a ${suggestion}. Taking a few more pictures will help me more...`
+      `Very interesting, I'll try to remember this is a ${suggestion}. Taking a few more pictures from different angles will help me more...`
     );
     setIsTraining(true);
     setSuggestion("");

@@ -21,6 +21,16 @@ const useMobileNetModel = () => {
   } = useSnackBar();
 
   const createClassifier = useCallback(async () => {
+    // if (localStorage.getItem("what-is-this")) {
+    //   // const savedClassifier = await tf.loadLayersModel(
+    //   //   "localstorage://what-is-this"
+    //   // );
+    //   const savedClassifier = JSON.parse(localStorage.getItem("what-is-this"));
+    //   console.log("loaded a saved classifier, hope it works!");
+    //   setClassifier(savedClassifier);
+    //   return;
+    // }
+
     try {
       console.log("creating KNN classifier");
       const knnclassifier = await knnClassifier.create();
@@ -80,14 +90,14 @@ const useMobileNetModel = () => {
 
         setIsLoading(false);
         setPredictions(predictions);
+        setSnackBarMessage("You've shown me something similar before...");
+        setOpen(true);
         return;
       }
     }
 
     try {
       const predictions = await model.classify(image, 5);
-      // console.log("mobileNet model predictions:", predictions);
-      // console.log("model.infer works", await model.infer(image, "conv_preds"));
       setIsLoading(false);
       setPredictions(predictions);
       setSnackBarMessage(

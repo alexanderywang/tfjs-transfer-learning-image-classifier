@@ -21,15 +21,7 @@ const useMobileNetModel = () => {
   } = useSnackBar();
 
   const createClassifier = useCallback(async () => {
-    // if (localStorage.getItem("what-is-this")) {
-    //   // const savedClassifier = await tf.loadLayersModel(
-    //   //   "localstorage://what-is-this"
-    //   // );
-    //   const savedClassifier = JSON.parse(localStorage.getItem("what-is-this"));
-    //   console.log("loaded a saved classifier, hope it works!");
-    //   setClassifier(savedClassifier);
-    //   return;
-    // }
+    // check indexedDB
 
     try {
       console.log("creating KNN classifier");
@@ -42,6 +34,7 @@ const useMobileNetModel = () => {
 
   const loadModel = useCallback(async () => {
     await tf.ready();
+    // check indexedDB
     try {
       console.log("Loading mobilenet...");
       const model = await retry(mobilenet.load, 3, 2);
@@ -49,6 +42,7 @@ const useMobileNetModel = () => {
       console.log("Successfully loaded model", model);
       setSnackBarMessage(`Model loaded!`);
       setIsLoadingModel(false);
+      // save indexedDB
     } catch (error) {
       console.error("Error loading model:", error);
       setSnackBarMessage("Error loading model. Please refresh and try again.");
@@ -64,17 +58,10 @@ const useMobileNetModel = () => {
     }
     setIsLoading(true);
     if (classifier.getNumClasses() > 0) {
+      // abstract this
       const activation = tf.browser.fromPixels(image);
       // console.log("tensor:", activation);
       const result = await classifier.predictClass(activation);
-      // console.log(
-      //   "predicted before:",
-      //   result,
-      //   "type:",
-      //   typeof result.confidences,
-      //   "result.confidences:",
-      //   result.confidences
-      // );
 
       if (result.confidences[result.label] >= 0.5) {
         let predictions = [];

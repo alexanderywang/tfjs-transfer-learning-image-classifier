@@ -22,6 +22,7 @@ some next improvements possible:
 ### Some bonus Features on top of the tutorial
 
 - Transfer Learning with KNN-classifier extended to as many classes as you like
+- the trained model is stored in IndexedDB if available (older browsers may not have this capability). This will save from reloading a classifier model on each page open as well as save any training done by the user.
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
 - retry design pattern, debounce function, memoized API calls
 - deployed with CI/CD at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile and mobile webcams
@@ -36,6 +37,7 @@ some next improvements possible:
 - [Tensorflow.js](https://www.tensorflow.org/js/): A JavaScript library for training and deploying Machine Learning models in the browser
 - [Mobilenet](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) A lightweight, low latency TFJS pre-trained model
 - [KNN-Classifier](https://github.com/tensorflow/tfjs-models/tree/master/knn-classifier) A TFJS model that provides a utility for creating a classifier using the K-Nearest Neighbors algorithm.
+- [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) A NoSQL storage system supported in the browser. Specifically I'm using [Jake Archibald's IndexedDB Promised library](https://github.com/jakearchibald/idb), which is very similar to the IndexedDB API, but uses promises rather than events.
 - [Axios](https://www.npmjs.com/package/axios): Promise based HTTP client for browser and Node.js.
 - [Material-UI](https://material-ui.com/): Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications.
 - [React Webcam](https://www.npmjs.com/package/react-webcam) in order to get clientside webcam functionality, we need a plugin. Since we're only looking for static images and not a full communications app, I'm using React Webcam.
@@ -64,7 +66,6 @@ npm install
 ```
 
 3. In order to use Google Translate and Google Text-To-Speech APIs, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT _APP_ to the key. Example:
-
 
 ```
 REACT_APP_GOOGLE_API_KEY=123456

@@ -6,6 +6,8 @@ import useCamera from "../utilities/useCamera";
 import useSnackBar from "../utilities/useSnackBar";
 
 const DeviceWebcam = ({
+  model,
+  classifier,
   setPredictions,
   isLoading,
   setIsLoading,
@@ -50,7 +52,7 @@ const DeviceWebcam = ({
         onClose={handleClose}
         message={snackBarMessage}
       />
-      <Grid>
+      <Grid id="webcam" item xs={12} m={8}>
         <Webcam
           audio={false}
           ref={webcamRef}
@@ -59,15 +61,20 @@ const DeviceWebcam = ({
           videoConstraints={videoConstraints}
           mirrored={isMirrored}
         />
+        {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
       </Grid>
-      {isPhotoTaken && <img src={imageURL} ref={imageRef} alt="selfie" />}
-      <Buttons
-        isLoading={isLoading}
-        isPhotoTaken={isPhotoTaken}
-        makePrediction={() => makePrediction(image, imageURL)}
-        flipCamera={flipCamera}
-        handleClick={handleClick}
-      />
+      <Grid id="buttons">
+        <Buttons
+          isLoading={isLoading}
+          isPhotoTaken={isPhotoTaken}
+          makePrediction={() => makePrediction(image, imageURL)}
+          flipCamera={flipCamera}
+          handleClick={handleClick}
+          image={image}
+          model={model}
+          classifier={classifier}
+        />
+      </Grid>
     </Grid>
   );
 };

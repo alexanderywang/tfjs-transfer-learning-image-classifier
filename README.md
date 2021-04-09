@@ -1,6 +1,6 @@
-## TensorFlow JS Machine Learning Image Classifier
+## TensorFlow JS Machine Transfer Learning Image Classifier
 
-The Tensorflow.js tutorial uses script tags as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I'll add Material UI with an eye towards developing a progressive web application. I'll refer and refactor the code from the machine learning image classifier tutorial on Tensorflow JS found here:
+The Tensorflow.js tutorial uses script tags as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I added Material UI with an eye towards developing a progressive web application. I used transfer learning to extend mobileNets model with a KNN-classifier included with TensorFlow models. I referred and refactored the code from the machine learning image classifier tutorial on Tensorflow JS found here:
 
 https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-codelab/index.html#0
 
@@ -17,11 +17,12 @@ The goal of this solution is to build a ["teachable machine"](https://teachablem
 some next improvements possible:
 
 1. try other models for accuracy / give choices for fast/slow loading models as well as for object detection rather than strict image classification. Google Cloud Vision API looks quite accurate https://cloud.google.com/vision/#industry-leading-accuracy-for-image-understanding
-2. Try to involve transfer learning instead of simply loading a pretrained model, allowing the user to train their own model based on their input
-3. offline capability as a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps), read about [Service Workers](https://create-react-app.dev/docs/making-a-progressive-web-app/)
+2. offline capability as a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps), read about [Service Workers](https://create-react-app.dev/docs/making-a-progressive-web-app/)
 
 ### Some bonus Features on top of the tutorial
 
+- Transfer Learning with KNN-classifier extended to as many classes as you like
+- the trained model is stored in IndexedDB if available (older browsers may not have this capability). This will save from reloading a classifier model on each page open as well as save any training done by the user.
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
 - retry design pattern, debounce function, memoized API calls
 - deployed with CI/CD at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile and mobile webcams
@@ -34,6 +35,9 @@ some next improvements possible:
 - [Node.js](https://nodejs.org/en/): JavaScript runtime built on Chrome's V8 JavaScript engi
 - [React](https://facebook.github.io/react/): A JavaScript library for building user interfaces
 - [Tensorflow.js](https://www.tensorflow.org/js/): A JavaScript library for training and deploying Machine Learning models in the browser
+- [Mobilenet](https://github.com/tensorflow/models/blob/master/research/slim/nets/mobilenet_v1.md) A lightweight, low latency TFJS pre-trained model
+- [KNN-Classifier](https://github.com/tensorflow/tfjs-models/tree/master/knn-classifier) A TFJS model that provides a utility for creating a classifier using the K-Nearest Neighbors algorithm.
+- [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB) A NoSQL storage system supported in the browser. Specifically I'm using [Jake Archibald's IndexedDB Promised library](https://github.com/jakearchibald/idb), which is very similar to the IndexedDB API, but uses promises rather than events.
 - [Axios](https://www.npmjs.com/package/axios): Promise based HTTP client for browser and Node.js.
 - [Material-UI](https://material-ui.com/): Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications.
 - [React Webcam](https://www.npmjs.com/package/react-webcam) in order to get clientside webcam functionality, we need a plugin. Since we're only looking for static images and not a full communications app, I'm using React Webcam.
@@ -62,7 +66,6 @@ npm install
 ```
 
 3. In order to use Google Translate and Google Text-To-Speech APIs, you'll have to register with Google and retrieve a key. It's fairly straightforward to setup an account https://developers.google.com/maps/documentation/javascript/cloud-setup. You have to sign up for billing but shouldn't be charged anything without your permission. Once you have an API key, set up a .env file at the root of your directory (It's at the same level as package.json). You MUST prepend REACT _APP_ to the key. Example:
-
 
 ```
 REACT_APP_GOOGLE_API_KEY=123456
@@ -97,7 +100,7 @@ first solution: I was rendering the modal in the table rows with the button in t
 
 Better solution: useCallback to memoize the function. see in useGoogleTranslateAPI.js.
 
-- There is a commented out TextTSpeech component that provides a form for translating phrases to supported languages and the ability to hear it spoken. 
+- There is a commented out TextTSpeech component that provides a form for translating phrases to supported languages and the ability to hear it spoken.
 
 - In ReactJS environment variables are fetched from .env files. If you set the variable in .env file and your variables returned undefined check the below items.
 

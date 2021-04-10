@@ -13,6 +13,8 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import useKNNClassifier from "../utilities/useKNNClassifier";
 import useIndexedDB from "../utilities/useIndexedDB";
+import format from "../utilities/helperFunctions";
+import useMobileNetModel from "../utilities/useMobileNetModel";
 
 const helpfulTip =
   "Try taking at least three pictures to help train me. More data will help my accuracy";
@@ -21,22 +23,30 @@ const deleteTip =
 
 const TrainModel = ({ model, image, classifier }) => {
   const { addExample } = useKNNClassifier(classifier, model);
-  const { deleteModel } = useIndexedDB();
+  const { deleteClassifier } = useMobileNetModel();
   const [suggestion, setSuggestion] = useState("");
   const [isTraining, setIsTraining] = useState(false);
   const [message, setMessage] = useState("");
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const handleChange = e => {
     setSuggestion(e.target.value);
   };
   const handleSubmit = event => {
     event.preventDefault();
-    addExample(suggestion, image);
+    const label = format(suggestion);
+    addExample(label, image);
     setMessage(
-      `Very interesting, I'll try to remember this is a ${suggestion}. Taking a few more pictures from different angles will help me more...`
+      `Very interesting, I'll try to remember this is a ${label}. Taking a few more pictures from different angles will help me more...`
     );
     setIsTraining(true);
     setSuggestion("");
+  };
+  const handleDeleteClassifier = () => {
+    deleteClassifier();
+    setIsTraining(false);
+    setMessage("");
+    setIsDeleted(true);
   };
 
   return (
@@ -77,9 +87,11 @@ const TrainModel = ({ model, image, classifier }) => {
         TransitionComponent={Zoom}
         disableFocusListener
       >
-        <IconButton onClick={deleteModel}>
+        <IconButton onClick={handleDeleteClassifier}>
           <DeleteOutlineIcon />
-          Delete all my training
+          {isDeleted
+            ? "Trained Classifier deleted, you may need to refresh the page for changes to take effect"
+            : "Delete all my training and go back to the pre-trained model."}
         </IconButton>
       </Tooltip>
     </Grid>

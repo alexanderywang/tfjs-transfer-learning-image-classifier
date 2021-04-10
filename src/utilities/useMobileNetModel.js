@@ -21,7 +21,7 @@ const useMobileNetModel = () => {
     setSnackBarMessage
   } = useSnackBar();
 
-  const { checkIDBforSavedClassifier, saveModel } = useIndexedDB();
+  const { checkIDBforSavedClassifier, saveModel, deleteModel } = useIndexedDB();
 
   const createNewClassifier = useCallback(async () => {
     try {
@@ -133,6 +133,12 @@ const useMobileNetModel = () => {
     setOpen(true);
   };
 
+  const deleteClassifier = async () => {
+    await deleteModel();
+    if (classifier) classifier.dispose();
+    createNewClassifier();
+  };
+
   return {
     model,
     loadModel,
@@ -147,7 +153,8 @@ const useMobileNetModel = () => {
     setPredictions,
     isLoading,
     setIsLoading,
-    makePrediction
+    makePrediction,
+    deleteClassifier
   };
 };
 

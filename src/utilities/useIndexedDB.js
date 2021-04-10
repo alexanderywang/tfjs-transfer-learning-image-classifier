@@ -74,7 +74,7 @@ const useIndexedDB = () => {
     );
   };
 
-  const deleteModel = async (INDEXEDDB_MODEL_KEY, model) => {
+  const deleteModel = async () => {
     await deleteDB(INDEXEDDB_DB);
     await openDatabase();
   };

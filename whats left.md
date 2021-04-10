@@ -7,4 +7,6 @@ List of css ideaS:
 - loading page could have some interaction? particles?
 
 google cloud vision api
-s
+
+there seems to be a bug. training knn will cause it to only classify whatever i took the most pictures of and trained and apply it to ALL photos
+maybe something wrt to classIndex?

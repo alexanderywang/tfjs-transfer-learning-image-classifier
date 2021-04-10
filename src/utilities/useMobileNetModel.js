@@ -77,10 +77,10 @@ const useMobileNetModel = () => {
   }, [setOpen, setSnackBarMessage]);
 
   const checkClassifier = async image => {
-    const activation = tf.browser.fromPixels(image);
-    // console.log("tensor:", activation);
+    // const activation = tf.browser.fromPixels(image);
+    const activation = model.infer(image, "conv_preds");
+    // console.log("tensor:", activation, "classifier:", classifier);
     const result = await classifier.predictClass(activation);
-
     if (result.confidences[result.label] >= 0.5) {
       let predictions = [];
       for (const label in result.confidences) {
@@ -114,20 +114,21 @@ const useMobileNetModel = () => {
     if (classifier.getNumClasses() > 0) {
       const isTrained = await checkClassifier(image);
       if (isTrained) return;
-    }
-    // else use model to classify
-    try {
-      const predictions = await model.classify(image, 5);
-      setIsLoading(false);
-      setPredictions(predictions);
-      setSnackBarMessage(
-        "Experience tells me these are possibilities, but if you disagree, you can train me to learn what you think it is..."
-      );
-    } catch (err) {
-      setSnackBarMessage(
-        "No predictions can be made. Take another picture. Check out the tips"
-      );
-      console.error("error:", err);
+    } else {
+      // else use model to classify
+      try {
+        const predictions = await model.classify(image, 5);
+        setIsLoading(false);
+        setPredictions(predictions);
+        setSnackBarMessage(
+          "Experience tells me these are possibilities, but if you disagree, you can train me to learn what you think it is..."
+        );
+      } catch (err) {
+        setSnackBarMessage(
+          "No predictions can be made. Take another picture. Check out the tips"
+        );
+        console.error("error:", err);
+      }
     }
     setOpen(true);
   };

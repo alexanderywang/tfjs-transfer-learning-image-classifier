@@ -9,14 +9,19 @@ import {
   Typography,
   Grid
 } from "@material-ui/core";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import useKNNClassifier from "../utilities/useKNNClassifier";
+import useIndexedDB from "../utilities/useIndexedDB";
 
 const helpfulTip =
   "Try taking at least three pictures to help train me. More data will help my accuracy";
+const deleteTip =
+  "If you feel I'm poorly trained, or just want to get rid of everything I've learned...";
 
 const TrainModel = ({ model, image, classifier }) => {
   const { addExample } = useKNNClassifier(classifier, model);
+  const { deleteModel } = useIndexedDB();
   const [suggestion, setSuggestion] = useState("");
   const [isTraining, setIsTraining] = useState(false);
   const [message, setMessage] = useState("");
@@ -67,6 +72,16 @@ const TrainModel = ({ model, image, classifier }) => {
           <Typography>{message}</Typography>
         </>
       )}
+      <Tooltip
+        title={deleteTip}
+        TransitionComponent={Zoom}
+        disableFocusListener
+      >
+        <IconButton onClick={deleteModel}>
+          <DeleteOutlineIcon />
+          Delete all my training
+        </IconButton>
+      </Tooltip>
     </Grid>
   );
 };

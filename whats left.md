@@ -7,9 +7,4 @@ List of css ideaS:
 - loading page could have some interaction? particles?
 
 google cloud vision api
-
-need to store trained classifier model - IndexedDB looks like the only way
-https://www.javascripttutorial.net/web-apis/javascript-indexeddb/
-
-
-make a clear history button. clears indexedDB and sessionStorage
+s

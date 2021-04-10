@@ -22,7 +22,7 @@ some next improvements possible:
 ### Some bonus Features on top of the tutorial
 
 - Transfer Learning with KNN-classifier extended to as many classes as you like
-- the trained model is stored in IndexedDB if available (older browsers may not have this capability). This will save from reloading a classifier model on each page open as well as save any training done by the user.
+- The trained KNN-classifier model is stored in IndexedDB if available (older browsers may not have this capability). This will save from reloading a classifier model on each page open as well as **save any training done by the user.**
 - React, React Hooks, functional components, pure functions, async/await, modern ES6 syntax
 - retry design pattern, debounce function, memoized API calls
 - deployed with CI/CD at https://tfjs-what-is-this.herokuapp.com with travis-ci. works for mobile and mobile webcams
@@ -162,6 +162,10 @@ you can only directly access server resources inside the web app, not client-sid
 if you wanted to do eye tracking browser-side, there's OpenCV.js which runs completely in the browser. I don't know if the required procedures for eye tracking have been ported to OpenCV.js but it's worth a look. you could do the analysis client-side and just send back heatmaps or lists of coordinates.
 
 - also heroku needs png files in lowercase
+
+##### IndexedDB, sessionStorage, localStorage
+
+Saving tensor models were tricky to accomplish but clearly useful when a user wants to train models and have that model persist. These browser storage APIs were very helpful in accomplishing that goal.
 
 ##### Google text-to-voice functionality
 

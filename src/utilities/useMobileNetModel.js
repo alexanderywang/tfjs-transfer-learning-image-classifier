@@ -79,7 +79,7 @@ const useMobileNetModel = () => {
   const checkClassifier = async image => {
     // const activation = tf.browser.fromPixels(image);
     const activation = model.infer(image, "conv_preds");
-    // console.log("tensor:", activation, "classifier:", classifier);
+    console.log("tensor:", activation, "classifier:", classifier);
     const result = await classifier.predictClass(activation);
     if (result.confidences[result.label] >= 0.5) {
       let predictions = [];
@@ -135,7 +135,11 @@ const useMobileNetModel = () => {
 
   const deleteClassifier = async () => {
     await deleteModel();
-    if (classifier) classifier.dispose();
+
+    if (classifier) {
+      classifier.clearAllClasses();
+      classifier.dispose();
+    }
     createNewClassifier();
   };
 

@@ -18,6 +18,7 @@ some next improvements possible:
 
 1. try other models for accuracy / give choices for fast/slow loading models as well as for object detection rather than strict image classification. Google Cloud Vision API looks quite accurate https://cloud.google.com/vision/#industry-leading-accuracy-for-image-understanding
 2. offline capability as a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps), read about [Service Workers](https://create-react-app.dev/docs/making-a-progressive-web-app/)
+3. speech to text capabilities would provide an interesting interface for the user
 
 ### Some bonus Features on top of the tutorial
 

@@ -113,9 +113,7 @@ const useMobileNetModel = () => {
     }
     setIsLoading(false);
     setPredictions([]);
-    setSnackBarMessage(
-      "I'm not sure what that is! Can you train me?"
-    );
+    setSnackBarMessage("I'm not sure what that is! Can you train me?");
     setOpen(true);
     return false;
   };
@@ -132,21 +130,21 @@ const useMobileNetModel = () => {
       if (isTrained) {
         return;
       }
-    } else {
-      // else use model to classify
-      try {
-        const predictions = await model.classify(image, 5);
-        setIsLoading(false);
-        setPredictions(predictions);
-        setSnackBarMessage(
-          "Experience tells me these are possibilities, but if you disagree, you can train me to learn what you think it is..."
-        );
-      } catch (err) {
-        setSnackBarMessage(
-          "No predictions can be made. Take another picture. Check out the tips"
-        );
-        console.error("error:", err);
-      }
+    }
+
+    // else use model to classify
+    try {
+      const predictions = await model.classify(image, 5);
+      setIsLoading(false);
+      setPredictions(predictions);
+      setSnackBarMessage(
+        "Experience tells me these are possibilities, but if you disagree, you can train me to learn what you think it is..."
+      );
+    } catch (err) {
+      setSnackBarMessage(
+        "No predictions can be made. Take another picture. Check out the tips"
+      );
+      console.error("error:", err);
     }
     setOpen(true);
   };

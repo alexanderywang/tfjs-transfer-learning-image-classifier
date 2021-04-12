@@ -89,9 +89,14 @@ const TrainModel = ({ model, image, classifier }) => {
       >
         <IconButton onClick={handleDeleteClassifier}>
           <DeleteOutlineIcon />
-          {isDeleted
-            ? "Trained Classifier deleted, you may need to refresh the page for changes to take effect"
-            : "Delete all my training and go back to the pre-trained model."}
+          {isDeleted ? (
+            <Typography>Trained Classifier deleted.</Typography>
+          ) : (
+            <Typography>
+              Delete my training. Refresh the page, I'll forget everything
+              you've taught me.
+            </Typography>
+          )}
         </IconButton>
       </Tooltip>
     </Grid>

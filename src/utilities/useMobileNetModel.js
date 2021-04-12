@@ -79,8 +79,18 @@ const useMobileNetModel = () => {
   const checkClassifier = async image => {
     // const activation = tf.browser.fromPixels(image);
     const activation = model.infer(image, "conv_preds");
-    console.log("tensor:", activation, "classifier:", classifier);
     const result = await classifier.predictClass(activation);
+    console.log(
+      "tensor:",
+      activation,
+      "classifier:",
+      classifier,
+      "result:",
+      result,
+      "confidence:",
+      result.confidences[result.label]
+    );
+
     if (result.confidences[result.label] >= 0.5) {
       let predictions = [];
       for (const label in result.confidences) {
@@ -101,6 +111,12 @@ const useMobileNetModel = () => {
       setOpen(true);
       return true;
     }
+    setIsLoading(false);
+    setPredictions([]);
+    setSnackBarMessage(
+      "I'm not sure what that is! Can you train me?"
+    );
+    setOpen(true);
     return false;
   };
 
@@ -113,7 +129,9 @@ const useMobileNetModel = () => {
     setIsLoading(true);
     if (classifier.getNumClasses() > 0) {
       const isTrained = await checkClassifier(image);
-      if (isTrained) return;
+      if (isTrained) {
+        return;
+      }
     } else {
       // else use model to classify
       try {

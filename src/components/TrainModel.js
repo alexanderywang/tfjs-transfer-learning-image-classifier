@@ -12,7 +12,6 @@ import {
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import useKNNClassifier from "../utilities/useKNNClassifier";
-import useIndexedDB from "../utilities/useIndexedDB";
 import format from "../utilities/helperFunctions";
 import useMobileNetModel from "../utilities/useMobileNetModel";
 

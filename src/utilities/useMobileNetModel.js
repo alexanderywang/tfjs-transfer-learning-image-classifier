@@ -156,7 +156,7 @@ const useMobileNetModel = () => {
       classifier.clearAllClasses();
       classifier.dispose();
     }
-    createNewClassifier();
+    createClassifier();
   };
 
   return {

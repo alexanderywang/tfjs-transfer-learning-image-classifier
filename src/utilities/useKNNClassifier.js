@@ -1,4 +1,4 @@
-import * as tf from "@tensorflow/tfjs";
+// import * as tf from "@tensorflow/tfjs";
 import useIndexedDB from "./useIndexedDB";
 
 const useKNNClassifier = (classifier, model) => {

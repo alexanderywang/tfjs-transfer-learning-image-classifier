@@ -25,12 +25,12 @@ const useMobileNetModel = () => {
 
   const createNewClassifier = useCallback(async () => {
     try {
-      console.log("creating KNN classifier");
+      // console.log("creating KNN classifier");
       const knnclassifier = await knnClassifier.create();
       setClassifier(knnclassifier);
       saveModel("classifier_model", knnclassifier);
     } catch (error) {
-      console.error("Error creating classifier", error);
+      // console.error("Error creating classifier", error);
     }
   }, []);
 
@@ -39,12 +39,12 @@ const useMobileNetModel = () => {
       "classifier_model"
     );
     if (savedClassifier) {
-      console.log("Successfully loaded a saved classifier", savedClassifier);
+      // console.log("Successfully loaded a saved classifier", savedClassifier);
       setClassifier(savedClassifier);
     } else {
-      console.log(
-        `Error: No saved classifier in IndexedDB found. Creating a new classifier...`
-      );
+      // console.log(
+      //   `Error: No saved classifier in IndexedDB found. Creating a new classifier...`
+      // );
       createNewClassifier();
     }
   }, []);
@@ -63,14 +63,14 @@ const useMobileNetModel = () => {
   const loadModel = useCallback(async () => {
     await tf.ready();
     try {
-      console.log("Loading mobilenet...");
+      // console.log("Loading mobilenet...");
       const model = await retry(mobilenet.load, 3, 2);
       setModel(model);
-      console.log("Successfully loaded model", model);
+      // console.log("Successfully loaded model", model);
       setSnackBarMessage(`Model loaded!`);
       setIsLoadingModel(false);
     } catch (error) {
-      console.error("Error loading model:", error);
+      // console.error("Error loading model:", error);
       setSnackBarMessage("Error loading model. Please refresh and try again.");
     }
     setOpen(true);
@@ -80,16 +80,16 @@ const useMobileNetModel = () => {
     // const activation = tf.browser.fromPixels(image);
     const activation = model.infer(image, "conv_preds");
     const result = await classifier.predictClass(activation);
-    console.log(
-      "tensor:",
-      activation,
-      "classifier:",
-      classifier,
-      "result:",
-      result,
-      "confidence:",
-      result.confidences[result.label]
-    );
+    // console.log(
+    //   "tensor:",
+    //   activation,
+    //   "classifier:",
+    //   classifier,
+    //   "result:",
+    //   result,
+    //   "confidence:",
+    //   result.confidences[result.label]
+    // );
 
     if (result.confidences[result.label] >= 0.5) {
       let predictions = [];
@@ -179,47 +179,3 @@ const useMobileNetModel = () => {
 };
 
 export default useMobileNetModel;
-
-// main model can't be saved
-// const loadModelFromIndexedDB = useCallback(async () => {
-//   await tf.ready();
-//   const model = await checkIDBforSavedModel("mobilenet_model");
-//   if (model) {
-//     console.log("Successfully loaded a saved model", model);
-//     setModel(model);
-//     setSnackBarMessage(`Model loaded successfully from IDB!`);
-//     setIsLoadingModel(false);
-//   } else {
-//     console.log(
-//       `Error: No saved model in IndexedDB found. Loading and saving a new model...`
-//     );
-//     await loadModel();
-//   }
-//   setOpen(true);
-// }, []);
-
-// const loadModel = useCallback(
-//   async idbStatus => {
-//     await tf.ready();
-//     try {
-//       console.log("Loading mobilenet...");
-//       const model = await retry(mobilenet.load, 3, 2);
-//       setModel(model);
-//       console.log("Successfully loaded model", model);
-//       setSnackBarMessage(
-//         idbStatus === "NO_IDB"
-//           ? `Model loaded successfully! It looks like you are using an older browser and IndexedDB storage is not supported. If you train a model, it will not save`
-//           : `Model loaded successfully! No saved model in IndexedDB found. Loading and saving a new model...`
-//       );
-//       setIsLoadingModel(false);
-//       if (idbStatus !== "NO_IDB") saveModel("mobilenet_model", model);
-//     } catch (error) {
-//       console.error("Error loading model:", error);
-//       setSnackBarMessage(
-//         "Error loading model. Please refresh and try again."
-//       );
-//     }
-//     setOpen(true);
-//   },
-//   [setOpen, setSnackBarMessage]
-// );

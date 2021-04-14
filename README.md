@@ -1,3 +1,7 @@
+## WHAT IS THIS??
+
+Deployed at https://tfjs-what-is-this.herokuapp.com (it is slow for the first load), this is a web app that allows you to use your phone or laptop, with machine learning library TensorFlow JS, as an image classifier and to even train your own knn classifier with transfer learning. It is further enhanced by connecting APIs from Google Cloud Console and allow you to both see and hear translations in the 100 or so supported languages by Google Translate and Text-to-Speech. 
+
 ## TensorFlow JS Machine Transfer Learning Image Classifier
 
 The Tensorflow.js tutorial uses script tags as the entry point for loading files. I'll install via npm and use Create React App and modularize where possible. I added Material UI with an eye towards developing a progressive web application. I used transfer learning to extend mobileNets model with a KNN-classifier included with TensorFlow models. I referred and refactored the code from the machine learning image classifier tutorial on Tensorflow JS found here:
@@ -6,7 +10,7 @@ https://codelabs.developers.google.com/codelabs/tensorflowjs-teachablemachine-co
 
 - Tensorflow.js allows you to run machine learning models in the browser for analysis and training.
 
-You can find a working version of this app at https://tfjs-what-is-this.herokuapp.com
+
 
 - **the codelab merged with React can be found in branch tfjs-image-classifier-with-react (without Google APIs)**
 

@@ -1,6 +1,6 @@
 ## WHAT IS THIS??
 
-Deployed at https://tfjs-what-is-this.herokuapp.com (it is slow for the first load), this is a web app that allows you to use your phone or laptop, with machine learning library TensorFlow JS, as an image classifier and to even train your own knn classifier with transfer learning. It is further enhanced by connecting APIs from Google Cloud Console and allow you to both see and hear translations in the 100 or so supported languages by Google Translate and Text-to-Speech. 
+Deployed at https://tfjs-what-is-this.herokuapp.com, this is a web app that allows you to use your phone or laptop, with machine learning library TensorFlow JS, as an image classifier and to even train your own knn classifier with transfer learning. It is further enhanced by connecting APIs from Google Cloud Console and allow you to both see and hear translations in the 100 or so supported languages by Google Translate and Text-to-Speech. 
 
 ## TensorFlow JS Machine Transfer Learning Image Classifier
 
